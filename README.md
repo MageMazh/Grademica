@@ -1,6 +1,5 @@
 # sistem-informasi-2
-
-## project-sistem-informasi
+Sistem Informasi Management Input Nilai Mata Kuliah
 
 ### fitur-fitur
 1. Halaman Log in and Sign up
