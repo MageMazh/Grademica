@@ -1,0 +1,11 @@
+Ion-Avatar {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    width: 100px; /* Sesuaikan lebar gambar sesuai keinginan Anda */
+    height: 100px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    margin-top: 15px;
+  }
+  

@@ -1,5 +1,5 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonItem, IonList, IonLabel } from '@ionic/react';
-import './Home.css';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonItem, IonList, IonLabel, IonAvatar } from '@ionic/react';
+import './profile.css';
 
 const Profile: React.FC = () => {
   return (
@@ -18,9 +18,14 @@ const Profile: React.FC = () => {
           </IonToolbar>
         </IonHeader>
 
+        <IonAvatar>
+        <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+      </IonAvatar>
+
         <IonList lines="full">
           {/* 1. Profile Account */}
           <IonItem><IonLabel>Account</IonLabel></IonItem>
+          
           
           <IonItem>
             <IonList lines="inset">
