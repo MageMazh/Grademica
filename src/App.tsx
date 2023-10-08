@@ -18,7 +18,7 @@ import '@ionic/react/css/text-alignment.css';
 import '@ionic/react/css/text-transformation.css';
 import '@ionic/react/css/flex-utils.css';
 import '@ionic/react/css/display.css';
-import Profile from './pages/profile';
+import Login from './pages/Login';
 
 /* Theme variables */
 import './theme/variables.css';
@@ -32,8 +32,8 @@ const App: React.FC = () => (
         <Route exact path="/home">
           <Home />
         </Route>
-        <Route exact path="/profile">
-          <Profile />
+        <Route exact path="/login">
+          <Login />
         </Route>
         <Route exact path="/">
           <Redirect to="/home" />
