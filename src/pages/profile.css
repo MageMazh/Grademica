@@ -8,4 +8,12 @@ Ion-Avatar {
     margin-bottom: 20px;
     margin-top: 15px;
   }
+
+  .profile-card{
+    text-align: center;
+  }
+
+  .Col-Menu{
+    flex-basis:unset;
+  }
   
