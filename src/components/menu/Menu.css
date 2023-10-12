@@ -1,4 +1,10 @@
-ion-split-pane {
+.split-pane {
     position: relative;
     height: 100%;
+    min-width: 0px;
+}
+
+.split-pane__menu {
+    min-width: 0px;
+    width: 200px;
 }
