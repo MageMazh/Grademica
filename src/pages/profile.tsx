@@ -1,9 +1,5 @@
 import { 
-  IonContent, 
-  IonHeader, 
-  IonPage, 
-  IonTitle, 
-  IonToolbar, 
+  IonContent,  
   IonItem, 
   IonList, 
   IonLabel, 
@@ -14,42 +10,48 @@ import {
   IonCardContent,
   IonGrid,
   IonRow,
-  IonCol
+  IonCol,
+  IonSplitPane,
+  IonButton
  } from '@ionic/react';
 
 import './profile.css';
 import Navbar from '../components/navbar';
-import Menu from '../components/menu/Menu';
+import Menu from '../components/menu';
 
 const Profile: React.FC = () => {
   return (
-    <IonPage>
+    <>
+    {/* <IonPage> */}
 
-      <IonContent fullscreen>
+      {/* <IonContent fullscreen> */}
 
         {/* memasukkan komponen navbar */}
         <Navbar/>
         
-        <div>
+        {/* 1. Memasukkan komponen Menu ke tata letak kiri */}
+        <IonSplitPane className="split-pane" when="xs" contentId="main">
+          <Menu/>
+          <div className="ion-page" id="main">
+          <IonContent className="dashboard ion-padding">
+            <h1>Profile</h1>
           {/* Membuat Tata Letaknya */}
           <IonGrid>
             <IonRow>
-              {/* Memasukkan komponen Menu ke tata letak kiri */}
-              <IonCol className='Col-Menu'><Menu/></IonCol>
-              {/* Memasukkan Profile Car ke tengah */}
-              <IonCol>
+              {/* 2. Memasukkan Profile Car ke tengah */}
+              <IonCol className='profile' size='3'>
                 {/* Membuat Profile Card */}
-                <IonCard className='profile-card'>
-                  <IonAvatar>
+                <IonCard className='profile__card'>
+                  <IonAvatar className='BMM-profile-card'>
                     <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
                   </IonAvatar>
                   <h3 className="Nama-Profile-Card">Nama User</h3>
                   <h4 className="Prodi-Profile-Card">Teknik Informatika</h4>
                 </IonCard>
               </IonCol>
-              {/* Memasukkan Data Profile Ke bagian kanan */}
+              {/* 3. Memasukkan Data Profile Ke bagian kanan */}
               <IonCol>
-                <IonCard>
+                <IonCard className='data__profile'>
                   {/* Header Data Profile */}
                   <IonCardHeader>
                     <IonCardTitle>Profile</IonCardTitle>
@@ -95,14 +97,21 @@ const Profile: React.FC = () => {
                         <IonLabel>Jabatan Fungsional</IonLabel>
                       </IonItem>
                     </IonList>
+                    <div className='button-account'>
+                      <IonButton className='BTN-Change-Pass'>Ubah Sandi</IonButton>
+                      <IonButton className='BTN-Edit-Profile'>Edit Profile</IonButton>
+                    </div>
                   </IonCardContent>
                 </IonCard>
               </IonCol>
             </IonRow>
           </IonGrid>
-        </div>
-      </IonContent>
-    </IonPage>
+          </IonContent>
+          </div>
+        </IonSplitPane>
+      {/* </IonContent> */}
+    {/* </IonPage> */}
+    </>
   );
 };
 

@@ -1,19 +1,54 @@
-Ion-Avatar {
+.BMM-profile-card {
     display: block;
     justify-content: center;
     align-items: center;
-    width: 100px; /* Sesuaikan lebar gambar sesuai keinginan Anda */
-    height: 100px;
+    /* width: 100px;
+    height: 100px; */
+    width: 40%;
+    height: auto;
     margin: 0 auto;
-    margin-bottom: 20px;
-    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-top: 25px;
   }
 
-  .profile-card{
-    text-align: center;
-  }
+.profile{
+  text-align: center;
+}
 
-  .Col-Menu{
-    flex-basis:unset;
-  }
-  
+.profile__card{
+  margin-right: 0px;
+  height: auto;
+  /* height: 43.5%; */
+  width: 90%;
+  margin-left: 0px;
+}
+
+.Nama-Profile-Card{
+  font-size: 2vw;
+  margin: 0px;
+}
+
+.Prodi-Profile-Card{
+  font-size: 1.5vw;
+  margin-top: 5px;
+  margin-bottom: 25px;
+}
+
+.data__profile{
+  width: 95%;
+}
+
+.button-account{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.BTN-Change-Pass, .BTN-Edit-Profile{
+  flex-grow: 0;
+  width: 200px;
+}
+
+.BTN-Change-Pass{
+  --background: red;
+}
