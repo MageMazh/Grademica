@@ -24,18 +24,34 @@
 }
 
 .Nama-Profile-Card{
-  font-size: 2vw;
+  font-size: 1.8vw;
   margin: 0px;
 }
 
 .Prodi-Profile-Card{
-  font-size: 1.5vw;
+  font-size: 1.3vw;
   margin-top: 5px;
   margin-bottom: 25px;
 }
 
+.data{
+  padding-bottom: 50px;
+}
+
 .data__profile{
   width: 95%;
+}
+
+.header-data{
+  padding: 0px;
+  padding-top: 4px;
+}
+.title-data{
+  font-weight: bold;
+}
+
+.list-data{
+  padding-top: 0px;
 }
 
 .button-account{

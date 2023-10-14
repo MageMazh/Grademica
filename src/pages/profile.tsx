@@ -50,16 +50,18 @@ const Profile: React.FC = () => {
                 </IonCard>
               </IonCol>
               {/* 3. Memasukkan Data Profile Ke bagian kanan */}
-              <IonCol>
+              <IonCol className='data'>
                 <IonCard className='data__profile'>
                   {/* Header Data Profile */}
-                  <IonCardHeader>
-                    <IonCardTitle>Profile</IonCardTitle>
+                  <IonCardHeader className='header-data'>
+                    <IonItem>
+                    <IonCardTitle className='title-data'>Data Pribadi</IonCardTitle>
+                    </IonItem>
                   </IonCardHeader>
             
                   {/* Isi Data Profile */}
                   <IonCardContent>
-                    <IonList lines="inset">
+                    <IonList className='list-data' lines="inset">
                       {/* list 1 */}
                       <IonItem>
                         <IonLabel>Nama </IonLabel>
