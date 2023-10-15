@@ -1,15 +1,13 @@
 .BMM-profile-card {
-    display: block;
-    justify-content: center;
-    align-items: center;
-    /* width: 100px;
-    height: 100px; */
-    width: 40%;
-    height: auto;
-    margin: 0 auto;
-    margin-bottom: 15px;
-    margin-top: 25px;
-  }
+  display: block;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+  height: auto;
+  margin: 0 auto;
+  margin-bottom: 15px;
+  margin-top: 25px;
+}
 
 .profile{
   text-align: center;
@@ -18,7 +16,6 @@
 .profile__card{
   margin-right: 0px;
   height: auto;
-  /* height: 43.5%; */
   width: 90%;
   margin-left: 0px;
 }
