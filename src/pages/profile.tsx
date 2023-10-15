@@ -14,7 +14,6 @@ import {
   IonSplitPane,
   IonButton
  } from '@ionic/react';
-
 import './profile.css';
 import Navbar from '../components/navbar';
 import Menu from '../components/menu';
@@ -44,7 +43,7 @@ const Profile: React.FC = () => {
                   <h4 className="Prodi-Profile-Card">Teknik Informatika</h4>
                   </IonCard>
                 </IonCol>
-                
+
                 {/* 3. Memasukkan Data Profile Ke bagian kanan */}
                 <IonCol className='data'>
                   <IonCard className='data__profile'>
