@@ -22,7 +22,11 @@ import Login from "./pages/Login";
 
 /* Theme variables */
 import "./theme/variables.css";
+
+// untuk sementara
 import HelpSupport from "./pages/help-support";
+import Profile from "./pages/profile";
+import Dashboard from "./pages/Dashboard";
 
 setupIonicReact();
 
@@ -30,18 +34,32 @@ const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
       <IonRouterOutlet>
+
         <Route exact path="/home">
           <Home />
         </Route>
+
         <Route exact path="/login">
           <Login />
         </Route>
+
         <Route exact path="/">
           <Redirect to="/home" />
         </Route>
+
+        {/* untuk sementara */}
         <Route exact path="/help-support">
           <HelpSupport />
         </Route>
+
+        <Route exact path="/profile">
+          <Profile />
+        </Route>
+
+        <Route exact path="/dashboard">
+          <Dashboard />
+        </Route>
+
       </IonRouterOutlet>
     </IonReactRouter>
   </IonApp>
