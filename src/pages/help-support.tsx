@@ -15,6 +15,12 @@ import {
   IonText,
 } from "@ionic/react";
 import "./help-support.css";
+import Book from "../../public/images/book-guide.svg";
+import Community from "../../public/images/community.svg";
+import UserPrivacy from "../../public/images/undraw_private_data_re_4eab.svg";
+import CollectData from "../../public/images/undraw_pie_graph_re_fvol.svg";
+import AccountInformation from "../../public/images/undraw_profile_re_4a55.svg";
+import HelpCenter from "../../public/images/undraw_google_docs_re_evm3.svg";
 
 const HelpSupport: React.FC = () => {
   return (
@@ -80,9 +86,9 @@ const HelpSupport: React.FC = () => {
                     textAlign: "center",
                   }}
                 >
-                  For developers using Sistem Informasi community open source
-                  projects and not on an Enterprise subscription, there are many
-                  ways to get help from the community
+                  For users who use the Management Information Systems Community
+                  open source project and do not subscribe to Enterprise, <br />
+                  there are many ways to get help from the community
                 </p>
               </IonCardHeader>
             </IonCard>
@@ -90,73 +96,236 @@ const HelpSupport: React.FC = () => {
           <IonRow>
             <IonCol>
               <IonCard>
-                <div style={{ height: "250px", overflow: "hidden" }}>
+                <div
+                  style={{
+                    height: "250px",
+                    overflow: "hidden",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    paddingLeft: "20px",
+                    paddingRight: "20px",
+                    paddingBottom: "20px",
+                  }}
+                >
                   <img
                     style={{ objectFit: "cover", objectPosition: "center" }}
                     alt="Silhouette of mountains"
-                    src="https://i.pinimg.com/564x/a8/32/01/a832011f912c2b61e5639dc576856ae8.jpg"
+                    src={Community}
                   />
                 </div>
                 <IonCardHeader>
                   <a href="#">
-                    <IonCardTitle>Community Forum</IonCardTitle>
+                    <IonCardTitle>Forum Diskusi</IonCardTitle>
                     <IonCardSubtitle>
-                      The Forum is the best place to connect
+                      Interaksi antara mahasiswa dan dosen untuk pelajaran lebih
+                      baik.
                     </IonCardSubtitle>
                   </a>
                 </IonCardHeader>
 
                 <IonCardContent>
-                  The Forum is the best place to connect with other Sistem
-                  Informasi developers, ask questions, or even help out others.
+                  Tempat mahasiswa dan dosen dapat berdiskusi, bertukar
+                  informasi, dan memberikan saran terkait mata kuliah tertentu.
                 </IonCardContent>
               </IonCard>
             </IonCol>
             <IonCol>
               <IonCard>
-                <div style={{ height: "250px", overflow: "hidden" }}>
+                <div
+                  style={{
+                    height: "250px",
+                    overflow: "hidden",
+                    display: "flex",
+                    alignItems: "end",
+                    justifyContent: "center",
+                    paddingLeft: "20px",
+                    paddingRight: "20px",
+                    paddingBottom: "20px",
+                  }}
+                >
                   <img
                     style={{ objectFit: "cover", objectPosition: "center" }}
                     alt="Silhouette of mountains"
-                    src="https://cdn.sstatic.net/Img/home/illo-teams.svg?v=7e543f14fcc0"
+                    src={AccountInformation}
                   />
                 </div>
                 <IonCardHeader>
                   <a href="#" style={{ listStyle: "none" }}>
-                    <IonCardTitle>World-wide Discord</IonCardTitle>
-                    <IonCardSubtitle>World-wide Discord Chat</IonCardSubtitle>
+                    <IonCardTitle>Informasi Akun</IonCardTitle>
+                    <IonCardSubtitle>
+                      Sistem kami memudahkan pemahaman mata kuliah yang
+                      diperlukan pengguna.
+                    </IonCardSubtitle>
                   </a>
                 </IonCardHeader>
-
                 <IonCardContent>
-                  World-wide Discord Chat in our Discord channel with other
-                  Ionic community members, and occasionally some Ionic core team
-                  members.
+                  membantu pengguna sistem untuk dengan cepat memahami informasi
+                  yang diperlukan tentang mata kuliah pengguna dengan cepat.
                 </IonCardContent>
               </IonCard>
             </IonCol>
             <IonCol>
               <IonCard>
-                <div style={{ height: "250px", overflow: "hidden" }}>
+                <div
+                  style={{
+                    height: "250px",
+                    overflow: "hidden",
+                    display: "flex",
+                    alignItems: "end",
+                    justifyContent: "center",
+                    paddingLeft: "40px",
+                    paddingRight: "40px",
+                    paddingBottom: "30px",
+                  }}
+                >
                   <img
                     style={{ objectFit: "cover", objectPosition: "center" }}
                     alt="Silhouette of mountains"
-                    src="https://cdn.sstatic.net/Img/home/illo-public.svg?v=14bd5a506009"
+                    src={HelpCenter}
                   />
                 </div>
                 <IonCardHeader>
                   <a href="#">
-                    <IonCardTitle> StackOverflow</IonCardTitle>
+                    <IonCardTitle>Pusat Bantuan</IonCardTitle>
                     <IonCardSubtitle>
-                      StackOverflow For crowdsourced technical questions
+                      Temukan panduan lengkap cara mengakses, mendaftar mata
+                      kuliah.
+                    </IonCardSubtitle>
+                  </a>
+                </IonCardHeader>
+                <IonCardContent>
+                  Cara mengakses sistem informasi manajemen dan cara mendaftar
+                  mata kuliah, mengecek perkembangan akademik, dan lainnya.
+                </IonCardContent>
+              </IonCard>
+            </IonCol>
+            <IonCol>
+              <IonCard>
+                <div
+                  style={{
+                    height: "250px",
+                    overflow: "hidden",
+                    display: "flex",
+                    alignItems: "end",
+                    justifyContent: "center",
+                    paddingLeft: "40px",
+                    paddingRight: "40px",
+                    paddingBottom: "20px",
+                  }}
+                >
+                  <img
+                    style={{ objectFit: "cover", objectPosition: "center" }}
+                    alt="Panduan"
+                    src={Book}
+                  />
+                </div>
+                <IonCardHeader>
+                  <a href="#">
+                    <IonCardTitle>Panduan</IonCardTitle>
+                    <IonCardSubtitle>
+                      Panduan untuk mengakses sistem informasi manajemen.
                     </IonCardSubtitle>
                   </a>
                 </IonCardHeader>
 
                 <IonCardContent>
-                  StackOverflow For crowdsourced technical questions from expert
-                  Ionic devs in our community. Also frequented by the Ionic core
-                  team.
+                  Mengakses sistem informasi manajemen, baik melalui web atau
+                  aplikasi, memerlukan beberapa langkah dasar.
+                </IonCardContent>
+              </IonCard>
+            </IonCol>
+          </IonRow>
+          <IonRow>
+            <IonCard className="card-2-column">
+              <IonCardHeader>
+                <IonCardTitle>
+                  <IonText color="primary">
+                    <h1
+                      style={{
+                        fontWeight: "bold",
+                        fontSize: "32px",
+                        textAlign: "center",
+                      }}
+                    >
+                      Kebijakan Privasi
+                    </h1>
+                  </IonText>
+                </IonCardTitle>
+                <p
+                  style={{
+                    fontSize: "18px",
+                    marginTop: "-5px",
+                    textAlign: "center",
+                  }}
+                >
+                  Kebijakan Privasi kami menjelaskan cara kami melindungi dan
+                  mengelola data Anda. Kami menghormati privasi Anda. <br />{" "}
+                  Baca kebijakan kami untuk informasi lebih lanjut.
+                </p>
+              </IonCardHeader>
+            </IonCard>
+          </IonRow>
+          <IonRow>
+            <IonCol>
+              <IonCard>
+                <div
+                  style={{
+                    height: "250px",
+                    overflow: "hidden",
+
+                    display: "flex",
+                    alignItems: "end",
+                    paddingLeft: "30px",
+                  }}
+                >
+                  <img
+                    style={{ width: "250px" }}
+                    alt="Panduan"
+                    src={CollectData}
+                  />
+                </div>
+                <IonCardHeader>
+                  <a href="#">
+                    <IonCardTitle>Pengumpulan Data</IonCardTitle>
+                  </a>
+                </IonCardHeader>
+                <IonCardContent>
+                  Informasi yang jelas tentang mata kuliah yang akan dimasukkan
+                  ke dalam sistem informasi manajemen, termasuk informasi
+                  tentang kode mata kuliah, deskripsi, dosen pengajar, dan
+                  persyaratan lainnya.
+                </IonCardContent>
+              </IonCard>
+            </IonCol>
+            <IonCol>
+              <IonCard>
+                <div
+                  style={{
+                    height: "250px",
+                    overflow: "hidden",
+
+                    display: "flex",
+                    alignItems: "end",
+                    paddingLeft: "30px",
+                  }}
+                >
+                  <img
+                    style={{ width: "250px" }}
+                    alt="Panduan"
+                    src={UserPrivacy}
+                  />
+                </div>
+                <IonCardHeader>
+                  <a href="#">
+                    <IonCardTitle>Hak Privasi Pengguna</IonCardTitle>
+                  </a>
+                </IonCardHeader>
+                <IonCardContent>
+                  Merupakan aspek sentral dalam pengembangan dan penggunaan
+                  sistem informasi. Kami mengutamakan keamanan data pribadi
+                  pengguna, mengikuti standar privasi tertinggi, dan memastikan
+                  pengguna memiliki kendali atas informasi mereka.
                 </IonCardContent>
               </IonCard>
             </IonCol>
