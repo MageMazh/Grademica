@@ -1,21 +1,48 @@
+.login_card {
+  width: 500px;
+  height: 440px;
+  margin: 0 auto;
+  display:flex ;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  padding: 10px;
+  background: #094067;
+}
+
 ion-img {
-    max-width: 300px;
-    max-height: auto;
-    display: block; 
-    margin: 0 auto; 
-  }
-  
-ion-input {
-    width: 50%; 
-    max-width: 300px; 
-    height: 36px; 
-    font-size: 14px;
-    margin: 0 auto; 
-  }
-  
-ion-button {
-    width: 300px; 
-    height: 36px; 
-    font-size: 14px; 
-    margin: 0 auto; 
-  }
+  max-width: 100px;
+  max-height: auto;
+  margin: auto; 
+}
+
+.login_input_username,
+.login_input_password {
+  max-width: 300px;
+  margin: auto; 
+  flex-shrink: 0;
+  background-color: #FFF;
+}
+
+.login_button {
+  width: 150px;
+  max-height: 45px;
+  font-size: 14px;
+  padding-bottom: 58px;
+}
+
+.login_background{
+  --background: #FFF url(../assets/images/bg_login.webp) bottom/contain no-repeat;
+}
+
+.login-grid {
+  display: grid;
+  place-items: center;
+  height: 100vh;
+}
+
+.text_1{
+  text-align: center;
+  color:#FFF;
+}
