@@ -1,6 +1,5 @@
-.content {
-  padding: 30px;
-  background-color: "#D9D9D9 !important"
+.bg {
+  background-color: red;
 }
 
 .row {
@@ -26,7 +25,7 @@
 .card-content {
   width: 100%;
   display: flex;
-  gap: 10px;
+  gap: 20px;
   flex-direction: column;
   font-size: 20px !important;
 }
@@ -60,7 +59,7 @@
   width: 120px;
   height: 120px;
   align-items: center;
-  Background-color: #44A5FF;
+  Background-color: var(--ion-color-primary-tint);
   color: white;
   cursor: pointer;
   padding: 20px;
@@ -69,7 +68,7 @@
 }
 
 .icon-sosial:hover {
-  background-color: #44a5ffdf;
+  background-color: var(--ion-color-primary);
 }
 
 .sosial-media {
