@@ -9,11 +9,11 @@ import {
   IonText,
   IonSplitPane,
 } from "@ionic/react";
-import "./about-help.css";
+import "./about.css";
 import Navbar from "../components/navbar";
 import Menu from "../components/menu";
 
-const HelpSupport: React.FC = () => {
+const About: React.FC = () => {
   return (
     <>
       <Navbar />
@@ -32,7 +32,7 @@ const HelpSupport: React.FC = () => {
                         textAlign: "center",
                       }}
                     >
-                      About & Help
+                      About
                     </h1>
                   </IonText>
                 </IonCardTitle>
@@ -149,9 +149,7 @@ const HelpSupport: React.FC = () => {
                       </div>
                     </IonCardContent>
                   </IonCard>
-                </IonCol>
-              </IonRow>
-              <IonRow
+                  <IonRow
                 className="sosial-media"
                 style={{ marginBottom: "100px" }}
               >
@@ -192,6 +190,8 @@ const HelpSupport: React.FC = () => {
                   <div>WhatsApp</div>
                 </div>
               </IonRow>
+                </IonCol>
+              </IonRow>
             </IonGrid>
           </IonContent>
         </div>
@@ -200,4 +200,4 @@ const HelpSupport: React.FC = () => {
   );
 };
 
-export default HelpSupport;
+export default About;
