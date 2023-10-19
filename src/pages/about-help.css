@@ -1,3 +1,8 @@
+.content {
+  padding: 30px;
+  background-color: "#D9D9D9 !important"
+}
+
 .row {
   gap: 20px;
 }
@@ -18,15 +23,12 @@
   margin-top: 20px;
 }
 
-.card-1-column {
+.card-content {
   width: 100%;
-  padding: 20px;
   display: flex;
-  background-position: top;
-  background-size: cover;
-  background-repeat: no-repeat;
+  gap: 10px;
   flex-direction: column;
-  background-image: url("https://public.bnbstatic.com/image/cms/crawler/DAILYCOIN_NEWS/Top-10-Crypto-Discord-Channels-To-Follow_submission-1024x683.jpg");
+  font-size: 20px !important;
 }
 
 .card-2-column {
@@ -75,4 +77,8 @@
   padding: 20px;
   gap: 20px;
   color: #3880ff;
+}
+
+h3 {
+  color: #100f0f;
 }

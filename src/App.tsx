@@ -22,7 +22,7 @@ import Login from "./pages/Login";
 
 /* Theme variables */
 import "./theme/variables.css";
-import HelpSupport from "./pages/help-support";
+import AboutHelp from "./pages/about-help";
 
 setupIonicReact();
 
@@ -39,8 +39,9 @@ const App: React.FC = () => (
         <Route exact path="/">
           <Redirect to="/home" />
         </Route>
-        <Route exact path="/help-support">
-          <HelpSupport />
+
+        <Route exact path="/about-help">
+          <AboutHelp />
         </Route>
       </IonRouterOutlet>
     </IonReactRouter>
