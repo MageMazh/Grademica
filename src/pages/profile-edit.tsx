@@ -20,7 +20,7 @@ import './profile-edit.css';
 import Navbar from '../components/navbar';
 import Menu from '../components/menu';
 
-const Profile: React.FC = () => {
+const ProfileEdit: React.FC = () => {
     const profileSaveUrl = "/profile"
     return (
         <>
@@ -91,4 +91,4 @@ const Profile: React.FC = () => {
     );
 };
 
-export default Profile;
+export default ProfileEdit;

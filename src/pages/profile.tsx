@@ -1,7 +1,6 @@
 import {IonSplitPane, IonContent, IonGrid, IonRow, IonCol, IonCard, IonAvatar, IonCardHeader, IonItem,IonCardTitle, IonCardContent, IonList, IonLabel, IonButton} from '@ionic/react';
 
 import './profile.css';
-import './profile-edit.css';
 import Navbar from '../components/navbar';
 import Menu from '../components/menu';
 
@@ -51,8 +50,8 @@ const Profile: React.FC = () => {
                                                     { label: 'Nama', value: UserName },
                                                     { label: 'Tempat & Tanggal Lahir', value: 'Makassar, 99 Jun 9999' },
                                                     { label: 'Alamat', value: '123 Jalan Kebun Raya, Kecamatan Taman Indah, Kota Sejahtera' },
-                                                    { label: 'No.HandPhone', value: '+62 896 5602 1020' },
-                                                    { label: 'Email', value: 'naufalaa21d@student.unhas.ac.id' },
+                                                    { label: 'No.HandPhone', value: '+62 999 9999 9999' },
+                                                    { label: 'Email', value: 'username@student.unhas.ac.id' },
                                                     { label: 'NIP', value: 'NIP User' },
                                                     { label: 'NIDN', value: 'NIDN User' },
                                                     { label: 'Jabatan Struktural', value: 'Jabatan Struktural User' },
