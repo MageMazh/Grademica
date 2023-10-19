@@ -60,7 +60,7 @@ const Profile: React.FC = () => {
                                                 ].map((item, index) => (
                                                     <IonItem key={index}>
                                                         <IonLabel>{item.label}</IonLabel>
-                                                        <p>{item.value}</p>
+                                                        <p className='isi-data'>{item.value}</p>
                                                     </IonItem>
                                                 ))}
                                             </IonList>

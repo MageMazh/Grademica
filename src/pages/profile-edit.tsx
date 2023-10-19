@@ -2,7 +2,6 @@ import {
     IonContent,
     IonItem,
     IonList,
-    IonLabel,
     IonAvatar,
     IonCard,
     IonCardHeader,
@@ -41,7 +40,7 @@ const Profile: React.FC = () => {
                                     {/* Membuat Profile Card */}
                                     <IonCard className='profile__card'>
                                         <IonAvatar className='BMM-profile-card'>
-                                            <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+                                            <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />     
                                         </IonAvatar>
                                         <h3 className="Nama-Profile-Card">Nama User</h3>
                                         <h4 className="Prodi-Profile-Card">Teknik Informatika</h4>
