@@ -60,7 +60,8 @@
   width: 120px;
   height: 120px;
   align-items: center;
-  border: 2px solid #3880ff;
+  Background-color: #44A5FF;
+  color: white;
   cursor: pointer;
   padding: 20px;
   border-radius: 8px;
@@ -68,7 +69,7 @@
 }
 
 .icon-sosial:hover {
-  background-color: #3881ff18;
+  background-color: #44a5ffdf;
 }
 
 .sosial-media {
@@ -77,6 +78,7 @@
   padding: 20px;
   gap: 20px;
   color: #3880ff;
+  margin-top: 70px;
 }
 
 h3 {
