@@ -1,3 +1,7 @@
+.bg {
+  background-color: red;
+}
+
 .row {
   gap: 20px;
 }
@@ -18,15 +22,12 @@
   margin-top: 20px;
 }
 
-.card-1-column {
+.card-content {
   width: 100%;
-  padding: 20px;
   display: flex;
-  background-position: top;
-  background-size: cover;
-  background-repeat: no-repeat;
+  gap: 20px;
   flex-direction: column;
-  background-image: url("https://public.bnbstatic.com/image/cms/crawler/DAILYCOIN_NEWS/Top-10-Crypto-Discord-Channels-To-Follow_submission-1024x683.jpg");
+  font-size: 20px !important;
 }
 
 .card-2-column {
@@ -58,7 +59,8 @@
   width: 120px;
   height: 120px;
   align-items: center;
-  border: 2px solid #3880ff;
+  Background-color: var(--ion-color-primary-tint);
+  color: white;
   cursor: pointer;
   padding: 20px;
   border-radius: 8px;
@@ -66,13 +68,18 @@
 }
 
 .icon-sosial:hover {
-  background-color: #3881ff18;
+  background-color: var(--ion-color-primary);
 }
 
 .sosial-media {
   display: flex;
-  justify-content: center;
-  padding: 20px;
+  justify-content: space-between;
+  padding: 10px;
   gap: 20px;
   color: #3880ff;
+  margin-top: 20px;
+}
+
+h3 {
+  color: #100f0f;
 }
