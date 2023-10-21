@@ -27,7 +27,8 @@ ion-grid {
     font-weight: normal;
     padding-bottom: 0px;
     padding-top: 20px;
-    margin-inline: 0px;
+    margin-right: 0px;
+    margin-left: 0px;
 }
 
 .dashboard-card__number {
@@ -38,7 +39,8 @@ ion-grid {
 }
 
 .dashboard-card {
-    margin-inline: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
 }
 
 .dashboard-card__icon {

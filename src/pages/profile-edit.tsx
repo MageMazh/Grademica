@@ -1,13 +1,27 @@
-import {IonSplitPane, IonContent, IonGrid, IonRow, IonCol, IonCard, IonAvatar, IonCardHeader, IonItem,IonCardTitle, IonCardContent, IonList, IonLabel, IonButton} from '@ionic/react';
+import {
+    IonContent,
+    IonItem,
+    IonList,
+    IonAvatar,
+    IonCard,
+    IonCardHeader,
+    IonCardTitle,
+    IonCardContent,
+    IonGrid,
+    IonRow,
+    IonCol,
+    IonSplitPane,
+    IonButton,
+    IonInput
+} from '@ionic/react';
 
 import './profile.css';
+import './profile-edit.css';
 import Navbar from '../components/navbar';
 import Menu from '../components/menu';
 
-const Profile: React.FC = () => {
-    const profileEditUrl = "/profile-edit";
-    const UserName = "User Name"
-    
+const ProfileEdit: React.FC = () => {
+    const profileSaveUrl = "/profile"
     return (
         <>
             {/* memasukkan komponen navbar */}
@@ -21,14 +35,14 @@ const Profile: React.FC = () => {
                         {/* Membuat Tata Letaknya */}
                         <IonGrid>
                             <IonRow>
-                                {/* 2. Memasukkan Profile Card ke tengah */}
+                                {/* 2. Memasukkan Profile Car ke tengah */}
                                 <IonCol className='profile' size='3'>
                                     {/* Membuat Profile Card */}
                                     <IonCard className='profile__card'>
                                         <IonAvatar className='BMM-profile-card'>
-                                            <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+                                            <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />     
                                         </IonAvatar>
-                                        <h3 className="Nama-Profile-Card">{UserName}</h3>
+                                        <h3 className="Nama-Profile-Card">Nama User</h3>
                                         <h4 className="Prodi-Profile-Card">Teknik Informatika</h4>
                                     </IonCard>
                                 </IonCol>
@@ -45,27 +59,25 @@ const Profile: React.FC = () => {
 
                                         {/* Isi Data Profile */}
                                         <IonCardContent>
-                                            <IonList className='list-data' lines="inset">
+                                        <IonList className='list-data' lines="inset">
                                                 {[
-                                                    { label: 'Nama', value: UserName },
-                                                    { label: 'Tempat & Tanggal Lahir', value: 'Makassar, 99 Jun 9999' },
-                                                    { label: 'Alamat', value: '123 Jalan Kebun Raya, Kecamatan Taman Indah, Kota Sejahtera' },
-                                                    { label: 'No.HandPhone', value: '+62 999 9999 9999' },
-                                                    { label: 'Email', value: 'username@student.unhas.ac.id' },
-                                                    { label: 'NIP', value: 'NIP User' },
-                                                    { label: 'NIDN', value: 'NIDN User' },
-                                                    { label: 'Jabatan Struktural', value: 'Jabatan Struktural User' },
-                                                    { label: 'Jabatan Fungsional', value: 'Jabatan Fungsional User' },
-                                                ].map((item, index) => (
+                                                    'Nama',
+                                                    'Tempat & Tanggal Lahir',
+                                                    'Alamat',
+                                                    'No.HandPhone',
+                                                    'Email',
+                                                    'NIP',
+                                                    'NIDN',
+                                                    'Jabatan Struktural',
+                                                    'Jabatan Fungsional',
+                                                ].map((label, index) => (
                                                     <IonItem key={index}>
-                                                        <IonLabel>{item.label}</IonLabel>
-                                                        <p className='isi-data'>{item.value}</p>
+                                                        <IonInput className='input-data' label={label} labelPlacement="floating" placeholder={`Enter ${label}`} />
                                                     </IonItem>
                                                 ))}
                                             </IonList>
-                                            <div className='button-account'>
-                                                <IonButton className='BTN-Change-Pass'>Ubah Sandi</IonButton>
-                                                <IonButton className='BTN-Edit-Profile' routerLink={profileEditUrl}>Edit Profile</IonButton>
+                                            <div className='button-account-save'>
+                                                <IonButton className='BTN-Save-Profile' routerLink={profileSaveUrl}>Simpan Perubahan</IonButton>
                                             </div>
                                         </IonCardContent>
                                     </IonCard>
@@ -79,4 +91,4 @@ const Profile: React.FC = () => {
     );
 };
 
-export default Profile;
+export default ProfileEdit;
