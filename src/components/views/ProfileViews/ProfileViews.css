@@ -1,0 +1,73 @@
+.BMM-profile-card {
+  display: block;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+  height: auto;
+  margin: 0 auto;
+  margin-bottom: 15px;
+  margin-top: 25px;
+}
+
+.profile{
+  text-align: center;
+  padding: 0px;
+}
+
+.profile__card{
+  margin-right: 0px;
+  height: auto;
+  width: 90%;
+  margin-left: 0px;
+}
+
+.Nama-Profile-Card{
+  font-size: 1.8vw;
+  margin: 0px;
+}
+
+.Prodi-Profile-Card{
+  font-size: 1.3vw;
+  margin-top: 5px;
+  margin-bottom: 25px;
+}
+
+.data{
+  padding-bottom: 50px;
+}
+
+.data__profile{
+  width: 95%;
+}
+
+.header-data{
+  padding: 0px;
+  padding-top: 4px;
+}
+.title-data{
+  font-weight: bold;
+}
+
+.list-data{
+  padding-top: 0px;
+}
+
+.isi-data{
+  color: dimgray;
+}
+
+.button-account{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 18px;
+}
+
+.BTN-Change-Pass, .BTN-Edit-Profile{
+  flex-grow: 0;
+  width: 150px;
+}
+
+.BTN-Change-Pass{
+  --background: red;
+}

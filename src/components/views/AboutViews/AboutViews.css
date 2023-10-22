@@ -1,0 +1,85 @@
+.bg {
+  background-color: red;
+}
+
+.row {
+  gap: 20px;
+}
+
+.row-title {
+  gap: 20px;
+  width: 100%;
+  display: flex;
+}
+
+.input-title {
+  margin: 0;
+}
+
+.justify-content-end {
+  justify-content: end;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.card-content {
+  width: 100%;
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  font-size: 20px !important;
+}
+
+.card-2-column {
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.button {
+  height: 100%;
+  margin: 0px;
+}
+
+.input {
+  margin: 0px;
+  padding: 0px;
+}
+
+.icon-sosial {
+  display: flex;
+  flex-direction: column;
+  width: 120px;
+  height: 120px;
+  align-items: center;
+  Background-color: var(--ion-color-primary-tint);
+  color: white;
+  cursor: pointer;
+  padding: 20px;
+  border-radius: 8px;
+  gap: 5px;
+}
+
+.icon-sosial:hover {
+  background-color: var(--ion-color-primary);
+}
+
+.sosial-media {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  gap: 20px;
+  color: #3880ff;
+  margin-top: 20px;
+}
+
+h3 {
+  color: #100f0f;
+}
