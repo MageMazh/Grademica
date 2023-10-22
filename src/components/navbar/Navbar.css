@@ -1,3 +1,56 @@
-ion-header {
-    position: absolute;
+.header-navbar {
+    display: flex;
+    justify-content: space-between;
+    background-color: #094067;
+    align-items: center;
+}
+
+.header-navbar__left {
+    display: flex;
+    align-items: center;
+    height: fit-content;
+}
+.header-navbar__logo {
+    margin-left: 16px;
+    padding: 8px 0;
+    min-width: 55px;
+    height: 80px;
+}
+
+.header-navbar__logo::part(image) {
+    width: inherit;
+}
+
+.header-navbar__title {
+    --min-height: 0px;
+    margin-left: 5px;
+}
+
+.header-navbar__title :first-child {
+    color: white;
+    background-color: #094067;
+    padding-left: 5px;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.header-navbar__title :last-child {
+    color: white;
+    background-color: #094067;
+    padding-left: 5px;
+    font-size: 12px;
+}
+
+.header-navbar__account {
+    --border-style: none;
+    --background: #094067;
+}
+
+.header-navbar__account :first-child {
+    margin-right: 8px;
+    --color: white;
+}
+
+.header-navbar__account__profile {
+    --inner-padding-end: 16px;
 }

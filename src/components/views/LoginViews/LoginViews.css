@@ -2,7 +2,7 @@
   width: 500px;
   height: 440px;
   margin: 0 auto;
-  display:flex ;
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -14,13 +14,13 @@
 ion-img {
   max-width: 100px;
   max-height: auto;
-  margin: auto; 
+  margin: auto;
 }
 
 .login_input_username,
 .login_input_password {
   max-width: 300px;
-  margin: auto; 
+  margin: auto;
   flex-shrink: 0;
   background-color: #FFF;
 }
@@ -32,8 +32,8 @@ ion-img {
   padding-bottom: 58px;
 }
 
-.login_background{
-  --background: #FFF url(../assets/images/bg_login.webp) bottom/contain no-repeat;
+.login_background {
+  --background: #FFF url(../../../assets/images/bg_login.webp) bottom/contain no-repeat;
 }
 
 .login-grid {
@@ -42,7 +42,7 @@ ion-img {
   height: 100vh;
 }
 
-.text_1{
+.text_1 {
   text-align: center;
-  color:#FFF;
+  color: #FFF;
 }
