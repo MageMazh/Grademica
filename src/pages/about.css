@@ -22,14 +22,6 @@
   margin-top: 20px;
 }
 
-.card-content {
-  width: 100%;
-  display: flex;
-  gap: 20px;
-  flex-direction: column;
-  font-size: 20px !important;
-}
-
 .card-2-column {
   width: 100%;
   padding: 20px;
