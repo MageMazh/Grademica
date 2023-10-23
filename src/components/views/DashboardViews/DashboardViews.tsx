@@ -44,7 +44,7 @@ const DashboardViews: React.FC = () => {
             <h1>Dashboard</h1>
             <h6>Hi, username</h6>
             <IonGrid>
-              <IonRow>
+              <IonRow className="ion-row-dashboard">
                 {cardList.map((card, index) => (
                   <IonCol>
                     <IonCard className="dashboard-card">

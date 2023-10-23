@@ -21,7 +21,7 @@ const LoginViews: React.FC = () => {
             <IonCol>
               <IonCard className="login_card">
                 <h1 className="text_1">Grademica</h1>
-                <IonImg src={logounhas}></IonImg>
+                <IonImg className="logounhas" src={logounhas}></IonImg>
                 <IonInput
                   className="login_input_username"
                   label="Username"
