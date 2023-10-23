@@ -46,7 +46,7 @@ ion-grid {
     height: 30px;
 }
 
-ion-row {
+.ion-row-dashboard {
     display: flex;
     gap: 20px;
 }

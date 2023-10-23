@@ -2,6 +2,7 @@ import { Redirect, Route } from "react-router-dom";
 import { IonApp, IonRouterOutlet, setupIonicReact } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 
+
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
 
@@ -20,13 +21,13 @@ import "@ionic/react/css/display.css";
 
 /* Theme variables */
 import "./theme/variables.css";
-
-// Untuk sementara
 import About from "./pages/about";
 import Profile from "./pages/profile";
 import Login from "./pages/Login";
 import ProfileEdit from "./pages/ProfileEdit";
 import Dashboard from "./pages/Dashboard";
+import ListCourse from "./pages/ListCourse";
+
 
 setupIonicReact();
 
@@ -54,6 +55,10 @@ const App: React.FC = () => (
         <Route exact path="/dashboard">
           <Dashboard />
         </Route>
+        <Route exact path="/perkuliahan">
+          <ListCourse />
+        </Route>
+
       </IonRouterOutlet>
     </IonReactRouter>
   </IonApp>
