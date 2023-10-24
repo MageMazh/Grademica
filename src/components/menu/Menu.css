@@ -4,7 +4,39 @@
     min-width: 0px;
 }
 
-.split-pane__menu {
+.main-menu {
     min-width: 0px;
     width: 200px;
+    --background: #D8EEFE;
+}
+
+.main-menu__content {
+    --background: #D8EEFE;
+}
+
+.main-menu__title {
+    --background: #D8EEFE;
+    font-size: 14px;
+    padding-top: 23px;
+}
+
+.main-menu__list {
+    --border-style: 0px;
+    --background: #D8EEFE;
+    padding: 0px;
+}
+
+.main-menu__list__icon {
+    color: #094067;
+    margin-inline-end: 18px;
+}
+
+.main-menu__list__not-selected {
+    --border-style: 0px;
+    --background: #D8EEFE;
+}
+
+.main-menu__list__selected {
+    --border-style: 0px;
+    --background: #90B4CE;
 }

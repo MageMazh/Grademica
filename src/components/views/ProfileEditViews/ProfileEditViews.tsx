@@ -15,12 +15,11 @@ import {
     IonInput
 } from '@ionic/react';
 
-import './profile.css';
-import './profile-edit.css';
-import Navbar from '../components/navbar';
-import Menu from '../components/menu';
+import './ProfileEditViews.css';
+import Navbar from '../../navbar';
+import Menu from '../../menu';
 
-const ProfileEdit: React.FC = () => {
+const ProfileEditViews: React.FC = () => {
     const profileSaveUrl = "/profile"
     return (
         <>
@@ -91,4 +90,4 @@ const ProfileEdit: React.FC = () => {
     );
 };
 
-export default ProfileEdit;
+export default ProfileEditViews;
