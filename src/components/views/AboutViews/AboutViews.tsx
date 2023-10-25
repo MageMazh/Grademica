@@ -13,8 +13,6 @@ import Menu from "../../menu";
 
 const About: React.FC = () => {
 
-  let isHover = false;
-
   return (
     <>
       <Navbar />
