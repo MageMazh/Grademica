@@ -1,3 +1,7 @@
+.ion__min--h-full {
+  min-height: 105vh;
+}
+
 .ion__margin--0 {
   margin: 0px !important;
 }
@@ -43,12 +47,12 @@
   gap: 16px;
 }
 
-ul {
+.ion__padding--0 {
   padding: 0;
 }
 
 
-li {
+.ion__margin--left-3 {
   margin-left: 14px;
 }
 
@@ -62,6 +66,7 @@ li {
   width: 100%;
   cursor: pointer;
   border-radius: 12px;
+  text-align: center;
 }
 
 .button__primary:hover {
@@ -73,7 +78,10 @@ li {
   margin-bottom: 8px !important;
 }
 
-p {
+.text__aligh--justify {
   text-align: justify;
-  letter-spacing: 1px;
+}
+
+.card__heigh--full {
+  height: 110%;
 }

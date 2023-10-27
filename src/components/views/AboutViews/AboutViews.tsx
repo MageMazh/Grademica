@@ -23,24 +23,24 @@ const About: React.FC = () => {
         <div className="ion-page" id="main">
           <IonContent className="dashboard ion-padding">
             <h1>About</h1>
-            <IonGrid className="ion__margin--top-4">
+            <IonGrid className="ion__margin--top-4 ion__min--h-full">
               <IonRow>
                 <IonCol size="7">
-                  <IonCard className="ion__margin--0 ion__margin--right-4">
+                  <IonCard className="ion__margin--0 ion__margin--right-4 card__heigh--full">
                     <IonCardHeader>
                       <IonCardTitle>
                         <h1>Grademica</h1>
                       </IonCardTitle>
                       <IonCardSubtitle className="ion__margin--0 ion--color-dark">
-                        Selamat datang di grademica
+                        Selamat datang di Grademica
                       </IonCardSubtitle>
                     </IonCardHeader>
                     <IonCardContent>
                       <div>
                         <h2 className="text__medium--bold">
-                          Informasi Singkat :
+                          Informasi Singkat
                         </h2>
-                        <p>
+                        <p className="text__aligh--justify">
                           Grademica adalah platform yang dirancang khusus untuk
                           memudahkan dosen dalam proses penginputan nilai
                           mahasiswa. Kami berkomitmen untuk menyediakan alat
@@ -50,9 +50,9 @@ const About: React.FC = () => {
                       </div>
                       <div>
                         <h2 className="text__medium--bold ion__margin--top-6">
-                          Tujuan kami :
+                          Tujuan kami
                         </h2>
-                        <p>
+                        <p className="text__aligh--justify">
                           Misi kami adalah menyediakan alat yang mendukung
                           pendidikan dan mempermudah proses administrasi
                           akademik dosen. Kami berupaya untuk membuat
@@ -63,9 +63,9 @@ const About: React.FC = () => {
                       </div>
                       <div>
                         <h2 className="text__medium--bold ion__margin--top-6">
-                          Visi dan Nilai-Nilai :
+                          Visi dan Nilai-Nilai
                         </h2>
-                        <p>
+                        <p className="text__aligh--justify">
                           Visi kami adalah menjadi mitra yang handal bagi dosen
                           dalam pengelolaan nilai mahasiswa. Kami sangat
                           menghargai transparansi, keandalan, dan dukungan
@@ -79,17 +79,21 @@ const About: React.FC = () => {
                   <IonCard className="ion__margin--0">
                     <IonCardContent>
                       <div>
-                        <h2 className="text__medium--bold">FAQ :</h2>
-                        <p>
+                        <h2 className="text__medium--bold">FAQ</h2>
+                        <p className="text__aligh--justify">
                           FAQ (Pertanyaan yang Sering Diajukan) :
-                          <ul>
-                            <li>Bagaimana cara mengatasi masalah masuk?</li>
-                            <li>Bagaimana jika saya lupa kata sandi saya?</li>
-                            <li>
+                          <ul className="ion__padding--0">
+                            <li className="ion__margin--left-3">
+                              Bagaimana cara mengatasi masalah masuk?
+                            </li>
+                            <li className="ion__margin--left-3">
+                              Bagaimana jika saya lupa kata sandi saya?
+                            </li>
+                            <li className="ion__margin--left-3">
                               Apakah saya dapat mengubah data nilai setelah
                               mengirimkannya?
                             </li>
-                            <li>
+                            <li className="ion__margin--left-3">
                               Bagaimana saya dapat melihat hasil data nilai
                               setelah mengirimkannya?
                             </li>
@@ -110,7 +114,7 @@ const About: React.FC = () => {
                   </IonCard>
                   <IonCard className="ion__margin--0 ion__margin--top-4">
                     <IonCardContent>
-                      <h2 className="text__medium--bold">Media Sosial :</h2>
+                      <h2 className="text__medium--bold">Media Sosial</h2>
                       <IonGrid>
                         <IonRow className="row__gap_4">
                           <IonCol>
