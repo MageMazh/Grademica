@@ -49,7 +49,7 @@ const About: React.FC = () => {
                         </p>
                       </div>
                       <div>
-                        <h2 className="text__medium--bold ion__margin--top-4">
+                        <h2 className="text__medium--bold ion__margin--top-6">
                           Tujuan kami :
                         </h2>
                         <p>
@@ -62,7 +62,7 @@ const About: React.FC = () => {
                         </p>
                       </div>
                       <div>
-                        <h2 className="text__medium--bold ion__margin--top-4">
+                        <h2 className="text__medium--bold ion__margin--top-6">
                           Visi dan Nilai-Nilai :
                         </h2>
                         <p>

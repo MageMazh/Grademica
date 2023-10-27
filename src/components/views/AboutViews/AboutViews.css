@@ -10,6 +10,10 @@
   margin-top: 16px !important;
 }
 
+.ion__margin--top-6 {
+  margin-top: 24px !important;
+}
+
 .ion__margin--top-2 {
   margin-top: 12px !important;
 }
@@ -23,12 +27,11 @@
   flex-direction: column;
   align-items: center;
   border-radius: 4px;
-  padding: 4px 10px;
 }
 
 .icon__primary--medium svg {
-  width: 48px;
-  height: 48px;
+  width: 32px;
+  height: 32px;
   fill: #094067;
 }
 
@@ -67,9 +70,10 @@ li {
 
 .text__medium--bold {
   font-weight: bold !important;
+  margin-bottom: 8px !important;
 }
 
 p {
   text-align: justify;
+  letter-spacing: 1px;
 }
-
