@@ -6,6 +6,9 @@ import {
   IonRow,
   IonCol,
   IonSplitPane,
+  IonCardHeader,
+  IonCardTitle,
+  IonCardSubtitle,
 } from "@ionic/react";
 import "./AboutViews.css";
 import Navbar from "../../navbar";
@@ -20,15 +23,23 @@ const About: React.FC = () => {
         <div className="ion-page" id="main">
           <IonContent className="dashboard ion-padding">
             <h1>About</h1>
-            <IonGrid className="ion--margin_top-4">
+            <IonGrid className="ion__margin--top-4">
               <IonRow>
                 <IonCol size="7">
-                  <IonCard className="ion--border_radius-lg ion--margin-0 ion--margin_right-4">
+                  <IonCard className="ion__margin--0 ion__margin--right-4">
+                    <IonCardHeader>
+                      <IonCardTitle>
+                        <h1>Grademica</h1>
+                      </IonCardTitle>
+                      <IonCardSubtitle className="ion__margin--0 ion--color-dark">
+                        Selamat datang di grademica
+                      </IonCardSubtitle>
+                    </IonCardHeader>
                     <IonCardContent>
                       <div>
-                        <h3 className="text--medium-bold">
+                        <h2 className="text__medium--bold">
                           Informasi Singkat :
-                        </h3>
+                        </h2>
                         <p>
                           Grademica adalah platform yang dirancang khusus untuk
                           memudahkan dosen dalam proses penginputan nilai
@@ -38,9 +49,9 @@ const About: React.FC = () => {
                         </p>
                       </div>
                       <div>
-                        <h3 className="text--medium-bold ion--margin_top-2">
+                        <h2 className="text__medium--bold ion__margin--top-4">
                           Tujuan kami :
-                        </h3>
+                        </h2>
                         <p>
                           Misi kami adalah menyediakan alat yang mendukung
                           pendidikan dan mempermudah proses administrasi
@@ -51,9 +62,9 @@ const About: React.FC = () => {
                         </p>
                       </div>
                       <div>
-                        <h3 className="text--medium-bold ion--margin_top-2">
+                        <h2 className="text__medium--bold ion__margin--top-4">
                           Visi dan Nilai-Nilai :
-                        </h3>
+                        </h2>
                         <p>
                           Visi kami adalah menjadi mitra yang handal bagi dosen
                           dalam pengelolaan nilai mahasiswa. Kami sangat
@@ -65,10 +76,10 @@ const About: React.FC = () => {
                   </IonCard>
                 </IonCol>
                 <IonCol size="5">
-                  <IonCard className="ion--border_radius-lg ion--margin-0">
+                  <IonCard className="ion__margin--0">
                     <IonCardContent>
                       <div>
-                        <h3 className="text--medium-bold">FAQ :</h3>
+                        <h2 className="text__medium--bold">FAQ :</h2>
                         <p>
                           FAQ (Pertanyaan yang Sering Diajukan) :
                           <ul>
@@ -87,23 +98,23 @@ const About: React.FC = () => {
                       </div>
                     </IonCardContent>
                   </IonCard>
-                  <IonCard className="ion--border_radius-lg ion--margin-0 ion--margin_top-4">
+                  <IonCard className="ion__margin--0 ion__margin--top-4">
                     <IonCardContent>
                       <div>
-                        <h3 className="text--medium-bold">Panduan</h3>
-                        <div className="button--primary ion--margin_top-2">
+                        <h2 className="text__medium--bold">Panduan</h2>
+                        <div className="button__primary ion__margin--top-4">
                           Download panduan pengguna
                         </div>
                       </div>
                     </IonCardContent>
                   </IonCard>
-                  <IonCard className="ion--border_radius-lg ion--margin-0 ion--margin_top-4">
+                  <IonCard className="ion__margin--0 ion__margin--top-4">
                     <IonCardContent>
-                      <h3 className="text--medium-bold">Sosial Media :</h3>
+                      <h2 className="text__medium--bold">Media Sosial :</h2>
                       <IonGrid>
-                        <IonRow className="row--gap_4">
+                        <IonRow className="row__gap_4">
                           <IonCol>
-                            <div className="icon--primary-medium">
+                            <div className="icon__primary--medium">
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 24 24"
@@ -113,7 +124,7 @@ const About: React.FC = () => {
                             </div>
                           </IonCol>
                           <IonCol>
-                            <div className="icon--primary-medium">
+                            <div className="icon__primary--medium">
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 24 24"
@@ -123,17 +134,17 @@ const About: React.FC = () => {
                             </div>
                           </IonCol>
                           <IonCol>
-                            <div className="icon--primary-medium">
+                            <div className="icon__primary--medium">
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 24 24"
                               >
-                                <path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM12.0606 11.6829L5.64722 6.2377L4.35278 7.7623L12.0731 14.3171L19.6544 7.75616L18.3456 6.24384L12.0606 11.6829Z"></path>
+                                <path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H2C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM12.0606 11.6829L5.64722 6.2377L4.35278 7.7623L12.0731 14.3171L19.6544 7.75616L18.3456 6.24384L12.0606 11.6829Z"></path>
                               </svg>
                             </div>
                           </IonCol>
                           <IonCol>
-                            <div className="icon--primary-medium">
+                            <div className="icon__primary--medium">
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 24 24"

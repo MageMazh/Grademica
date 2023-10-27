@@ -1,52 +1,55 @@
-.ion--margin-0 {
+.ion__margin--0 {
   margin: 0px !important;
 }
 
-.ion--border_radius-lg {
-  border-radius: 24px;
-  padding: 10px;
-}
-
-.ion--margin_right-4{
+.ion__margin--right-4 {
   margin-right: 16px !important;
 }
 
-.ion--margin_top-4{
+.ion__margin--top-4 {
   margin-top: 16px !important;
 }
 
-.ion--margin_top-2{
-  margin-top: 8px !important;
+.ion__margin--top-2 {
+  margin-top: 12px !important;
 }
 
-ion-col, ion-grid, ion-row {
-  padding: 0px;
+.ion--color-dark {
+  color: black;
 }
 
-.icon--primary-medium {
+.icon__primary--medium {
   display: flex;
   flex-direction: column;
   align-items: center;
   border-radius: 4px;
   padding: 4px 10px;
-  font-size: 12px;
 }
 
-.icon--primary-medium svg {
+.icon__primary--medium svg {
   width: 48px;
   height: 48px;
   fill: #094067;
 }
 
-.icon--primary-medium svg:hover {
+.icon__primary--medium svg:hover {
   fill: #44A5FF;
 }
 
-.row--gap_4 {
+.row__gap--4 {
   gap: 16px;
 }
 
-.button--primary{
+ul {
+  padding: 0;
+}
+
+
+li {
+  margin-left: 14px;
+}
+
+.button__primary {
   font-size: 12px;
   background-color: #44A5FF;
   color: white;
@@ -58,14 +61,15 @@ ion-col, ion-grid, ion-row {
   border-radius: 12px;
 }
 
-.button--primary:hover{
+.button__primary:hover {
   background-color: #2d93f2;
 }
 
-.text--medium-bold {
+.text__medium--bold {
   font-weight: bold !important;
 }
 
 p {
   text-align: justify;
 }
+
