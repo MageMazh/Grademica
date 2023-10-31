@@ -1,0 +1,16 @@
+.edit-course__title {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.edit-course__icon {
+    color: black;
+}
+
+.edit-course h1 {
+    margin-top: 0px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 26px;
+}
