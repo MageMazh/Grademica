@@ -59,7 +59,7 @@ const Menu: React.FC = () => {
         {appMenus.map((appMenu, index) =>  {
           return(
             <IonMenuToggle key={index} autoHide={false}>
-              <IonItem className={location.pathname === appMenu.url ? 'main-menu__list__selected' : 'main-menu__list__not-selected'} routerLink={appMenu.url}>
+              <IonItem className={location.pathname.startsWith(appMenu.url) ? 'main-menu__list__selected' : 'main-menu__list__not-selected'} routerLink={appMenu.url}>
                 <IonIcon className="main-menu__list__icon" slot="start" ios={appMenu.iosIcon}/>
                 <IonLabel>{appMenu.title}</IonLabel>
               </IonItem>
