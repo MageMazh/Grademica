@@ -1,85 +1,87 @@
-.bg {
-  background-color: red;
+.ion__min--h-full {
+  min-height: 105vh;
 }
 
-.row {
-  gap: 20px;
+.ion__margin--0 {
+  margin: 0px !important;
 }
 
-.row-title {
-  gap: 20px;
-  width: 100%;
-  display: flex;
+.ion__margin--right-4 {
+  margin-right: 16px !important;
 }
 
-.input-title {
-  margin: 0;
+.ion__margin--top-4 {
+  margin-top: 16px !important;
 }
 
-.justify-content-end {
-  justify-content: end;
-  width: 100%;
-  margin-top: 20px;
+.ion__margin--top-6 {
+  margin-top: 24px !important;
 }
 
-.card-content {
-  width: 100%;
-  display: flex;
-  gap: 20px;
-  flex-direction: column;
-  font-size: 20px !important;
+.ion__margin--top-2 {
+  margin-top: 12px !important;
 }
 
-.card-2-column {
-  width: 100%;
-  padding: 20px;
+.ion--color-dark {
+  color: black;
+}
+
+.icon__primary--medium {
   display: flex;
   flex-direction: column;
-}
-
-.card {
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-}
-
-.button {
-  height: 100%;
-  margin: 0px;
-}
-
-.input {
-  margin: 0px;
-  padding: 0px;
-}
-
-.icon-sosial {
-  display: flex;
-  flex-direction: column;
-  width: 120px;
-  height: 120px;
   align-items: center;
-  Background-color: var(--ion-color-primary-tint);
+  border-radius: 4px;
+}
+
+.icon__primary--medium svg {
+  width: 32px;
+  height: 32px;
+  fill: #094067;
+}
+
+.icon__primary--medium svg:hover {
+  fill: #44A5FF;
+}
+
+.row__gap--4 {
+  gap: 16px;
+}
+
+.ion__padding--0 {
+  padding: 0;
+}
+
+
+.ion__margin--left-3 {
+  margin-left: 14px;
+}
+
+.button__primary {
+  font-size: 12px;
+  background-color: #44A5FF;
   color: white;
+  font-weight: bold;
+  padding: 10px 20px;
+  text-decoration: none;
+  width: 100%;
   cursor: pointer;
-  padding: 20px;
-  border-radius: 8px;
-  gap: 5px;
+  border-radius: 12px;
+  text-align: center;
 }
 
-.icon-sosial:hover {
-  background-color: var(--ion-color-primary);
+.button__primary:hover {
+  background-color: #2d93f2;
 }
 
-.sosial-media {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
-  gap: 20px;
-  color: #3880ff;
-  margin-top: 20px;
+.text__medium--bold {
+  font-weight: bold !important;
+  margin-bottom: 8px !important;
 }
 
-h3 {
-  color: #100f0f;
+.text__aligh--justify {
+  text-align: justify;
+}
+
+.card__heigh--full {
+  height: 110%;
 }
