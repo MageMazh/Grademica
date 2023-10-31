@@ -37,7 +37,7 @@ import { courseData } from '../../../mockData/CourseData';
                 <h1>List Matakuliah</h1>
                 <IonCard className='card-list-matakuliah'>
                   <div className='search-bar-listmatkul'>
-                    <IonButton className="button-add-matkul">Add Mata Kuliah</IonButton>
+                    <IonButton className="button-add-matkul" routerLink="/perkuliahan/add-course">Add Mata Kuliah</IonButton>
                     <IonSearchbar className='search-bar-list-matkul' ></IonSearchbar>
                   </div>
                     <IonGrid>
@@ -60,7 +60,7 @@ import { courseData } from '../../../mockData/CourseData';
                             <IonCol className='col-1' size="1.5"><IonLabel>{item.semester}</IonLabel></IonCol>
                             <IonCol className='col-1' size="2">
                             <IonButtons>
-                            <IonButton color={'primary'}>edit</IonButton>
+                            <IonButton color={'primary'} routerLink='/perkuliahan/edit-course'>edit</IonButton>
                             <IonButton color={'primary'}>detail</IonButton>
                             </IonButtons>
                             </IonCol>
@@ -75,5 +75,5 @@ import { courseData } from '../../../mockData/CourseData';
     );
 };
   
-  export default ListCourseViews;
+export default ListCourseViews;
   
