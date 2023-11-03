@@ -1,0 +1,31 @@
+.add-course__card {
+    font-size: 16px;
+    font-weight: normal;
+    padding-bottom: 0px;
+    padding-top: 20px;
+    margin-inline: 0px;
+}
+
+.add-course__card-input {
+    margin-top: 18px;
+    gap: 10px;
+}
+
+.add-course__list {
+    display: flex;
+    gap: 15px;
+}
+
+.add-course__button {
+    display:flex;
+    justify-content: end;
+    gap: 10px;
+    margin-bottom: 10px;
+    margin-right: 8px;
+    margin-top: 30px;
+    padding-inline: 7px;
+}
+
+.add-course__button__cancel {
+    --background: red;
+}
