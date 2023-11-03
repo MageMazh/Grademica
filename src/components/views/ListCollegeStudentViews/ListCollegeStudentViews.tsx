@@ -9,7 +9,6 @@ import {
 } from 'material-react-table';
 import {
   Box,
-  IconButton,
   Stack,
   Table,
   TableBody,
@@ -17,14 +16,13 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  Tooltip,
   Typography,
 } from '@mui/material';
-import {
-  IonContent,
-  IonItem,
-  IonList,
-  IonLabel,
+import { 
+  IonContent,  
+  IonItem, 
+  IonList, 
+  IonLabel, 
   IonAvatar,
   IonCardHeader,
   IonButton,
@@ -38,75 +36,43 @@ import {
   IonRow,
   IonButtons,
   IonRouterLink,
-} from '@ionic/react';
-
+ } from '@ionic/react';
 import Navbar from '../../navbar';
 import Menu from '../../menu';
-import "./ListCourseViews.css"
-import { IonSearchbar } from '@ionic/react';
-import { course, data } from '../../../mockData/CourseData';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
-import { peopleOutline } from "ionicons/icons";
-import { Link } from 'react-router-dom';
+import { type CollegeStudent, data } from '../../../mockData/makeData';
+import "./ListCollegeStudentViews.css"
 
-
-const columns: MRT_ColumnDef<course>[] = [
+const columns: MRT_ColumnDef<CollegeStudent>[] = [
   {
-    accessorKey: 'no',
+    accessorKey: 'nomor',
     header: 'No',
   },
   {
-    accessorKey: 'name',
-    header: 'Nama Matakuliah',
+    accessorKey: 'namemahasiswa',
+    header: 'Nama mahasiswa',
   },
   {
-    accessorKey: 'code',
-    header: 'Kode',
+    accessorKey: 'nim',
+    header: 'Nim',
   },
   {
-    accessorKey: 'level',
-    header: 'Jenjang',
+    accessorKey: 'nilai',
+    header: 'Nilai',
   },
   {
-    accessorKey: 'sks',
-    header: 'SKS',
+    accessorKey: 'status',
+    header: 'Status',
   },
   {
-    accessorKey: 'semester',
-    header: 'Semester',
-  },
-  {
-    accessorKey: 'action',
-    header: 'Action',
-    // Definisikan sel untuk kolom Action dengan menggunakan flexRender
-    Cell: ({ row }) => {
-      return (
-        <div>
-          <IconButton component={Link} to="/perkuliahan/edit-course"
-            color="primary"
-          >
-            <EditIcon />
-          </IconButton>
-          <IconButton
-            color="error"
-          >
-            <DeleteIcon />
-          </IconButton>
-          <IconButton component={Link} to="/perkuliahan/list-mahasiswa"
-          >
-            <IonIcon icon={peopleOutline}></IonIcon>
-          </IconButton>
-        </div>
-      );
-    },
+    accessorKey: 'fixed',
+    header: 'Fixed',
   },
 ];
 
-const ListCourseViews = () => {
+const ListCollegeStudentViews = () => {
   const table = useMaterialReactTable({
     columns,
-    data,
+    data, 
     enableRowSelection: false,
     initialState: {
       pagination: { pageSize: 20, pageIndex: 0 },
@@ -120,15 +86,17 @@ const ListCourseViews = () => {
     paginationDisplayMode: 'pages',
   });
 
-  return (
-    <>
-    <Navbar />
+  
+
+    return (
+      <>
+      <Navbar />
       <IonSplitPane className="split-pane" when="xs" contentId="main">
         <Menu />
         <div className="ion-page" id="main">
           <IonContent className="dashboard ion-padding">
-            <h1>List Matakuliah</h1>
-            <IonCard className='card-list-matakuliah'>
+          <h1>List Mahasiswa</h1>
+                <IonCard className='card-list-matakuliah'>
               <Stack>
                 <Box
                   sx={{
@@ -141,7 +109,7 @@ const ListCourseViews = () => {
                    * Use MRT components along side your own markup.
                    * They just need the `table` instance passed as a prop to work!
                    */}
-                  <IonButton routerLink="/perkuliahan/add-course">Add matakuliah</IonButton>
+                  <IonButton>Input nilai mahasiswa</IonButton>
                   <MRT_GlobalFilterTextField table={table} />
                 </Box>
                 {/* Using Vanilla Material-UI Table components here */}
@@ -156,15 +124,15 @@ const ListCourseViews = () => {
                               {header.isPlaceholder
                                 ? null
                                 : (
-                                  <span style={{
-                                    fontWeight: 'bold',
-                                    fontSize: "15px",
-                                  }}>
-                                    {flexRender(
-                                      header.column.columnDef.Header ??
+                                  <span style={{ 
+                                    fontWeight: 'bold', 
+                                    fontSize:"15px",
+                                    }}>
+                                {flexRender(
+                                    header.column.columnDef.Header ??
                                       header.column.columnDef.header,
-                                      header.getContext(),
-                                    )}
+                                    header.getContext(),
+                                  )}
                                   </span>
                                 )}
                             </TableCell>
@@ -172,13 +140,13 @@ const ListCourseViews = () => {
                         </TableRow>
                       ))}
                     </TableHead>
-                    <TableBody
-                      sx={{
-                        //stripe the rows, make odd rows a darker color
-                        '& tr:nth-of-type(even) > td': {
-                          backgroundColor: '#f5f5f5',
-                        },
-                      }}>
+                    <TableBody 
+                    sx= {{
+                  //stripe the rows, make odd rows a darker color
+                  '& tr:nth-of-type(even) > td': {
+                    backgroundColor: '#f5f5f5',
+                  },
+                  }}>
                       {table.getRowModel().rows.map((row) => (
                         <TableRow key={row.id} selected={row.getIsSelected()}>
                           {row.getVisibleCells().map((cell) => (
@@ -195,12 +163,12 @@ const ListCourseViews = () => {
                 <MRT_TablePagination table={table} />
                 <MRT_ToolbarAlertBanner stackAlertBanner table={table} />
               </Stack>
-            </IonCard>
+              </IonCard>
           </IonContent>
-        </div>
-      </IonSplitPane>
-    </>
-  );
+          </div>
+        </IonSplitPane>                                 
+      </>
+    );
 };
 
-export default ListCourseViews;
+export default ListCollegeStudentViews;

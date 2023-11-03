@@ -1,0 +1,9 @@
+.border-botton{
+    background-color: #D8EEFE;
+    font-weight: bold;
+}
+.border-list-mahasiswa{
+    margin-top: 15px;
+    border-radius: 10px;
+    box-shadow: 3px 3px 4px 0px rgba(0, 0, 0, 0.25);
+}
