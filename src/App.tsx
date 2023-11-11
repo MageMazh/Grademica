@@ -29,7 +29,7 @@ import ListCourse from "./pages/ListCourse";
 import AddCourse from "./pages/AddCourse";
 import EditCourse from "./pages/EditCourse";
 import ListCollegeStudent from "./pages/ListCollegeStudent";
-
+import InputGrade from "./pages/InputGrade";
 
 setupIonicReact();
 
@@ -66,8 +66,11 @@ const App: React.FC = () => (
         <Route path="/perkuliahan/edit-course">
           <EditCourse />
         </Route>
-        <Route path="/perkuliahan/list-mahasiswa">
+        <Route exact path="/perkuliahan/list-mahasiswa/:courseCode">
           <ListCollegeStudent />
+        </Route>
+        <Route exact path="/perkuliahan/list-mahasiswa/:courseCode/input-nilai">
+          <InputGrade />
         </Route>
       </IonRouterOutlet>
     </IonReactRouter>
