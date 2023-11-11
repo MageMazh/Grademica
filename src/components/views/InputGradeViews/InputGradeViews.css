@@ -1,0 +1,17 @@
+.cell__table-input {
+    width: 75px;
+}
+
+.cell__table-input .sc-ion-input-md {
+    padding: 0px;
+}
+
+.input-grade__title {
+    --background: none;
+    --border-style: none;
+}
+
+.input-grade__title::part(native) {
+    padding: 0px;
+}
+
