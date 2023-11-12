@@ -13,6 +13,7 @@ import {
   IonGrid,
   IonCol,
   IonRow,
+  IonLabel,
 } from "@ionic/react";
 import { chevronBackOutline } from "ionicons/icons";
 
@@ -29,12 +30,12 @@ const AddCourseViews: React.FC = () => {
         <Menu />
         <div className="ion-page" id="main">
           <IonContent className="add-course ion-padding">
-            <div className="add-course__title">
+            <IonItem className="add-course__title">
               <IonRouterLink routerLink="/perkuliahan">
                 <IonIcon className="add-course__icon" icon={chevronBackOutline} />
               </IonRouterLink>
-              <h1>Tambah Mata Kuliah</h1>
-            </div>
+                <h1>Tambah Mata Kuliah</h1>
+            </IonItem>
             <FormCourse />
           </IonContent>
         </div>

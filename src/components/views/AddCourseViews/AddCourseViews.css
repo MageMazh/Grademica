@@ -1,11 +1,15 @@
 .add-course__title {
-    display: flex;
-    align-items: center;
-    gap: 5px;
+    --background: none;
+    --border-style: none;
+}
+
+.add-course__title::part(native) {
+    padding: 0px;
 }
 
 .add-course__icon {
     color: black;
+    margin-right: 10px;
 }
 
 .add-course h1 {
