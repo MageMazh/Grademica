@@ -40,6 +40,10 @@
   height: auto;
 }
 
+.nf404__Page{
+  padding-bottom: 0px;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;

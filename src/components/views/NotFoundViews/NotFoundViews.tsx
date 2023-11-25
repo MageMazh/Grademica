@@ -15,7 +15,7 @@ const NotFoundViews: React.FC = () => {
         history.goBack();
     }
     return (
-        <IonPage>
+        <IonPage className="nf404__Page">
             <IonContent className="tes">
                 <div className="not-found-container">
                     <IonImg className="Error404-image" alt="Error-404.img" src={image404} />

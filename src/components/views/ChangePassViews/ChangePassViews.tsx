@@ -27,19 +27,18 @@ const ChangePassViews: React.FC = () => {
   };
 
   return (
-    <IonContent className="changepass__ioncontent">
+    <IonContent className="pass__ioncontent">
       
-      <IonGrid className="changepass__grid">
+      <IonGrid className="pass__grid">
         <IonRow>
           <IonCol>
-            <IonCard className="changepass__mycard">
+            <IonCard className="pass__mycard">
             
             <IonCardTitle className="pass__card-title">
-              
-              <span className="pass__title">Ubah Kata Sandi</span>
+              Ubah Kata Sandi
             </IonCardTitle>
               
-              <IonCardContent className="ChangePass__Cardcontent">
+              <IonCardContent className="Pass__Cardcontent">
 
                 <IonItem>
                   <IonLabel position="floating">Kata Sandi Saat Ini</IonLabel>
@@ -70,8 +69,8 @@ const ChangePassViews: React.FC = () => {
 
                 <div className="button-account">
                   <Link to={profileUrl}>
-                    <IonButton>
-                      Kembali
+                    <IonButton className="pass__btn-batal">
+                      batal
                     </IonButton>
                   </Link>
 

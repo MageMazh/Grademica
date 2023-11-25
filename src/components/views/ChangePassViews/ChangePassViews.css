@@ -1,8 +1,8 @@
-.changepass__ioncontent{
+.pass__ioncontent{
     --background: #FFF url(../../../assets/images/bg_login.webp) bottom/contain no-repeat;
 }
 
-.changepass__mycard {
+.pass__mycard {
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -15,23 +15,12 @@
   /* background: #094067; */
 }
 
-.pass__card-title {
-    display: flex;
-    align-items: center;
-    justify-content:center;
-  }
-  
-  .pass__back {
-    order: -1;
-    align-self: flex-start;
-  }
-  
-  .pass__title {
-    margin: 0 auto;
-  }
+.pass__btn-batal{
+    --background: red;
+}
   
   
-.ChangePass__Cardcontent {
+.pass__Cardcontent {
   width: 100%; 
   max-width: 300px; 
   padding: 10px;
