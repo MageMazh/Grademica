@@ -22,6 +22,7 @@ import Menu from "../../menu";
 const ProfileViews: React.FC = () => {
   const profileEditUrl = "/profile-edit";
   const UserName = "User Name";
+  const Halaman = "Profile"
 
   return (
     <>
@@ -32,7 +33,7 @@ const ProfileViews: React.FC = () => {
         <Menu />
         <div className="ion-page" id="main">
           <IonContent className="dashboard ion-padding">
-            <h1>Profile</h1>
+            <h1>{Halaman}</h1>
             {/* Membuat Tata Letaknya */}
             <IonGrid>
               <IonRow>
@@ -55,13 +56,9 @@ const ProfileViews: React.FC = () => {
                 <IonCol className="data">
                   <IonCard className="data__profile">
                     {/* Header Data Profile */}
-                    <IonCardHeader className="header-data">
-                      <IonItem>
-                        <IonCardTitle className="title-data">
-                          Data Pribadi
-                        </IonCardTitle>
-                      </IonItem>
-                    </IonCardHeader>
+                    <IonCardTitle className="dashboard-card__information">
+                      Data Pribadi
+                    </IonCardTitle>
 
                     {/* Isi Data Profile */}
                     <IonCardContent>

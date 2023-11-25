@@ -14,7 +14,6 @@ import {
     IonButton,
     IonInput
 } from '@ionic/react';
-import { getDatabase, ref, set } from 'firebase/database';
 
 import './ProfileEditViews.css';
 import Navbar from '../../navbar';
@@ -51,11 +50,9 @@ const ProfileEditViews: React.FC = () => {
                     <IonCol className='data'>
                       <IonCard className='data__profile'>
                         {/* Header Data Profile */}
-                        <IonCardHeader className='header-data'>
-                          <IonItem>
-                            <IonCardTitle className='title-data'>Data Pribadi</IonCardTitle>
-                          </IonItem>
-                        </IonCardHeader>
+                        <IonCardTitle className="dashboard-card__information">
+                          Data Pribadi
+                        </IonCardTitle>
 
                         {/* Isi Data Profile */}
                         <IonCardContent>
