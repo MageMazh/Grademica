@@ -22,34 +22,20 @@ import {
 } from '@mui/material';
 import {
   IonContent,
-  IonItem,
-  IonList,
-  IonLabel,
-  IonAvatar,
-  IonCardHeader,
   IonButton,
   IonIcon,
   IonSplitPane,
   IonCard,
-  IonCardTitle,
-  IonCardContent,
-  IonGrid,
-  IonCol,
-  IonRow,
-  IonButtons,
-  IonRouterLink,
 } from '@ionic/react';
 
 import Navbar from '../../navbar';
 import Menu from '../../menu';
 import "./ListCourseViews.css"
-import { IonSearchbar } from '@ionic/react';
-import { course, data } from '../../../mockData/CourseData';
+import { course, dataCourse } from '../../../mockData/CourseData';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { peopleOutline } from "ionicons/icons";
 import { Link } from 'react-router-dom';
-
 
 const columns: MRT_ColumnDef<course>[] = [
   {
@@ -77,10 +63,29 @@ const columns: MRT_ColumnDef<course>[] = [
     header: 'Semester',
   },
   {
+    accessorKey: 'isPermanent',
+    header: 'Fixed',
+    Cell: ({ row }) => {
+      const isFixed = row.original.isPermanent
+
+      return (
+        <div>
+          {isFixed ? 
+            <p className="col-fixed__border">Fixed</p>
+            :
+            <p className="col-not-fixed__border">Not Fixed</p>
+          }
+        </div>
+      );
+    },
+  },
+  {
     accessorKey: 'action',
     header: 'Action',
     // Definisikan sel untuk kolom Action dengan menggunakan flexRender
     Cell: ({ row }) => {
+      const courseCode = row.original.code
+
       return (
         <div>
           <IconButton component={Link} to="/perkuliahan/edit-course"
@@ -93,7 +98,7 @@ const columns: MRT_ColumnDef<course>[] = [
           >
             <DeleteIcon />
           </IconButton>
-          <IconButton component={Link} to="/perkuliahan/list-mahasiswa"
+          <IconButton component={Link} to={`/perkuliahan/list-mahasiswa/${courseCode}`}
           >
             <IonIcon icon={peopleOutline}></IonIcon>
           </IconButton>
@@ -106,7 +111,7 @@ const columns: MRT_ColumnDef<course>[] = [
 const ListCourseViews = () => {
   const table = useMaterialReactTable({
     columns,
-    data,
+    data: dataCourse,
     enableRowSelection: false,
     initialState: {
       pagination: { pageSize: 20, pageIndex: 0 },
@@ -204,3 +209,4 @@ const ListCourseViews = () => {
 };
 
 export default ListCourseViews;
+

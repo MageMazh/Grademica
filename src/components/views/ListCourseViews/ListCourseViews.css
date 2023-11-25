@@ -9,3 +9,23 @@
   margin-top: 25px; 
 }
 
+.col-fixed__border {
+  font-weight: bold;
+  font-size: 14px;
+  color: #49A52F;
+  background-color: #F1FFE5;
+  border-radius: 10px;
+  border: 2px solid #49A52F;
+  padding: 5px;
+}
+
+.col-not-fixed__border {
+  font-weight: bold;
+  font-size: 14px;
+  color: #DA1E28;
+  background-color: #FFE5E7;
+  border-radius: 10px;
+  border: 2px solid #DA1E28;
+  padding: 5px;
+}
+

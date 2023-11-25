@@ -31,7 +31,7 @@ import EditCourse from "./pages/EditCourse";
 import ListCollegeStudent from "./pages/ListCollegeStudent";
 import NotFound from "./pages/NotFound";
 import ChangePassword from "./pages/ChangePass";
-
+import InputGrade from "./pages/InputGrade";
 
 setupIonicReact();
 
@@ -57,6 +57,12 @@ const App: React.FC = () => (
         <Route path="/perkuliahan/list-mahasiswa" exact>
           <ListCollegeStudent />
         </Route>
+        <Route exact path="/perkuliahan/list-mahasiswa/:courseCode">
+          <ListCollegeStudent />
+        </Route>
+        <Route exact path="/perkuliahan/list-mahasiswa/:courseCode/input-nilai">
+          <InputGrade />
+        </Route>
         <Route path="/about" exact>
           <About />
         </Route>
@@ -73,8 +79,10 @@ const App: React.FC = () => (
           <NotFound />
         </Route>
         
+        
         <Redirect exact from="/" to="/dashboard" />
         <Redirect to="/not-found" />
+        
       </IonRouterOutlet>
     </IonReactRouter>
   </IonApp>

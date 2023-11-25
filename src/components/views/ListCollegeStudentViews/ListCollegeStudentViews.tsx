@@ -29,18 +29,15 @@ import {
   IonIcon,
   IonSplitPane,
   IonCard,
-  IonCardTitle,
-  IonCardContent,
-  IonGrid,
-  IonCol,
-  IonRow,
-  IonButtons,
   IonRouterLink,
  } from '@ionic/react';
 import Navbar from '../../navbar';
 import Menu from '../../menu';
-import { type CollegeStudent, data } from '../../../mockData/makeData';
+import { type CollegeStudent, dataCollege } from '../../../mockData/CollegeStudentData';
+import { dataCourse } from '../../../mockData/CourseData';
 import "./ListCollegeStudentViews.css"
+import { useParams } from 'react-router';
+import { chevronBackOutline } from 'ionicons/icons';
 
 const columns: MRT_ColumnDef<CollegeStudent>[] = [
   {
@@ -63,16 +60,25 @@ const columns: MRT_ColumnDef<CollegeStudent>[] = [
     accessorKey: 'status',
     header: 'Status',
   },
-  {
-    accessorKey: 'fixed',
-    header: 'Fixed',
-  },
 ];
 
-const ListCollegeStudentViews = () => {
+const ListCollegeStudentViews : React.FC = () => {
+  // objek yang dikembalikan oleh useParams() diharapkan memiliki properti bernama courseCode, dan properti tersebut harus bertipe string.
+  const { courseCode }: { courseCode: string } = useParams();
+  
+  const selectedCourse = dataCourse.find(course => {
+    return course.code === courseCode;
+  });
+  
+  if (!courseCode || !selectedCourse) {
+    return null;
+  }
+
+  const isPermanent = selectedCourse.isPermanent;
+
   const table = useMaterialReactTable({
     columns,
-    data, 
+    data: dataCollege, 
     enableRowSelection: false,
     initialState: {
       pagination: { pageSize: 20, pageIndex: 0 },
@@ -86,8 +92,6 @@ const ListCollegeStudentViews = () => {
     paginationDisplayMode: 'pages',
   });
 
-  
-
     return (
       <>
       <Navbar />
@@ -95,7 +99,15 @@ const ListCollegeStudentViews = () => {
         <Menu />
         <div className="ion-page" id="main">
           <IonContent className="dashboard ion-padding">
-          <h1>List Mahasiswa</h1>
+          <IonItem className="list-student__title">
+              <IonRouterLink routerLink="/perkuliahan">
+                <IonIcon className="add-course__icon" icon={chevronBackOutline} />
+              </IonRouterLink>
+              <IonLabel className="ion-no-margin">
+                <h1>Data Peserta Mahasiswa</h1>
+                <h6>{selectedCourse.name}</h6>
+              </IonLabel>
+            </IonItem>
                 <IonCard className='card-list-matakuliah'>
               <Stack>
                 <Box
@@ -105,11 +117,11 @@ const ListCollegeStudentViews = () => {
                     alignItems: 'center',
                   }}
                 >
+                  <IonButton disabled={isPermanent} routerLink={`/perkuliahan/list-mahasiswa/${courseCode}/input-nilai`}>Input nilai mahasiswa</IonButton>
                   {/**
                    * Use MRT components along side your own markup.
                    * They just need the `table` instance passed as a prop to work!
                    */}
-                  <IonButton>Input nilai mahasiswa</IonButton>
                   <MRT_GlobalFilterTextField table={table} />
                 </Box>
                 {/* Using Vanilla Material-UI Table components here */}
