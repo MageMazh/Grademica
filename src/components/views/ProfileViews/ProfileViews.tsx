@@ -18,9 +18,11 @@ import {
 import "./ProfileViews.css";
 import Navbar from "../../navbar";
 import Menu from "../../menu";
+import { Link } from "react-router-dom";
 
 const ProfileViews: React.FC = () => {
-  const profileEditUrl = "/profile-edit";
+  const profileEditUrl = "/profile/profile-edit";
+  const changePasswordUrl = "/profile/change-password"
   const UserName = "User Name";
   const Halaman = "Profile"
 
@@ -97,15 +99,13 @@ const ProfileViews: React.FC = () => {
                         ))}
                       </IonList>
                       <div className="button-account">
-                        <IonButton className="BTN-Change-Pass">
-                          Ubah Sandi
-                        </IonButton>
-                        <IonButton
-                          className="BTN-Edit-Profile"
-                          routerLink={profileEditUrl}
-                        >
-                          Edit Profile
-                        </IonButton>
+                        <Link to={changePasswordUrl}>
+                          <IonButton className="BTN-Change-Pass">Ubah Sandi</IonButton>
+                        </Link>
+                        
+                        <Link to={profileEditUrl}>
+                          <IonButton className="BTN-Edit-Profile">Edit Profile</IonButton>
+                        </Link>
                       </div>
                     </IonCardContent>
                   </IonCard>
