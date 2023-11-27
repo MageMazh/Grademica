@@ -6,6 +6,11 @@ export type course = {
   sks: string;
   semester: string;
   isPermanent: boolean;
+  percent_kehadiran: number;
+  percent_keaktifan: number;
+  percent_tugas: number;
+  percent_uts: number;
+  percent_uas: number;
 };
 
 export const dataCourse: course[] = [
@@ -17,6 +22,11 @@ export const dataCourse: course[] = [
     sks: "2",
     semester: "5",
     isPermanent: false,
+    percent_kehadiran: 10,
+    percent_keaktifan: 10,
+    percent_tugas: 20,
+    percent_uts: 30,
+    percent_uas: 30,
   },
   {
     no: "2",
@@ -26,6 +36,11 @@ export const dataCourse: course[] = [
     sks: "3",
     semester: "5",
     isPermanent: false,
+    percent_kehadiran: 15,
+    percent_keaktifan: 5,
+    percent_tugas: 30,
+    percent_uts: 25,
+    percent_uas: 25,
   },
   {
     no: "3",
@@ -35,6 +50,11 @@ export const dataCourse: course[] = [
     sks: "3",
     semester: "5",
     isPermanent: true,
+    percent_kehadiran: 5,
+    percent_keaktifan: 5,
+    percent_tugas: 30,
+    percent_uts: 30,
+    percent_uas: 30,
   },
   {
     no: "4",
@@ -44,6 +64,11 @@ export const dataCourse: course[] = [
     sks: "2",
     semester: "4",
     isPermanent: true,
+    percent_kehadiran: 5,
+    percent_keaktifan: 5,
+    percent_tugas: 30,
+    percent_uts: 30,
+    percent_uas: 30,
   },
   {
     no: "5",
@@ -53,6 +78,11 @@ export const dataCourse: course[] = [
     sks: "2",
     semester: "6",
     isPermanent: true,
+    percent_kehadiran: 10,
+    percent_keaktifan: 10,
+    percent_tugas: 20,
+    percent_uts: 30,
+    percent_uas: 30,
   },
   {
     no: "6",
@@ -62,5 +92,10 @@ export const dataCourse: course[] = [
     sks: "2",
     semester: "6",
     isPermanent: false,
+    percent_kehadiran: 15,
+    percent_keaktifan: 5,
+    percent_tugas: 20,
+    percent_uts: 30,
+    percent_uas: 30,
   },
 ];

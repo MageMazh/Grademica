@@ -18,14 +18,14 @@ const About: React.FC = () => {
   return (
     <>
       <Navbar />
-      <IonSplitPane className="split-pane" when="xs" contentId="main">
+      <IonSplitPane className="split-pane" when="md" contentId="main">
         <Menu />
         <div className="ion-page" id="main">
           <IonContent className="dashboard ion-padding">
             <h1>About</h1>
             <IonGrid className="ion__margin--top-4 ion__min--h-full">
               <IonRow>
-                <IonCol size="7">
+                <IonCol size-xs="12" size-md="7">
                   <IonCard className="ion__margin--0 ion__margin--right-4 card__heigh--full">
                     <IonCardHeader>
                       <IonCardTitle>
@@ -35,7 +35,7 @@ const About: React.FC = () => {
                         Selamat datang di Grademica
                       </IonCardSubtitle>
                     </IonCardHeader>
-                    <IonCardContent>
+                    <IonCardContent className="ion-padding-bottom">
                       <div>
                         <h2 className="text__medium--bold">
                           Informasi Singkat
@@ -75,7 +75,7 @@ const About: React.FC = () => {
                     </IonCardContent>
                   </IonCard>
                 </IonCol>
-                <IonCol size="5">
+                <IonCol className="" size-xs="12" size-md="5">
                   <IonCard className="ion__margin--0">
                     <IonCardContent>
                       <div>

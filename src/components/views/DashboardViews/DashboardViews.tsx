@@ -37,7 +37,7 @@ const DashboardViews: React.FC = () => {
   return (
     <>
       <Navbar />
-      <IonSplitPane className="split-pane" when="xs" contentId="main">
+      <IonSplitPane className="split-pane" when="md" contentId="main">
         <Menu />
         <div className="ion-page" id="main">
           <IonContent className="dashboard ion-padding">
@@ -47,7 +47,7 @@ const DashboardViews: React.FC = () => {
               <IonRow className="ion-row-dashboard">
                 {cardList.map((card, index) => (
                   <IonCol>
-                    <IonCard className="dashboard-card">
+                    <IonCard className="dashboard-card dashboard-card-responsive">
                       <div className="dashboard-card__background-icon">
                         <IonIcon
                           className="dashboard-card__icon"

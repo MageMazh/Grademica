@@ -31,6 +31,8 @@ import {
   IonCard,
   IonRouterLink,
   IonInput,
+  IonModal,
+  IonText,
 } from "@ionic/react";
 import { useState } from "react";
 import { useParams } from "react-router";
@@ -42,104 +44,107 @@ import { type grade, dataGrade } from "../../../mockData/GradeCollegeStudentData
 import { dataCourse } from "../../../mockData/CourseData";
 import "./InputGradeViews.css";
 
-const columns: MRT_ColumnDef<grade>[] = [
-  {
-    accessorKey: "nomor",
-    header: "No",
-  },
-  {
-    accessorKey: "namemahasiswa",
-    header: "Nama mahasiswa",
-  },
-  {
-    accessorKey: "nim",
-    header: "Nim",
-  },
-  {
-    accessorKey: "nilai_kehadiran",
-    header: "Nilai Kehadiran (10%)",
-  },
-  {
-    accessorKey: "nilai_keaktifan",
-    header: "Nilai Keaktifan (10%)",
-  },
-  {
-    accessorKey: "nilai_tugas",
-    header: "Nilai Tugas (20%)",
-  },
-  {
-    accessorKey: "nilai_uas",
-    header: "Nilai UAS (30%)",
-  },
-  {
-    accessorKey: "nilai_uts",
-    header: "Nilai UTS (30%)",
-  },
-  {
-    accessorKey: "total",
-    header: "Nilai Total",
-  },
-  {
-    accessorKey: "huruf",
-    header: "Nilai Huruf",
-  },
-];
-
-const konversiTotal = (total: number) => {
-  if (total >= 85) {
-    return "A";
-  } else if (total >= 80) {
-    return "A-";
-  } else if (total >= 75) {
-    return "B+";
-  } else if (total >= 70) {
-    return "B";
-  } else if (total >= 65) {
-    return "B-";
-  } else if (total >= 60) {
-    return "C+";
-  } else if (total >= 50) {
-    return "C";
-  } else if (total >= 40) {
-    return "D";
-  } else {
-    return "E";
-  }
-};
-
-const jumlahNilai = (item: grade) => {
-  return Math.round(
-    item.nilai_kehadiran * 0.1 +
-    item.nilai_keaktifan * 0.1 +
-    item.nilai_tugas * 0.2 +
-    item.nilai_uas * 0.3 +
-    item.nilai_uts * 0.3
-  );
-};
-
-// Hitung nilai total dan perbarui dataGrade Anda
-const newData = dataGrade.map((item) => {
-  const total = jumlahNilai(item);
-
-  return {
-    ...item,
-    total: total,
-    huruf: konversiTotal(total),
-  };
-});
 
 const InputGradeViews : React.FC = () => {
   const { courseCode }: { courseCode: string } = useParams();
-  const [listData, setListData] = useState(newData);
+  const [isOpen, setIsOpen] = useState(false);
 
+  const konversiTotal = (total: number) => {
+    if (total >= 85) {
+      return "A";
+    } else if (total >= 80) {
+      return "A-";
+    } else if (total >= 75) {
+      return "B+";
+    } else if (total >= 70) {
+      return "B";
+    } else if (total >= 65) {
+      return "B-";
+    } else if (total >= 60) {
+      return "C+";
+    } else if (total >= 50) {
+      return "C";
+    } else if (total >= 40) {
+      return "D";
+    } else {
+      return "E";
+    }
+  };
+  
   const selectedCourse = dataCourse.find(course => {
     return course.code === courseCode;
   });
-
+  
   if (!courseCode || !selectedCourse) {
     return null;
   }
+  
+  const jumlahNilai = (item: grade) => {
+    return Math.round(
+      item.nilai_kehadiran * selectedCourse.percent_kehadiran / 100 +
+      item.nilai_keaktifan * selectedCourse.percent_keaktifan / 100 +
+      item.nilai_tugas * selectedCourse.percent_tugas / 100 +
+      item.nilai_uas * selectedCourse.percent_uas / 100 +
+      item.nilai_uts * selectedCourse.percent_uts / 100
+      );
+  };
+  
+  // Hitung nilai total dan perbarui dataGrade Anda
+  const newData = dataGrade.map((item) => {
+    const total = jumlahNilai(item);
+  
+    return {
+      ...item,
+      total: total,
+      huruf: konversiTotal(total),
+    };
+  });
+  
+  const [listData, setListData] = useState(newData);
 
+  const columns: MRT_ColumnDef<grade>[] = [
+    {
+      accessorKey: "nomor",
+      header: "No",
+    },
+    {
+      accessorKey: "namemahasiswa",
+      header: "Nama mahasiswa",
+    },
+    {
+      accessorKey: "nim",
+      header: "Nim",
+    },
+    {
+      accessorKey: "nilai_kehadiran",
+      header: `Nilai UTS (${selectedCourse.percent_kehadiran}%)`,
+    },
+    {
+      accessorKey: "nilai_keaktifan",
+      header: `Nilai Keaktifan (${selectedCourse.percent_keaktifan}%)`,
+    },
+    {
+      accessorKey: "nilai_tugas",
+      header: `Nilai Tugas (${selectedCourse.percent_tugas}%)`,
+    },
+    {
+      accessorKey: "nilai_uts",
+      header: `Nilai UTS (${selectedCourse.percent_uts}%)`,
+    },
+    {
+      accessorKey: "nilai_uas",
+      header: `Nilai UAS (${selectedCourse.percent_uas}%)`,
+    },
+    {
+      accessorKey: "total",
+      header: "Nilai Total",
+    },
+    {
+      accessorKey: "huruf",
+      header: "Nilai Huruf",
+    },
+  ];
+  
   const handleUpdatePermanent = () => {
     dataCourse.map((item, index) => {
       if (item.code === courseCode) {
@@ -165,8 +170,31 @@ const InputGradeViews : React.FC = () => {
 
   return (
     <>
+       <IonModal className="save-modal" isOpen={isOpen} onDidDismiss={() => setIsOpen(false)}>
+          <IonContent className="save-modal-content">
+            <IonText className="save-modal-text">
+              <h1>
+                Apa kamu yakin untuk simpan permanen?
+              </h1>
+            </IonText>
+            <IonText className="save-modal-text">
+              <p>
+                Sekali kamu menekan simpan permanen maka nilai ini tidak akan bisa diubah. Jika masih ingin ada perubahan, disarankan untuk simpan draf terlebih dahulu
+              </p>
+            </IonText>
+            <div className="save-modal-button">
+              <IonButton color="danger" onClick={() => setIsOpen(false)}>
+                Tidak
+              </IonButton>
+              <IonButton onClick={handleUpdatePermanent} routerLink={`/perkuliahan/list-mahasiswa/${courseCode}`}>
+                Ya
+              </IonButton>
+            </div>
+          </IonContent>
+        </IonModal>
+
       <Navbar />
-      <IonSplitPane className="split-pane" when="xs" contentId="main">
+      <IonSplitPane className="split-pane" when="md" contentId="main">
         <Menu />
         <div className="ion-page" id="main">
           <IonContent className="dashboard ion-padding">
@@ -192,7 +220,7 @@ const InputGradeViews : React.FC = () => {
                     <IonButton routerLink={`/perkuliahan/list-mahasiswa/${courseCode}`} className="ion-margin-end" color="success">
                       Simpan draf
                     </IonButton>
-                    <IonButton onClick={handleUpdatePermanent} routerLink={`/perkuliahan/list-mahasiswa/${courseCode}`}>
+                    <IonButton onClick={() => setIsOpen(true)}>
                       Simpan permanen
                     </IonButton>
                   </div>
@@ -307,4 +335,3 @@ const InputGradeViews : React.FC = () => {
 };
 
 export default InputGradeViews;
-

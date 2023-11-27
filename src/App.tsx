@@ -63,7 +63,7 @@ const App: React.FC = () => (
         <Route path="/perkuliahan/add-course">
           <AddCourse />
         </Route>
-        <Route path="/perkuliahan/edit-course">
+        <Route path="/perkuliahan/edit-course/:courseCode">
           <EditCourse />
         </Route>
         <Route exact path="/perkuliahan/list-mahasiswa/:courseCode">
