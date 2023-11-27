@@ -88,7 +88,7 @@ const columns: MRT_ColumnDef<course>[] = [
 
       return (
         <div>
-          <IconButton component={Link} to="/perkuliahan/edit-course"
+          <IconButton component={Link} to={`/perkuliahan/edit-course/${courseCode}`}
             color="primary"
           >
             <EditIcon />
@@ -128,7 +128,7 @@ const ListCourseViews = () => {
   return (
     <>
     <Navbar />
-      <IonSplitPane className="split-pane" when="xs" contentId="main">
+      <IonSplitPane className="split-pane" when="md" contentId="main">
         <Menu />
         <div className="ion-page" id="main">
           <IonContent className="dashboard ion-padding">

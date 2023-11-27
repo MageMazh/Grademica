@@ -23,11 +23,12 @@ ion-grid {
 }
 
 .dashboard-card__description {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: normal;
     padding-bottom: 0px;
     padding-top: 20px;
     margin-inline: 0px;
+    height: 70px;
 }
 
 .dashboard-card__number {
@@ -79,4 +80,35 @@ ion-card-content {
 
 .dashboard-card__list-information {
     padding-left: 13px;
+}
+
+@media only screen and (max-width: 830px) {
+    .dashboard-card__description {
+        height: 100px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .dashboard-card__description {
+        font-size: 14px;
+        height: 70px;
+    }
+    
+    .dashboard-card__number {
+        font-size: 16px;
+    }
+
+    .dashboard-card-responsive {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+}
+
+@media only screen and (max-width: 527px) {
+    .dashboard-card__description {
+        font-size: 14px;
+        height: 100px;
+    }
 }

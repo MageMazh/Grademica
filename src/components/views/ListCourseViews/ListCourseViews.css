@@ -29,3 +29,9 @@
   padding: 5px;
 }
 
+@media only screen and (max-width: 610px) {
+  .card-list-matakuliah ion-button {
+    font-size: 12px;
+    margin-right: 10px;
+  }
+}

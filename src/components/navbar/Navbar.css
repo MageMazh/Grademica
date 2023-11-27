@@ -54,3 +54,34 @@
 .header-navbar__account__profile {
     --inner-padding-end: 16px;
 }
+
+.header-navbar__hamburger {
+    color: white;
+}
+
+@media only screen and (max-width: 768px) {
+    .header-navbar__logo {
+        margin-left: 0px;
+    }
+
+    .header-navbar__account :first-child {
+        font-size: 0px;
+    }
+
+    .header-navbar__title {
+        margin-left: 0px;
+    }
+
+    .header-navbar__logo {
+        padding: 10px 0px;
+    }
+
+    .header-navbar__title :first-child {
+        font-size: 20px;
+    }
+    
+    .header-navbar__title :last-child {
+        font-size: 12px;
+    }
+}
+
