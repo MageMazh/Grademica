@@ -1,0 +1,54 @@
+.not-found-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+  animation: fadeIn 1s ease-in-out forwards;
+  opacity: 0;
+}
+
+.Error404-image {
+  max-width: 50%;
+  margin-bottom: 20px;
+}
+
+.header404 {
+  font-size: 2em;
+  text-align: center;
+  color: red;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.text404 {
+  font-size: 1em;
+  text-align: center;
+}
+
+.not-found-container, .Error404-image, .header404, .text404 {
+  margin: 0;
+  padding: 0;
+}
+
+.btn-back-404{
+  width: 150px;
+  max-height: 45px;
+  font-size: 14px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  height: auto;
+}
+
+.nf404__Page{
+  padding-bottom: 0px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

@@ -1,3 +1,7 @@
+.login__pages{
+  padding-Bottom: 0px !important;
+}
+
 .login_card {
   width: 500px;
   height: 440px;

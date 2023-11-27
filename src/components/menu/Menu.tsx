@@ -21,7 +21,7 @@ const appMenus = [
     // mdIcon: homeSharp
   },
   {
-    title: 'Profile',
+    title: 'Account',
     url: '/profile',
     iosIcon: personOutline,
     // mdIcon: paperPlaneSharp

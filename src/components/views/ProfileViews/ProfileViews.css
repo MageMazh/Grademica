@@ -34,18 +34,13 @@
 
 .data{
   padding-bottom: 50px;
+  padding-top: 0px;
+  margin-bottom: 50px;
+
 }
 
 .data__profile{
   width: 95%;
-}
-
-.header-data{
-  padding: 0px;
-  padding-top: 4px;
-}
-.title-data{
-  font-weight: bold;
 }
 
 .list-data{
