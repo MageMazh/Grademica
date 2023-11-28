@@ -46,48 +46,46 @@ const ProfileEditViews: React.FC = () => {
                                     </IonCard>
                                 </IonCol>
 
-                                {/* 3. Memasukkan Data Profile Ke bagian kanan */}
-                                <IonCol className='data'>
-                                    <IonCard className='data__profile'>
-                                        {/* Header Data Profile */}
-                                        <IonCardHeader className='header-data'>
-                                            <IonItem>
-                                                <IonCardTitle className='title-data'>Data Pribadi</IonCardTitle>
-                                            </IonItem>
-                                        </IonCardHeader>
+                    {/* 3. Memasukkan Data Profile Ke bagian kanan */}
+                    <IonCol className='data'>
+                      <IonCard className='data__profile'>
+                        {/* Header Data Profile */}
+                        <IonCardTitle className="dashboard-card__information">
+                          Data Pribadi
+                        </IonCardTitle>
 
-                                        {/* Isi Data Profile */}
-                                        <IonCardContent>
-                                        <IonList className='list-data' lines="inset">
-                                                {[
-                                                    'Nama',
-                                                    'Tempat & Tanggal Lahir',
-                                                    'Alamat',
-                                                    'No.HandPhone',
-                                                    'Email',
-                                                    'NIP',
-                                                    'NIDN',
-                                                    'Jabatan Struktural',
-                                                    'Jabatan Fungsional',
-                                                ].map((label, index) => (
-                                                    <IonItem key={index}>
-                                                        <IonInput className='input-data' label={label} labelPlacement="floating" placeholder={`Enter ${label}`} />
-                                                    </IonItem>
-                                                ))}
-                                            </IonList>
-                                            <div className='button-account-save'>
-                                                <IonButton className='BTN-Save-Profile' routerLink={profileSaveUrl}>Simpan Perubahan</IonButton>
-                                            </div>
-                                        </IonCardContent>
-                                    </IonCard>
-                                </IonCol>
-                            </IonRow>
-                        </IonGrid>
-                    </IonContent>
-                </div>
-            </IonSplitPane>
-        </>
-    );
+                        {/* Isi Data Profile */}
+                        <IonCardContent>
+                          <IonList className='list-data' lines="inset">
+                            {[
+                              'Nama',
+                              'Tempat & Tanggal Lahir',
+                              'Alamat',
+                              'No.HandPhone',
+                              'Email',
+                              'NIP',
+                              'NIDN',
+                              'Jabatan Struktural',
+                              'Jabatan Fungsional',
+                            ].map((label, index) => (
+                              <IonItem key={index}>
+                                <IonInput className='input-data' label={label} labelPlacement="floating" placeholder={`Enter ${label}`} />
+                              </IonItem>
+                            ))}
+                          </IonList>
+                      <div className='button-account-save'>
+                        <IonButton className='BTN-Save-Profile' routerLink={profileSaveUrl}>Simpan Perubahan</IonButton>
+                      </div>
+                    </IonCardContent>
+                  </IonCard>
+                </IonCol>
+              </IonRow>
+            </IonGrid>
+          </IonContent>
+        </div>
+      </IonSplitPane>
+    </>
+  );
 };
 
 export default ProfileEditViews;

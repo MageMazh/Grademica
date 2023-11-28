@@ -1,0 +1,28 @@
+.pass__ioncontent{
+    --background: #FFF url(../../../assets/images/bg_login.webp) bottom/contain no-repeat;
+}
+
+.pass__mycard {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 500px;
+  height: 440px;
+  margin: 100px auto;
+  display:flex;
+  gap: 15px;
+  padding: auto;
+  /* background: #094067; */
+}
+
+.pass__btn-batal{
+    --background: red;
+}
+  
+  
+.pass__Cardcontent {
+  width: 100%; 
+  max-width: 300px; 
+  padding: 10px;
+}
+  

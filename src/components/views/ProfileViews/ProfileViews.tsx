@@ -18,10 +18,13 @@ import {
 import "./ProfileViews.css";
 import Navbar from "../../navbar";
 import Menu from "../../menu";
+import { Link } from "react-router-dom";
 
 const ProfileViews: React.FC = () => {
-  const profileEditUrl = "/profile-edit";
+  const profileEditUrl = "/profile/profile-edit";
+  const changePasswordUrl = "/profile/change-password"
   const UserName = "User Name";
+  const Halaman = "Profile"
 
   return (
     <>
@@ -32,7 +35,7 @@ const ProfileViews: React.FC = () => {
         <Menu />
         <div className="ion-page" id="main">
           <IonContent className="dashboard ion-padding">
-            <h1>Profile</h1>
+            <h1>{Halaman}</h1>
             {/* Membuat Tata Letaknya */}
             <IonGrid>
               <IonRow>
@@ -55,13 +58,9 @@ const ProfileViews: React.FC = () => {
                 <IonCol className="data">
                   <IonCard className="data__profile">
                     {/* Header Data Profile */}
-                    <IonCardHeader className="header-data">
-                      <IonItem>
-                        <IonCardTitle className="title-data">
-                          Data Pribadi
-                        </IonCardTitle>
-                      </IonItem>
-                    </IonCardHeader>
+                    <IonCardTitle className="dashboard-card__information">
+                      Data Pribadi
+                    </IonCardTitle>
 
                     {/* Isi Data Profile */}
                     <IonCardContent>
@@ -100,15 +99,13 @@ const ProfileViews: React.FC = () => {
                         ))}
                       </IonList>
                       <div className="button-account">
-                        <IonButton className="BTN-Change-Pass">
-                          Ubah Sandi
-                        </IonButton>
-                        <IonButton
-                          className="BTN-Edit-Profile"
-                          routerLink={profileEditUrl}
-                        >
-                          Edit Profile
-                        </IonButton>
+                        <Link to={changePasswordUrl}>
+                          <IonButton className="BTN-Change-Pass">Ubah Sandi</IonButton>
+                        </Link>
+                        
+                        <Link to={profileEditUrl}>
+                          <IonButton className="BTN-Edit-Profile">Edit Profile</IonButton>
+                        </Link>
                       </div>
                     </IonCardContent>
                   </IonCard>
