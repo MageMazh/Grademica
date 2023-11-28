@@ -24,6 +24,7 @@
     --border-style: 0px;
     --background: #D8EEFE;
     padding: 0px;
+    cursor: pointer;
 }
 
 .main-menu__list__icon {
@@ -40,3 +41,28 @@
     --border-style: 0px;
     --background: #90B4CE;
 }
+
+.logout-modal::part(content) {
+    width: 390px;
+    height: 130px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.logout-modal .ion-page {
+    padding-bottom: 0px;
+}
+
+@media only screen and (max-width: 768px) {
+    .main-menu {
+      width: inherit; /* For example, hide the menu */
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    .logout-modal::part(content){
+        width: 220px;
+        height: 110px;
+    }
+}
+

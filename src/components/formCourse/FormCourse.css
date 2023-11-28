@@ -29,3 +29,14 @@
 .add-course__button__cancel {
     --background: red;
 }
+
+@media only screen and (max-width: 576px) {
+    .add-course__button__cancel {
+        font-size: 12px;
+    }
+
+    .add-course__button__save {
+        font-size: 12px;
+    }
+}
+

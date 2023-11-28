@@ -3,11 +3,11 @@
 }
 
 .ion__margin--0 {
-  margin: 0px !important;
+  margin: 0px;
 }
 
 .ion__margin--right-4 {
-  margin-right: 16px !important;
+  margin-right: 16px;
 }
 
 .ion__margin--top-4 {
@@ -82,6 +82,12 @@
   text-align: justify;
 }
 
-.card__heigh--full {
-  height: 110%;
+@media only screen and (max-width: 768px) {
+  .ion__margin--top-4 ion-row ion-col:first-child {
+    margin-bottom: 6px;
+  }
+
+  .ion__margin--right-4 {
+    margin-right: 0px;
+  }
 }

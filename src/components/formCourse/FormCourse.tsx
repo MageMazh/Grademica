@@ -19,20 +19,33 @@ import { useHistory } from 'react-router-dom';
 
 import "./FormCourse.css";
 
-const FormCourseViews: React.FC = () => {
+interface FormCourseProps {
+  name : string,
+  code : string,
+  level: string,
+  sks: string,
+  semester: string,
+  percent_kehadiran: number;
+  percent_keaktifan: number;
+  percent_tugas: number;
+  percent_uts: number;
+  percent_uas: number;
+}
+
+const FormCourseViews: React.FC<FormCourseProps> = ({ name = "", code = "", level="", semester="", sks="", percent_kehadiran=0, percent_keaktifan=0, percent_uts=0, percent_tugas=0, percent_uas=0}) => {
   const history = useHistory();
   const ListCourseLink = '/perkuliahan';
 
-  const [namaMataKuliah, setNamaMataKuliah] = useState("");
-  const [sks, setSKS] = useState("");
-  const [jenjang, setJenjang] = useState("");
-  const [semester, setSemester] = useState("");
-  const [kode, setKode] = useState("");
-  const [kehadiranValue, setKehadiranValue] = useState(-1);
-  const [keaktifanValue, setKeaktifanValue] = useState(-1);
-  const [tugasValue, setTugasValue] = useState(-1);
-  const [uasValue, setUASValue] = useState(-1);
-  const [utsValue, setUTSValue] = useState(-1);
+  const [namaMataKuliah, setNamaMataKuliah] = useState(name);
+  const [SKS, setSKS] = useState(sks);
+  const [jenjang, setJenjang] = useState(level);
+  const [semesterMataKuliah, setSemesterMataKuliah] = useState(semester);
+  const [kode, setKode] = useState(code);
+  const [kehadiranValue, setKehadiranValue] = useState(percent_kehadiran);
+  const [keaktifanValue, setKeaktifanValue] = useState(percent_keaktifan);
+  const [tugasValue, setTugasValue] = useState(percent_tugas);
+  const [uasValue, setUASValue] = useState(percent_uas);
+  const [utsValue, setUTSValue] = useState(percent_uts);
 
   const [alertPercent, setAlertPercent] = useState(false);
   const [alertAllValue, setAlertAllValue] = useState(false);
@@ -85,14 +98,9 @@ const FormCourseViews: React.FC = () => {
   const submitValue = () => {
     if (
       !namaMataKuliah ||
-      !sks ||
+      !SKS ||
       !jenjang ||
-      !semester ||
-      kehadiranValue === -1 ||
-      keaktifanValue === -1 ||
-      tugasValue === -1 ||
-      utsValue === -1 ||
-      uasValue === -1
+      !semesterMataKuliah 
     ) {
       setAlertAllValue(true);  
     }
@@ -177,7 +185,7 @@ const FormCourseViews: React.FC = () => {
                   labelPlacement="stacked"
                   fill="outline"
                   placeholder="3"
-                  value={sks}
+                  value={SKS}
                   onIonChange={(event) => setSKS(event.detail.value!)} //! = nilai tidak boleh null/undefined
                 ></IonInput>
               </IonCol>
@@ -187,71 +195,76 @@ const FormCourseViews: React.FC = () => {
                   labelPlacement="stacked"
                   fill="outline"
                   placeholder="5"
-                  value={semester}
-                  onIonChange={(event) => setSemester(event.detail.value!)} //! = nilai tidak boleh null/undefined
+                  value={semesterMataKuliah}
+                  onIonChange={(event) => setSemesterMataKuliah(event.detail.value!)} //! = nilai tidak boleh null/undefined
                 ></IonInput>
               </IonCol>
             </IonRow>
             <IonRow className="add-course__card-input">
-              <IonCol>
+              <IonCol size-xs="12" size-md="">
                 <IonInput
                   label="Kehadiran (%)"
                   className={`add-course__card-input-percent`}
                   labelPlacement="stacked"
                   fill="outline"
                   errorText="Invalid email"
+                  value={kehadiranValue}
                   onIonInput={(event) => {
                     handleChangeKehadiranValue(event);
                   }}
                   placeholder="0"
                 ></IonInput>
               </IonCol>
-              <IonCol>
+              <IonCol size-xs="12" size-md="">
                 <IonInput
                   label="Keaktifan (%)"
                   className={`add-course__card-input-percent`}
                   labelPlacement="stacked"
                   fill="outline"
                   errorText="Invalid email"
+                  value={keaktifanValue}
                   onIonInput={(event) => {
                     handleChangeKeaktifanValue(event);
                   }}
                   placeholder="0"
                 ></IonInput>
               </IonCol>
-              <IonCol>
+              <IonCol size-xs="12" size-md="">
                 <IonInput
                   label="Tugas (%)"
                   className={`add-course__card-input-percent`}
                   labelPlacement="stacked"
                   fill="outline"
                   errorText="Invalid email"
+                  value={percent_tugas}
                   onIonInput={(event) => {
                     handleChangeTugasValue(event);
                   }}
                   placeholder="0"
                 ></IonInput>
               </IonCol>
-              <IonCol>
+              <IonCol size-xs="12" size-md="">
                 <IonInput
                   label="UTS (%)"
                   className={`add-course__card-input-percent`}
                   labelPlacement="stacked"
                   fill="outline"
                   errorText="Invalid email"
+                  value={percent_uts}
                   onIonInput={(event) => {
                     handleChangeUTSValue(event);
                   }}
                   placeholder="0"
                 ></IonInput>
               </IonCol>
-              <IonCol>
+              <IonCol size-xs="12" size-md="">
                 <IonInput
                   label="UAS (%)"
                   className={`add-course__card-input-percent`}
                   labelPlacement="stacked"
                   fill="outline"
                   errorText="Invalid email"
+                  value={percent_uas}
                   onIonInput={(event) => {
                     handleChangeUASValue(event);
                   }}
@@ -265,7 +278,7 @@ const FormCourseViews: React.FC = () => {
           <IonButton className="add-course__button__cancel" routerLink={ListCourseLink}>
             Batal Perubahan
           </IonButton>
-          <IonButton onClick={submitValue} >Simpan Perubahan</IonButton>
+          <IonButton className="add-course__button__save" onClick={submitValue}>Simpan Perubahan</IonButton>
         </IonCardContent>
       </IonCard>
     </>

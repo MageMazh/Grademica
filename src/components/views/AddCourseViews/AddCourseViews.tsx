@@ -26,7 +26,7 @@ const AddCourseViews: React.FC = () => {
   return (
     <>
       <Navbar />
-      <IonSplitPane className="split-pane" when="xs" contentId="main">
+      <IonSplitPane className="split-pane" when="md" contentId="main">
         <Menu />
         <div className="ion-page" id="main">
           <IonContent className="add-course ion-padding">
@@ -36,7 +36,7 @@ const AddCourseViews: React.FC = () => {
               </IonRouterLink>
                 <h1>Tambah Mata Kuliah</h1>
             </IonItem>
-            <FormCourse />
+            <FormCourse name={""} code={""} level={""} semester={""} sks={""} percent_kehadiran={0} percent_keaktifan={0} percent_uts={0} percent_tugas={0} percent_uas={0}/>
           </IonContent>
         </div>
       </IonSplitPane>
