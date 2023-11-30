@@ -55,7 +55,8 @@ const FormCourseViews: React.FC<FormCourseProps> = ({ name = "", code = "", leve
     if (value === "") {
       setKehadiranValue(-1);
     } else {
-      setKehadiranValue(Number(value));
+      const numericValue = Number(value);
+      setKehadiranValue(isNaN(numericValue) ? -1 : numericValue);
     }
   };
 
@@ -64,7 +65,8 @@ const FormCourseViews: React.FC<FormCourseProps> = ({ name = "", code = "", leve
     if (value === "") {
       setKeaktifanValue(-1);
     } else {
-      setKeaktifanValue(Number(value));
+      const numericValue = Number(value);
+      setKeaktifanValue(isNaN(numericValue) ? -1 : numericValue);
     }
   };
 
@@ -73,7 +75,8 @@ const FormCourseViews: React.FC<FormCourseProps> = ({ name = "", code = "", leve
     if (value === "") {
       setTugasValue(-1);
     } else {
-      setTugasValue(Number(value));
+      const numericValue = Number(value);
+      setTugasValue(isNaN(numericValue) ? -1 : numericValue);
     }
   };
 
@@ -82,7 +85,8 @@ const FormCourseViews: React.FC<FormCourseProps> = ({ name = "", code = "", leve
     if (value === "") {
       setUTSValue(-1);
     } else {
-      setUTSValue(Number(value));
+        const numericValue = Number(value);
+        setUTSValue(isNaN(numericValue) ? -1 : numericValue);
     }
   };
 
@@ -91,7 +95,8 @@ const FormCourseViews: React.FC<FormCourseProps> = ({ name = "", code = "", leve
     if (value === "") {
       setUASValue(-1);
     } else {
-      setUASValue(Number(value));
+      const numericValue = Number(value);
+      setUASValue(isNaN(numericValue) ? -1 : numericValue);
     }
   };
 
@@ -201,15 +206,22 @@ const FormCourseViews: React.FC<FormCourseProps> = ({ name = "", code = "", leve
               </IonCol>
             </IonRow>
             <IonRow className="add-course__card-input">
-              <IonCol size-xs="12" size-md="">
+            <IonCol size-xs="12" size-md="">
                 <IonInput
                   label="Kehadiran (%)"
                   className={`add-course__card-input-percent`}
                   labelPlacement="stacked"
                   fill="outline"
                   errorText="Invalid email"
-                  value={kehadiranValue}
+                  value={kehadiranValue !== -1 ? kehadiranValue : ''}
                   onIonInput={(event) => {
+                    const inputValue = event.target.value;
+                    const isInvalidInput = isNaN(Number(inputValue)) || Number(inputValue) > 100 || Number(inputValue) < 0;
+                    if (isInvalidInput) {
+                      event.target.classList.add('border-red');
+                    } else {
+                      event.target.classList.remove('border-red');
+                    }
                     handleChangeKehadiranValue(event);
                   }}
                   placeholder="0"
@@ -222,8 +234,15 @@ const FormCourseViews: React.FC<FormCourseProps> = ({ name = "", code = "", leve
                   labelPlacement="stacked"
                   fill="outline"
                   errorText="Invalid email"
-                  value={keaktifanValue}
+                  value={keaktifanValue !== -1 ? keaktifanValue : ''}
                   onIonInput={(event) => {
+                    const inputValue = event.target.value;
+                    const isInvalidInput = isNaN(Number(inputValue)) || Number(inputValue) > 100 || Number(inputValue) < 0;
+                    if (isInvalidInput) {
+                      event.target.classList.add('border-red');
+                    } else {
+                      event.target.classList.remove('border-red');
+                    }
                     handleChangeKeaktifanValue(event);
                   }}
                   placeholder="0"
@@ -236,8 +255,15 @@ const FormCourseViews: React.FC<FormCourseProps> = ({ name = "", code = "", leve
                   labelPlacement="stacked"
                   fill="outline"
                   errorText="Invalid email"
-                  value={percent_tugas}
+                  value={tugasValue !== -1 ? tugasValue : ''}
                   onIonInput={(event) => {
+                    const inputValue = event.target.value;
+                    const isInvalidInput = isNaN(Number(inputValue)) || Number(inputValue) > 100 || Number(inputValue) < 0;
+                    if (isInvalidInput) {
+                      event.target.classList.add('border-red');
+                    } else {
+                      event.target.classList.remove('border-red');
+                    }
                     handleChangeTugasValue(event);
                   }}
                   placeholder="0"
@@ -250,13 +276,20 @@ const FormCourseViews: React.FC<FormCourseProps> = ({ name = "", code = "", leve
                   labelPlacement="stacked"
                   fill="outline"
                   errorText="Invalid email"
-                  value={percent_uts}
+                  value={utsValue !== -1 ? utsValue : ''}
                   onIonInput={(event) => {
+                    const inputValue = event.target.value;
+                    const isInvalidInput = isNaN(Number(inputValue)) || Number(inputValue) > 100 || Number(inputValue) < 0;
+                    if (isInvalidInput) {
+                      event.target.classList.add('border-red');
+                    } else {
+                      event.target.classList.remove('border-red');
+                    }
                     handleChangeUTSValue(event);
                   }}
                   placeholder="0"
                 ></IonInput>
-              </IonCol>
+               </IonCol>
               <IonCol size-xs="12" size-md="">
                 <IonInput
                   label="UAS (%)"
@@ -264,8 +297,15 @@ const FormCourseViews: React.FC<FormCourseProps> = ({ name = "", code = "", leve
                   labelPlacement="stacked"
                   fill="outline"
                   errorText="Invalid email"
-                  value={percent_uas}
+                  value={uasValue !== -1 ? uasValue : ''}
                   onIonInput={(event) => {
+                    const inputValue = event.target.value;
+                    const isInvalidInput = isNaN(Number(inputValue)) || Number(inputValue) > 100 || Number(inputValue) < 0;
+                    if (isInvalidInput) {
+                      event.target.classList.add('border-red');
+                    } else {
+                      event.target.classList.remove('border-red');
+                    }
                     handleChangeUASValue(event);
                   }}
                   placeholder="0"
@@ -277,7 +317,7 @@ const FormCourseViews: React.FC<FormCourseProps> = ({ name = "", code = "", leve
         <IonCardContent className="add-course__button">
           <IonButton className="add-course__button__cancel" routerLink={ListCourseLink}>
             Batal Perubahan
-          </IonButton>
+           </IonButton>
           <IonButton className="add-course__button__save" onClick={submitValue}>Simpan Perubahan</IonButton>
         </IonCardContent>
       </IonCard>

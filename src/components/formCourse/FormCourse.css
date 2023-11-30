@@ -40,3 +40,7 @@
     }
 }
 
+.border-red {
+    --background: pink;
+}
+
