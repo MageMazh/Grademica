@@ -14,7 +14,6 @@ import logounhas from "../../../assets/images/Logo_UH.webp";
 
 const LoginViews: React.FC = () => {
   return (
-    <IonPage className="login__pages">
       <IonContent className="login_background">
         <IonGrid className="login-grid">
           <IonRow>
@@ -50,7 +49,6 @@ const LoginViews: React.FC = () => {
           </IonRow>
         </IonGrid>
       </IonContent>
-    </IonPage>
   );
 };
 
