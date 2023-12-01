@@ -32,7 +32,7 @@ const EditCourseViews: React.FC = () => {
       <IonSplitPane className="split-pane" when="md" contentId="main">
         <Menu />
         <div className="ion-page" id="main">
-          <IonContent className="edit-course ion-padding">
+          <IonContent className="dashboard ion-padding">
             <div className="edit-course__title">
               <IonRouterLink routerLink="/perkuliahan">
                 <IonIcon
@@ -42,7 +42,7 @@ const EditCourseViews: React.FC = () => {
               </IonRouterLink>
               <h1>Edit Mata Kuliah</h1>
             </div>
-            <FormCourse name={name} code={code} level={level} semester={semester} sks={sks} percent_kehadiran={percent_kehadiran} percent_keaktifan={percent_keaktifan} percent_uts={percent_uas} percent_tugas={percent_tugas} percent_uas={percent_uas}/>
+            <FormCourse name={name} code={code} level={level} semester={semester} sks={sks} percent_kehadiran={percent_kehadiran} percent_keaktifan={percent_keaktifan} percent_uts={percent_uts} percent_tugas={percent_tugas} percent_uas={percent_uas}/>
           </IonContent>
         </div>
       </IonSplitPane>

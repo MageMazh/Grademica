@@ -29,7 +29,7 @@ const AddCourseViews: React.FC = () => {
       <IonSplitPane className="split-pane" when="md" contentId="main">
         <Menu />
         <div className="ion-page" id="main">
-          <IonContent className="add-course ion-padding">
+          <IonContent className="dashboard ion-padding">
             <IonItem className="add-course__title">
               <IonRouterLink routerLink="/perkuliahan">
                 <IonIcon className="add-course__icon" icon={chevronBackOutline} />

@@ -152,7 +152,7 @@ const InputGradeViews : React.FC = () => {
       }
     });
   }
-
+  
   const table = useMaterialReactTable({
     columns,
     data: listData,
@@ -170,7 +170,7 @@ const InputGradeViews : React.FC = () => {
 
   return (
     <>
-       <IonModal className="save-modal" isOpen={isOpen} onDidDismiss={() => setIsOpen(false)}>
+    <IonModal className="save-modal" isOpen={isOpen} onDidDismiss={() => setIsOpen(false)}>
           <IonContent className="save-modal-content">
             <IonText className="save-modal-text">
               <h1>
@@ -192,7 +192,7 @@ const InputGradeViews : React.FC = () => {
             </div>
           </IonContent>
         </IonModal>
-
+        
       <Navbar />
       <IonSplitPane className="split-pane" when="md" contentId="main">
         <Menu />
@@ -282,31 +282,30 @@ const InputGradeViews : React.FC = () => {
                                   counter={true}
                                   maxlength={3}
                                   className="ion-no-margin cell__table-input"
-                                  value={cell.row.original[cell.column.id]}
+                                  value={cell.row.original[cell.column.id] === 0 ? null : cell.row.original[cell.column.id]}
                                   onIonInput={(e) => {
-                                    // Jika valuenya ada selain angka
-                                    if (isNaN(Number(e.target.value))) return;
-
-                                    const newValue = Number(e.target.value);
-
-                                    // Kunci yang valid pada objek tersebut (grade).
+                                    const inputValue = e.target.value;
                                     const str = cell.column.id as keyof grade;
 
-                                    // Objek dengan kunci bertipe string dan nilai apa pun.
-                                    (cell.row.original as Record<string, any>)[str] = newValue;
-
+                                    if (isNaN(Number(inputValue)) || Number(inputValue) > 100 || Number(inputValue) < 0) {
+                                      // e.target.classList.add('border-red');
+                                      // (cell.row.original as Record<string, any>)[str] = inputValue;
+                                    } 
+                                    else {
+                                      // e.target.classList.remove('border-red');
+                                      (cell.row.original as Record<string, any>)[cell.column.id] = Number(inputValue);
+                                    }
                                     const total = jumlahNilai(cell.row.original);
-
+                                    if (!isNaN(total) && Number((cell.row.original as Record<string, any>)[cell.column.id]) <= 100 && Number((cell.row.original as Record<string, any>)[cell.column.id]) >= 0)
                                     cell.row.original.total = total;
                                     cell.row.original.huruf = konversiTotal(total);
-
-                                    // Membuat salinan data
+                                    
+                                    
                                     const newData = [...table.options.data];
-
-                                    // ganti index barisnya dengan baris original yang sudah diganti.
                                     newData[cell.row.index] = cell.row.original;
                                     setListData(newData);
-                                  }}
+                                    }
+                                  }
                                 ></IonInput>
                               ) : (
                                 <>
