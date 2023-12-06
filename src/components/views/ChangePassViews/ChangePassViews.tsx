@@ -12,7 +12,9 @@ import {
   IonInput,
   IonButton,
 } from "@ionic/react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import { auth } from "../../../firebase/firebase";
+import { updatePassword } from "firebase/auth";
 import "./ChangePassViews.css"
 
 const profileUrl = "/profile"
@@ -21,11 +23,25 @@ const ChangePassViews: React.FC = () => {
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmNewPassword, setConfirmNewPassword] = useState("");
+  const history = useHistory();
 
   const handleChangePassword = () => {
-    console.log("Perubahan kata sandi berhasil");
+    const user = auth.currentUser;
+  
+    if (user) {
+      updatePassword(user, newPassword)
+        .then(() => {
+          alert('Sukses mengubah password');
+          history.push("/profile");
+        })
+        .catch(error => {
+          alert(error.message);
+        });
+    } else {
+      alert('User not authenticated. Please log in.');
+    }
   };
-
+  
   return (
     <IonContent className="pass__ioncontent">
       

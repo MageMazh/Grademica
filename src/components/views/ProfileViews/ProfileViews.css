@@ -24,12 +24,14 @@
 .Nama-Profile-Card{
   font-size: 1.8vw;
   margin: 0px;
+  color: black;
 }
 
 .Prodi-Profile-Card{
   font-size: 1.3vw;
   margin-top: 5px;
   margin-bottom: 25px;
+  color: black;
 }
 
 .data{
@@ -66,3 +68,7 @@
 .BTN-Change-Pass{
   --background: red;
 }
+
+/* .ion-page {
+  padding-bottom: 0px !important;
+} */

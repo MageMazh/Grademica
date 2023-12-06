@@ -23,6 +23,7 @@ import {
 import { useHistory, useLocation } from "react-router";
 import { menuController } from "@ionic/core/components";
 import { useRef, useState } from "react";
+import Cookies from "js-cookie";
 
 const appMenus = [
   {
@@ -64,6 +65,11 @@ const Menu: React.FC = () => {
 
   const modal = useRef<HTMLIonModalElement>(null);
 
+  const logOutHandle = () => {
+    Cookies.remove('authToken');
+    history.push('/login');
+  }
+
   function dismiss() {
     modal.current?.dismiss();
   }
@@ -88,7 +94,7 @@ const Menu: React.FC = () => {
             <IonButton color="danger" onClick={() => setIsLogOpen(false)}>
               Tidak
             </IonButton>
-            <IonButton routerLink={`/login`}>Ya</IonButton>
+            <IonButton onClick={logOutHandle} >Ya</IonButton>
           </div>
         </IonContent>
       </IonModal>

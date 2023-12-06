@@ -18,3 +18,12 @@
     padding: 0px;
 }
 
+.col-tidak-lulus {
+    font-weight: bold;
+    color: #DA1E28;
+}
+
+.col-lulus {
+    font-weight: bold;
+    color: #49A52F;
+}

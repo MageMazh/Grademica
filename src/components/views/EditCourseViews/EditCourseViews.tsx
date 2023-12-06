@@ -1,9 +1,4 @@
-import {
-  IonContent,
-  IonIcon,
-  IonSplitPane,
-  IonRouterLink,
-} from "@ionic/react";
+import { IonContent, IonIcon, IonSplitPane, IonRouterLink, IonLoading } from "@ionic/react";
 import { chevronBackOutline } from "ionicons/icons";
 
 import Menu from "../../menu";
@@ -11,21 +6,80 @@ import Navbar from "../../navbar";
 import "./EditCourseViews.css";
 import FormCourse from "../../formCourse";
 import { useParams } from "react-router";
-import { dataCourse } from "../../../mockData/CourseData";
+import { useEffect, useState } from "react";
+import { firestore } from "../../../firebase/firebase";
+import { doc, getDoc } from "firebase/firestore";
+import Cookies from "js-cookie";
 
 const EditCourseViews: React.FC = () => {
-  const { courseCode }: { courseCode: string } = useParams();
-  
-  const selectedCourse = dataCourse.find(course => {
-    return course.code === courseCode;
+  const { id }: { id: string } = useParams();
+  const [courseData, setCourseData] = useState<any>({
+    name: "",
+    code: "",
+    sks: "",
+    semester: "",
+    sarjana: "",
+    percent_kehadiran: 0,
+    percent_keaktifan: 0,
+    percent_uts: 0,
+    percent_tugas: 0,
+    percent_uas: 0,
   });
-  
-  if (!courseCode || !selectedCourse) {
-    return null;
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const user = Cookies.get('authToken')
+
+        if (user) {
+          const userDocRef = doc(
+            firestore,
+            "users",
+            user,
+            "Mata Kuliah",
+            id
+          );
+          const userDocSnap = await getDoc(userDocRef);
+
+          if (userDocSnap.exists()) {
+            const data = userDocSnap.data();
+
+            setCourseData({
+              name: data.name || "",
+              code: data.code || "",
+              sks: data.sks || "",
+              semester: data.semester || "",
+              sarjana: data.sarjana || "",
+              percent_kehadiran: data.percent_kehadiran || 0,
+              percent_keaktifan: data.percent_keaktifan || 0,
+              percent_uts: data.percent_uts || 0,
+              percent_tugas: data.percent_tugas || 0,
+              percent_uas: data.percent_uas || 0,
+            });
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (!courseData.name) {
+    return (
+      <>
+        <Navbar />
+        <IonSplitPane className="split-pane" when="md" contentId="main">
+          <Menu />
+          <div className="ion-page" id="main">
+          <IonLoading isOpen={!courseData.name} message="Loading..." duration={0} />            
+          </div>
+        </IonSplitPane>
+      </>
+    );
   }
 
-  const { name, code, sks, semester, level , percent_kehadiran, percent_keaktifan, percent_uts, percent_tugas, percent_uas} = selectedCourse;
-  
   return (
     <>
       <Navbar />
@@ -42,7 +96,20 @@ const EditCourseViews: React.FC = () => {
               </IonRouterLink>
               <h1>Edit Mata Kuliah</h1>
             </div>
-            <FormCourse name={name} code={code} level={level} semester={semester} sks={sks} percent_kehadiran={percent_kehadiran} percent_keaktifan={percent_keaktifan} percent_uts={percent_uts} percent_tugas={percent_tugas} percent_uas={percent_uas}/>
+            <FormCourse
+              handle="edit"
+              id={id}
+              name={courseData.name}
+              code={courseData.code}
+              sarjana={courseData.sarjana}
+              semester={courseData.semester}
+              sks={courseData.sks}
+              percent_kehadiran={courseData.percent_kehadiran}
+              percent_keaktifan={courseData.percent_keaktifan}
+              percent_uts={courseData.percent_uas}
+              percent_tugas={courseData.percent_tugas}
+              percent_uas={courseData.percent_uas}
+            />
           </IonContent>
         </div>
       </IonSplitPane>

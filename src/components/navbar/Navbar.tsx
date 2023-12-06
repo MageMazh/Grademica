@@ -12,10 +12,40 @@ import {
 
 import "./Navbar.css";
 import logounhas from "../../assets/images/Logo_UH.webp";
-import { menuOutline } from "ionicons/icons";
 import Menu from "../menu";
+import { firestore } from "../../firebase/firebase";
+import { useState, useEffect } from "react";
+import { doc, getDoc } from "firebase/firestore";
+import Cookies from "js-cookie";
 
 function Navbar() {
+  const [userData, setUserData] = useState({
+    nama: "",
+  });
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const user = Cookies.get('authToken')
+        if (user) {
+          const userDocRef = doc(firestore, "users", user);
+          const userDocSnap = await getDoc(userDocRef);
+
+          if (userDocSnap.exists()) {
+            const userDataFromFirestore = userDocSnap.data();
+            setUserData({
+              nama: userDataFromFirestore.nama || "User",
+            });
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
+
+    fetchUserData();
+  }, []);
+
   return (
     <>
       <Menu />
@@ -35,7 +65,7 @@ function Navbar() {
         </div>
         <div>
           <IonItem className="header-navbar__account">
-            <IonLabel>username</IonLabel>
+            <IonLabel>{userData.nama}</IonLabel>
             <IonAvatar className="header-navbar__account__profile">
               <img
                 alt="A person's head"
