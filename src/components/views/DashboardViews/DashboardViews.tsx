@@ -10,27 +10,64 @@ import {
   IonRow,
 } from "@ionic/react";
 import { bookOutline, personOutline, schoolOutline } from "ionicons/icons";
+import { firestore } from "../../../firebase/firebase";
+import { useState, useEffect } from "react";
+import { doc, getDoc } from "firebase/firestore";
 
 import Menu from "../../menu";
 import Navbar from "../../navbar";
 import "./DashboardViews.css";
+import Cookies from "js-cookie";
 
 const DashboardViews: React.FC = () => {
+  const [userData, setUserData] = useState({
+    nama: "",
+    jumlahSKS: 0,
+    jumlahPelajar: 0,
+    jumlahMatkul: 0,
+  });
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const user = Cookies.get('authToken')
+        if (user) {
+          const userDocRef = doc(firestore, "users", user);
+          const userDocSnap = await getDoc(userDocRef);
+
+          if (userDocSnap.exists()) {
+            const userDataFromFirestore = userDocSnap.data();
+            setUserData({
+              nama: userDataFromFirestore.nama || "User",
+              jumlahSKS: userDataFromFirestore.jumlahSKS || 0,
+              jumlahPelajar: userDataFromFirestore.jumlahPelajar || 0,
+              jumlahMatkul: userDataFromFirestore.jumlahMatkul || 0,
+            });
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
+
+    fetchUserData();
+  }, []);
+
   const cardList = [
     {
       icon: schoolOutline,
       description: "Jumlah SKS yang diampuh",
-      number: "14",
+      number: `${userData.jumlahSKS}`,
     },
     {
       icon: personOutline,
       description: "Jumlah mahasiswa yang diajar",
-      number: "190",
+      number: `${userData.jumlahPelajar}`,
     },
     {
       icon: bookOutline,
       description: "Jumlah mata kuliah yang diambil",
-      number: "6",
+      number: `${userData.jumlahMatkul}`,
     },
   ];
 
@@ -42,11 +79,11 @@ const DashboardViews: React.FC = () => {
         <div className="ion-page" id="main">
           <IonContent className="dashboard ion-padding">
             <h1>Dashboard</h1>
-            <h6>Hi, username</h6>
+            <h6>Hi, {userData.nama}</h6>
             <IonGrid>
               <IonRow className="ion-row-dashboard">
                 {cardList.map((card, index) => (
-                  <IonCol>
+                  <IonCol key={index}>
                     <IonCard className="dashboard-card dashboard-card-responsive">
                       <div className="dashboard-card__background-icon">
                         <IonIcon

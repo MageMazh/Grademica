@@ -1,30 +1,33 @@
 import {
-  IonContent,
-  IonIcon,
-  IonSplitPane,
   IonCard,
-  IonCardTitle,
   IonCardContent,
   IonButton,
-  IonItem,
   IonInput,
-  IonList,
   IonGrid,
   IonCol,
   IonRow,
   IonAlert,
 } from "@ionic/react";
 import { useState } from "react";
-import { useHistory } from 'react-router-dom';
-
+import { useHistory } from "react-router-dom";
+import { db } from "../../firebase/firebase";
+import {
+  setDoc,
+  collection,
+  doc,
+  addDoc,
+} from "firebase/firestore";
 import "./FormCourse.css";
+import Cookies from "js-cookie";
 
 interface FormCourseProps {
-  name : string,
-  code : string,
-  level: string,
-  sks: string,
-  semester: string,
+  handle: string;
+  id: string;
+  name: string;
+  code: string;
+  sarjana: string;
+  sks: string;
+  semester: string;
   percent_kehadiran: number;
   percent_keaktifan: number;
   percent_tugas: number;
@@ -32,13 +35,26 @@ interface FormCourseProps {
   percent_uas: number;
 }
 
-const FormCourseViews: React.FC<FormCourseProps> = ({ name = "", code = "", level="", semester="", sks="", percent_kehadiran=0, percent_keaktifan=0, percent_uts=0, percent_tugas=0, percent_uas=0}) => {
+const FormCourseViews: React.FC<FormCourseProps> = ({
+  handle,
+  id = "",
+  name = "",
+  code = "",
+  sarjana = "",
+  semester = "",
+  sks = "",
+  percent_kehadiran = 0,
+  percent_keaktifan = 0,
+  percent_uts = 0,
+  percent_tugas = 0,
+  percent_uas = 0,
+}) => {
   const history = useHistory();
-  const ListCourseLink = '/perkuliahan';
+  const ListCourseLink = "/perkuliahan";
 
   const [namaMataKuliah, setNamaMataKuliah] = useState(name);
   const [SKS, setSKS] = useState(sks);
-  const [jenjang, setJenjang] = useState(level);
+  const [jenjang, setJenjang] = useState(sarjana);
   const [semesterMataKuliah, setSemesterMataKuliah] = useState(semester);
   const [kode, setKode] = useState(code);
   const [kehadiranValue, setKehadiranValue] = useState(percent_kehadiran);
@@ -85,8 +101,8 @@ const FormCourseViews: React.FC<FormCourseProps> = ({ name = "", code = "", leve
     if (value === "") {
       setUTSValue(-1);
     } else {
-        const numericValue = Number(value);
-        setUTSValue(isNaN(numericValue) ? -1 : numericValue);
+      const numericValue = Number(value);
+      setUTSValue(isNaN(numericValue) ? -1 : numericValue);
     }
   };
 
@@ -100,26 +116,67 @@ const FormCourseViews: React.FC<FormCourseProps> = ({ name = "", code = "", leve
     }
   };
 
-  const submitValue = () => {
-    if (
-      !namaMataKuliah ||
-      !SKS ||
-      !jenjang ||
-      !semesterMataKuliah 
-    ) {
-      setAlertAllValue(true);  
-    }
-    else if (
-      kehadiranValue + keaktifanValue + tugasValue + uasValue + utsValue != 100 ||
-      kehadiranValue < 0 ||
-      keaktifanValue < 0 ||
-      tugasValue < 0 ||
-      utsValue < 0 ||
-      uasValue < 0
+  const submitData = async () => {
+    try {
+      if (!namaMataKuliah || !SKS || !jenjang || !semesterMataKuliah) {
+        setAlertAllValue(true);
+      } else if (
+        kehadiranValue + keaktifanValue + tugasValue + uasValue + utsValue !=
+          100 ||
+        kehadiranValue < 0 ||
+        keaktifanValue < 0 ||
+        tugasValue < 0 ||
+        utsValue < 0 ||
+        uasValue < 0
       ) {
-      setAlertPercent(true);
-    } else {
-      history.push('/perkuliahan');
+        setAlertPercent(true);
+      } else if (handle === "add") {
+        const user = Cookies.get('authToken')
+
+        if (user) {
+          const userDocRef = collection(db, "users", user, "Mata Kuliah");
+
+          await addDoc(userDocRef, {
+            name: namaMataKuliah,
+            code: kode,
+            sarjana: jenjang,
+            sks: SKS,
+            semester: semesterMataKuliah,
+            isPermanent: false,
+            percent_kehadiran: kehadiranValue,
+            percent_keaktifan: keaktifanValue,
+            percent_tugas: tugasValue,
+            percent_uts: utsValue,
+            percent_uas: uasValue,
+          });
+        }
+        history.push("/perkuliahan");
+      } else if (handle === "edit") {
+        const user = Cookies.get('authToken')
+
+        if (user) {
+          const userDocRef = doc(db, "users", user, "Mata Kuliah", id);
+
+          const data = {
+            name: namaMataKuliah,
+            code: kode,
+            sarjana: jenjang,
+            sks: SKS,
+            semester: semesterMataKuliah,
+            isPermanent: false,
+            percent_kehadiran: kehadiranValue,
+            percent_keaktifan: keaktifanValue,
+            percent_tugas: tugasValue,
+            percent_uts: utsValue,
+            percent_uas: uasValue,
+          };
+
+          await setDoc(userDocRef, data);
+        }
+        history.push("/perkuliahan");
+      }
+    } catch (error) {
+      console.error("Error create data:", error);
     }
   };
 
@@ -127,7 +184,6 @@ const FormCourseViews: React.FC<FormCourseProps> = ({ name = "", code = "", leve
     <>
       <IonAlert
         isOpen={alertPercent}
-        trigger="present-alert"
         header="Pastikan jumlah seluruh nilai ketentuan mencakup 100%"
         buttons={[
           {
@@ -139,7 +195,6 @@ const FormCourseViews: React.FC<FormCourseProps> = ({ name = "", code = "", leve
 
       <IonAlert
         isOpen={alertAllValue}
-        trigger="present-alert"
         header="Pastikan seluruh form telah diisi dan rentang nilai ketentuan antara 0-100"
         buttons={[
           {
@@ -201,26 +256,31 @@ const FormCourseViews: React.FC<FormCourseProps> = ({ name = "", code = "", leve
                   fill="outline"
                   placeholder="5"
                   value={semesterMataKuliah}
-                  onIonChange={(event) => setSemesterMataKuliah(event.detail.value!)} //! = nilai tidak boleh null/undefined
+                  onIonChange={(event) =>
+                    setSemesterMataKuliah(event.detail.value!)
+                  } //! = nilai tidak boleh null/undefined
                 ></IonInput>
               </IonCol>
             </IonRow>
             <IonRow className="add-course__card-input">
-            <IonCol size-xs="12" size-md="">
+              <IonCol size-xs="12" size-md="">
                 <IonInput
                   label="Kehadiran (%)"
                   className={`add-course__card-input-percent`}
                   labelPlacement="stacked"
                   fill="outline"
                   errorText="Invalid email"
-                  value={kehadiranValue !== -1 ? kehadiranValue : ''}
+                  value={kehadiranValue !== -1 ? kehadiranValue : ""}
                   onIonInput={(event) => {
                     const inputValue = event.target.value;
-                    const isInvalidInput = isNaN(Number(inputValue)) || Number(inputValue) > 100 || Number(inputValue) < 0;
+                    const isInvalidInput =
+                      isNaN(Number(inputValue)) ||
+                      Number(inputValue) > 100 ||
+                      Number(inputValue) < 0;
                     if (isInvalidInput) {
-                      event.target.classList.add('border-red');
+                      event.target.classList.add("border-red");
                     } else {
-                      event.target.classList.remove('border-red');
+                      event.target.classList.remove("border-red");
                     }
                     handleChangeKehadiranValue(event);
                   }}
@@ -234,14 +294,17 @@ const FormCourseViews: React.FC<FormCourseProps> = ({ name = "", code = "", leve
                   labelPlacement="stacked"
                   fill="outline"
                   errorText="Invalid email"
-                  value={keaktifanValue !== -1 ? keaktifanValue : ''}
+                  value={keaktifanValue !== -1 ? keaktifanValue : ""}
                   onIonInput={(event) => {
                     const inputValue = event.target.value;
-                    const isInvalidInput = isNaN(Number(inputValue)) || Number(inputValue) > 100 || Number(inputValue) < 0;
+                    const isInvalidInput =
+                      isNaN(Number(inputValue)) ||
+                      Number(inputValue) > 100 ||
+                      Number(inputValue) < 0;
                     if (isInvalidInput) {
-                      event.target.classList.add('border-red');
+                      event.target.classList.add("border-red");
                     } else {
-                      event.target.classList.remove('border-red');
+                      event.target.classList.remove("border-red");
                     }
                     handleChangeKeaktifanValue(event);
                   }}
@@ -255,14 +318,17 @@ const FormCourseViews: React.FC<FormCourseProps> = ({ name = "", code = "", leve
                   labelPlacement="stacked"
                   fill="outline"
                   errorText="Invalid email"
-                  value={tugasValue !== -1 ? tugasValue : ''}
+                  value={tugasValue !== -1 ? tugasValue : ""}
                   onIonInput={(event) => {
                     const inputValue = event.target.value;
-                    const isInvalidInput = isNaN(Number(inputValue)) || Number(inputValue) > 100 || Number(inputValue) < 0;
+                    const isInvalidInput =
+                      isNaN(Number(inputValue)) ||
+                      Number(inputValue) > 100 ||
+                      Number(inputValue) < 0;
                     if (isInvalidInput) {
-                      event.target.classList.add('border-red');
+                      event.target.classList.add("border-red");
                     } else {
-                      event.target.classList.remove('border-red');
+                      event.target.classList.remove("border-red");
                     }
                     handleChangeTugasValue(event);
                   }}
@@ -276,20 +342,23 @@ const FormCourseViews: React.FC<FormCourseProps> = ({ name = "", code = "", leve
                   labelPlacement="stacked"
                   fill="outline"
                   errorText="Invalid email"
-                  value={utsValue !== -1 ? utsValue : ''}
+                  value={utsValue !== -1 ? utsValue : ""}
                   onIonInput={(event) => {
                     const inputValue = event.target.value;
-                    const isInvalidInput = isNaN(Number(inputValue)) || Number(inputValue) > 100 || Number(inputValue) < 0;
+                    const isInvalidInput =
+                      isNaN(Number(inputValue)) ||
+                      Number(inputValue) > 100 ||
+                      Number(inputValue) < 0;
                     if (isInvalidInput) {
-                      event.target.classList.add('border-red');
+                      event.target.classList.add("border-red");
                     } else {
-                      event.target.classList.remove('border-red');
+                      event.target.classList.remove("border-red");
                     }
                     handleChangeUTSValue(event);
                   }}
                   placeholder="0"
                 ></IonInput>
-               </IonCol>
+              </IonCol>
               <IonCol size-xs="12" size-md="">
                 <IonInput
                   label="UAS (%)"
@@ -297,14 +366,17 @@ const FormCourseViews: React.FC<FormCourseProps> = ({ name = "", code = "", leve
                   labelPlacement="stacked"
                   fill="outline"
                   errorText="Invalid email"
-                  value={uasValue !== -1 ? uasValue : ''}
+                  value={uasValue !== -1 ? uasValue : ""}
                   onIonInput={(event) => {
                     const inputValue = event.target.value;
-                    const isInvalidInput = isNaN(Number(inputValue)) || Number(inputValue) > 100 || Number(inputValue) < 0;
+                    const isInvalidInput =
+                      isNaN(Number(inputValue)) ||
+                      Number(inputValue) > 100 ||
+                      Number(inputValue) < 0;
                     if (isInvalidInput) {
-                      event.target.classList.add('border-red');
+                      event.target.classList.add("border-red");
                     } else {
-                      event.target.classList.remove('border-red');
+                      event.target.classList.remove("border-red");
                     }
                     handleChangeUASValue(event);
                   }}
@@ -315,10 +387,15 @@ const FormCourseViews: React.FC<FormCourseProps> = ({ name = "", code = "", leve
           </IonGrid>
         </IonCardContent>
         <IonCardContent className="add-course__button">
-          <IonButton className="add-course__button__cancel" routerLink={ListCourseLink}>
+          <IonButton
+            className="add-course__button__cancel"
+            routerLink={ListCourseLink}
+          >
             Batal Perubahan
-           </IonButton>
-          <IonButton className="add-course__button__save" onClick={submitValue}>Simpan Perubahan</IonButton>
+          </IonButton>
+          <IonButton className="add-course__button__save" onClick={submitData}>
+            Simpan Perubahan
+          </IonButton>
         </IonCardContent>
       </IonCard>
     </>

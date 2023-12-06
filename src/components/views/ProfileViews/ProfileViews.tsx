@@ -19,12 +19,47 @@ import "./ProfileViews.css";
 import Navbar from "../../navbar";
 import Menu from "../../menu";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { firestore } from "../../../firebase/firebase";
+import { doc, getDoc } from "firebase/firestore";
+import Cookies from "js-cookie";
 
 const ProfileViews: React.FC = () => {
   const profileEditUrl = "/profile/profile-edit";
-  const changePasswordUrl = "/profile/change-password"
-  const UserName = "User Name";
-  const Halaman = "Profile"
+  const changePasswordUrl = "/profile/change-password";
+  const Halaman = "Account";
+  const [userData, setUserData] = useState<any>({
+    nama: "username",
+    tanggal_Lahir: "-",
+    alamat: "-",
+    no_Handphone: "-",
+    email: "-",
+    nip: "-",
+    nidn: "-",
+    prodi: "-",
+  });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const user = Cookies.get('authToken')
+
+        if (user) {
+          const userDocRef = doc(firestore, "users", user);
+          const userDocSnap = await getDoc(userDocRef);
+
+          if (userDocSnap.exists()) {
+            const userDataFromDB = userDocSnap.data();
+            setUserData(userDataFromDB);
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching profile data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <>
@@ -49,8 +84,8 @@ const ProfileViews: React.FC = () => {
                         src="https://ionicframework.com/docs/img/demos/avatar.svg"
                       />
                     </IonAvatar>
-                    <h3 className="Nama-Profile-Card">{UserName}</h3>
-                    <h4 className="Prodi-Profile-Card">Teknik Informatika</h4>
+                    <h3 className="Nama-Profile-Card">{userData.nama}</h3>
+                    <h4 className="Prodi-Profile-Card">{userData.prodi}</h4>
                   </IonCard>
                 </IonCol>
 
@@ -66,31 +101,28 @@ const ProfileViews: React.FC = () => {
                     <IonCardContent>
                       <IonList className="list-data" lines="inset">
                         {[
-                          { label: "Nama", value: UserName },
+                          { label: "Nama", value: userData.nama },
                           {
                             label: "Tempat & Tanggal Lahir",
-                            value: "Makassar, 99 Jun 9999",
+                            value: userData.tanggal_lahir,
                           },
+                          { label: "Alamat", value: userData.alamat },
                           {
-                            label: "Alamat",
-                            value:
-                              "123 Jalan Kebun Raya, Kecamatan Taman Indah, Kota Sejahtera",
+                            label: "No.Handphone",
+                            value: userData.no_handphone,
                           },
-                          { label: "No.HandPhone", value: "+62 999 9999 9999" },
-                          {
-                            label: "Email",
-                            value: "username@student.unhas.ac.id",
-                          },
-                          { label: "NIP", value: "NIP User" },
-                          { label: "NIDN", value: "NIDN User" },
-                          {
-                            label: "Jabatan Struktural",
-                            value: "Jabatan Struktural User",
-                          },
-                          {
-                            label: "Jabatan Fungsional",
-                            value: "Jabatan Fungsional User",
-                          },
+                          { label: "Email", value: userData.email },
+                          { label: "NIP", value: userData.NIP },
+                          { label: "NIDN", value: userData.NIDN },
+                          { label: "Prodi", value: userData.prodi },
+                          // {
+                          //   label: "Jabatan Struktural",
+                          //   value: userData.jabatan_struktural,
+                          // },
+                          // {
+                          //   label: "Jabatan Fungsional",
+                          //   value: userData.jabatan_fungsional,
+                          // },
                         ].map((item, index) => (
                           <IonItem key={index}>
                             <IonLabel>{item.label}</IonLabel>
@@ -100,11 +132,15 @@ const ProfileViews: React.FC = () => {
                       </IonList>
                       <div className="button-account">
                         <Link to={changePasswordUrl}>
-                          <IonButton className="BTN-Change-Pass">Ubah Sandi</IonButton>
+                          <IonButton className="BTN-Change-Pass">
+                            Ubah Sandi
+                          </IonButton>
                         </Link>
-                        
+
                         <Link to={profileEditUrl}>
-                          <IonButton className="BTN-Edit-Profile">Edit Profile</IonButton>
+                          <IonButton className="BTN-Edit-Profile">
+                            Edit Profile
+                          </IonButton>
                         </Link>
                       </div>
                     </IonCardContent>
