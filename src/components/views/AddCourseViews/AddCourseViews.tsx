@@ -3,17 +3,7 @@ import {
   IonIcon,
   IonSplitPane,
   IonRouterLink,
-  IonCard,
-  IonCardTitle,
-  IonCardContent,
-  IonButton,
   IonItem,
-  IonInput,
-  IonList,
-  IonGrid,
-  IonCol,
-  IonRow,
-  IonLabel,
 } from "@ionic/react";
 import { chevronBackOutline } from "ionicons/icons";
 
@@ -32,11 +22,27 @@ const AddCourseViews: React.FC = () => {
           <IonContent className="dashboard ion-padding">
             <IonItem className="add-course__title">
               <IonRouterLink routerLink="/perkuliahan">
-                <IonIcon className="add-course__icon" icon={chevronBackOutline} />
+                <IonIcon
+                  className="add-course__icon"
+                  icon={chevronBackOutline}
+                />
               </IonRouterLink>
-                <h1>Tambah Mata Kuliah</h1>
+              <h1>Tambah Mata Kuliah</h1>
             </IonItem>
-            <FormCourse name={""} code={""} level={""} semester={""} sks={""} percent_kehadiran={0} percent_keaktifan={0} percent_uts={0} percent_tugas={0} percent_uas={0}/>
+            <FormCourse
+              handle="add"
+              id={""}
+              name={""}
+              code={""}
+              sarjana={""}
+              semester={""}
+              sks={""}
+              percent_kehadiran={0}
+              percent_keaktifan={0}
+              percent_uts={0}
+              percent_tugas={0}
+              percent_uas={0}
+            />
           </IonContent>
         </div>
       </IonSplitPane>
