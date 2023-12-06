@@ -21,7 +21,7 @@ import "@ionic/react/css/display.css";
 /* Theme variables */
 import "./theme/variables.css";
 import About from "./pages/about";
-import Profile from "./pages/Profile";
+import Profile from "./pages/profile";
 import Login from "./pages/Login";
 import ProfileEdit from "./pages/ProfileEdit";
 import Dashboard from "./pages/Dashboard";
@@ -51,16 +51,16 @@ const App: React.FC = () => (
         <Route path="/perkuliahan/add-course" exact>
           <AddCourse />
         </Route>
-        <Route path="/perkuliahan/edit-course/:courseCode">
+        <Route path="/perkuliahan/edit-course/:id">
           <EditCourse />
         </Route>
         <Route path="/perkuliahan/list-mahasiswa" exact>
           <ListCollegeStudent />
         </Route>
-        <Route exact path="/perkuliahan/list-mahasiswa/:courseCode">
+        <Route exact path="/perkuliahan/list-mahasiswa/:id">
           <ListCollegeStudent />
         </Route>
-        <Route exact path="/perkuliahan/list-mahasiswa/:courseCode/input-nilai">
+        <Route exact path="/perkuliahan/list-mahasiswa/:id/input-nilai">
           <InputGrade />
         </Route>
         <Route path="/about" exact>
@@ -80,7 +80,7 @@ const App: React.FC = () => (
         </Route>
         
         
-        <Redirect exact from="/" to="/dashboard" />
+        <Redirect exact from="/" to="/login" />
         <Redirect to="/not-found" />
         
       </IonRouterOutlet>
