@@ -32,58 +32,164 @@ import ListCollegeStudent from "./pages/ListCollegeStudent";
 import NotFound from "./pages/NotFound";
 import ChangePassword from "./pages/ChangePass";
 import InputGrade from "./pages/InputGrade";
+import AdminDashboard from "./pages/AdminDashboard";
+import AdminCreateUser from "./pages/AdminCreateUser";
+import AdminAddUser from "./pages/AdminAddUser";
+import AdminProfile from "./pages/AdminProfile";
+import AdminProfileEdit from "./pages/AdminProfileEdit";
 
 setupIonicReact();
 
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
-      <IonRouterOutlet>
-        <Route path="/login" exact>
-          <Login />
-        </Route>
-        <Route path="/dashboard" exact>
-          <Dashboard />
-        </Route>
-        <Route path="/perkuliahan" exact>
-          <ListCourse />
-        </Route>
-        <Route path="/perkuliahan/add-course" exact>
-          <AddCourse />
-        </Route>
-        <Route path="/perkuliahan/edit-course/:id">
-          <EditCourse />
-        </Route>
-        <Route path="/perkuliahan/list-mahasiswa" exact>
-          <ListCollegeStudent />
-        </Route>
-        <Route exact path="/perkuliahan/list-mahasiswa/:id">
-          <ListCollegeStudent />
-        </Route>
-        <Route exact path="/perkuliahan/list-mahasiswa/:id/input-nilai">
-          <InputGrade />
-        </Route>
-        <Route path="/about" exact>
-          <About />
-        </Route>
-        <Route path="/profile" exact>
-          <Profile />
-        </Route>
-        <Route path="/profile/change-password" exact>
-          <ChangePassword />
-        </Route>
-        <Route path="/profile/profile-edit" exact>
-          <ProfileEdit />
-        </Route>
-        <Route path="/not-found" exact>
-          <NotFound />
-        </Route>
-        
-        
-        <Redirect exact from="/" to="/login" />
-        <Redirect to="/not-found" />
-        
-      </IonRouterOutlet>
+
+      <Route path="/login" exact>
+        <Login />
+      </Route>
+      <Route path="/" exact>
+        <Login />
+      </Route>
+      <Route
+        exact
+        path="/dashboard"
+        render={(props) => {
+          return sessionStorage.getItem("user_role") === "user" ? <Dashboard /> : <NotFound />;
+        }}
+      />
+
+      <Route
+        exact
+        path="/perkuliahan/list-mahasiswa"
+        render={(props) => {
+          return sessionStorage.getItem("user_role") === "user" ? <ListCollegeStudent /> : <NotFound />;
+        }}
+      />
+
+      <Route
+        exact
+        path="/perkuliahan"
+        render={(props) => {
+          return sessionStorage.getItem("user_role") === "user" ? <ListCourse /> : <NotFound />;
+        }}
+      />
+
+      <Route
+        path="/perkuliahan/edit-course/:id"
+        render={(props) => {
+          return sessionStorage.getItem("user_role") === "user" ? <EditCourse /> : <NotFound />;
+        }}
+      />
+
+      <Route
+        path="/perkuliahan/add-course"
+        render={(props) => {
+          return sessionStorage.getItem("user_role") === "user" ? <AddCourse /> : <NotFound />;
+        }}
+      />
+
+      <Route
+        exact
+        path="/perkuliahan/list-mahasiswa"
+        render={(props) => {
+          return sessionStorage.getItem("user_role") === "user" ? <ListCollegeStudent /> : <NotFound />;
+        }}
+      />
+
+      <Route
+        exact
+        path="/perkuliahan/list-mahasiswa/:id"
+        render={(props) => {
+          return sessionStorage.getItem("user_role") === "user" ? <ListCollegeStudent /> : <NotFound />;
+        }}
+      />
+
+      <Route
+        exact
+        path="/perkuliahan/list-mahasiswa/:id/input-nilai"
+        render={(props) => {
+          return sessionStorage.getItem("user_role") === "user" ? <InputGrade /> : <NotFound />;
+        }}
+      />
+
+      <Route
+        exact
+        path="/about"
+        render={(props) => {
+          return sessionStorage.getItem("user_role") === "user" ? <About /> : <NotFound />;
+        }}
+      />
+
+      <Route
+        exact
+        path="/profile"
+        render={(props) => {
+          return sessionStorage.getItem("user_role") === "user" ? <Profile /> : <NotFound />;
+        }}
+      />
+
+      <Route
+        exact
+        path="/profile/change-password"
+        render={(props) => {
+          return sessionStorage.getItem("user_role") === "user" ? <ChangePassword /> : <NotFound />;
+        }}
+      />
+
+      <Route
+        exact
+        path="/profile/profile-edit"
+        render={(props) => {
+          return sessionStorage.getItem("user_role") === "user" ? <ProfileEdit /> : <NotFound />;
+        }}
+      />
+
+      <Route
+        exact
+        path="/admin/dashboard"
+        render={(props) => (
+          sessionStorage.getItem("user_role") === "admin" ? <AdminDashboard /> : <NotFound />
+        )}
+      />
+      <Route
+        exact
+        path="/admin/create-user"
+        render={(props) => (
+          sessionStorage.getItem("user_role") === "admin" ? <AdminCreateUser /> : <NotFound />
+        )}
+      />
+      <Route
+        exact
+        path="/admin/create-user/add-user"
+        render={(props) => (
+          sessionStorage.getItem("user_role") === "admin" ? <AdminAddUser /> : <NotFound />
+        )}
+      />
+
+      <Route
+        exact
+        path="/admin/profile"
+        render={(props) => (
+          sessionStorage.getItem("user_role") === "admin" ? <AdminProfile /> : <NotFound />
+        )}
+      />
+
+      <Route
+        exact
+        path="/admin/profile/profile-edit"
+        render={(props) => (
+          sessionStorage.getItem("user_role") === "admin" ? <AdminProfileEdit /> : <NotFound />
+        )}
+      />
+
+      <Route
+        exact
+        path="/admin/profile/change-password"
+        render={(props) => (
+          sessionStorage.getItem("user_role") === "admin" ? <AdminProfileEdit /> : <NotFound />
+        )}
+      />
+      
     </IonReactRouter>
   </IonApp>
 );
