@@ -66,7 +66,7 @@ const Menu: React.FC = () => {
   const modal = useRef<HTMLIonModalElement>(null);
 
   const logOutHandle = () => {
-    Cookies.remove('authToken');
+    Cookies.remove("user_id");
     history.push('/login');
   }
 
