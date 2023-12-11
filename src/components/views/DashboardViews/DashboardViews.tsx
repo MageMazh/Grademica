@@ -30,7 +30,7 @@ const DashboardViews: React.FC = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const user = Cookies.get('authToken')
+        const user = sessionStorage.getItem("user_id")
         if (user) {
           const userDocRef = doc(firestore, "users", user);
           const userDocSnap = await getDoc(userDocRef);
