@@ -9,29 +9,30 @@
   opacity: 0;
 }
 
-.Error404-image {
+.Error401-image {
   max-width: 50%;
   margin-bottom: 20px;
+  width: 500px;
 }
 
-.header404 {
+.header401 {
   font-size: 2em;
   text-align: center;
   color: red;
   font-family: 'Courier New', Courier, monospace;
 }
 
-.text404 {
+.text401 {
   font-size: 1em;
   text-align: center;
 }
 
-.not-found-container, .Error404-image, .header404, .text404 {
+.not-found-container, .Error401-image, .header401, .text401 {
   margin: 0;
   padding: 0;
 }
 
-.btn-back-404{
+.btn-back-401{
   width: 150px;
   max-height: 45px;
   font-size: 14px;
@@ -40,7 +41,7 @@
   height: auto;
 }
 
-.nf404__Page{
+.nf401__Page{
   padding-bottom: 0px;
 }
 
