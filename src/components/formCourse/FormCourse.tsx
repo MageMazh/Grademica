@@ -131,7 +131,7 @@ const FormCourseViews: React.FC<FormCourseProps> = ({
       ) {
         setAlertPercent(true);
       } else if (handle === "add") {
-        const user = Cookies.get('authToken')
+        const user = sessionStorage.getItem("user_id")
 
         if (user) {
           const userDocRef = collection(db, "users", user, "Mata Kuliah");
@@ -152,7 +152,7 @@ const FormCourseViews: React.FC<FormCourseProps> = ({
         }
         history.push("/perkuliahan");
       } else if (handle === "edit") {
-        const user = Cookies.get('authToken')
+        const user = sessionStorage.getItem("user_id")
 
         if (user) {
           const userDocRef = doc(db, "users", user, "Mata Kuliah", id);
