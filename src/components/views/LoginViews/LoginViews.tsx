@@ -13,9 +13,10 @@ import "./LoginViews.css";
 import logounhas from "../../../assets/images/Logo_UH.webp";
 import { useHistory } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../../firebase/firebase";
+import { auth, firestore } from "../../../firebase/firebase";
 import { useState } from "react";
 import Cookies from 'js-cookie';
+import { doc, getDoc } from "firebase/firestore";
 
 const LoginViews: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -29,9 +30,24 @@ const LoginViews: React.FC = () => {
       await signInWithEmailAndPassword(auth, email, password);
       const user = auth.currentUser;
       if (user) {
-        Cookies.set('authToken', user.uid);
-        history.push("/dashboard");
-      }
+        const userDocRef = doc(firestore, "users", user.email!);
+        const userDocSnap = await getDoc(userDocRef);
+      
+
+      // if (userDocSnap.exists()) {
+      //   setRole(userDocSnap.data().role);
+      // }
+      if (userDocSnap.exists()) {
+
+        // Cookies.set('user_id', user.uid);
+        sessionStorage.setItem("user_id", user.email!);
+        sessionStorage.setItem("user_role", userDocSnap.data().role);
+
+        if (userDocSnap.data().role === "admin") {
+          history.push("/admin/dashboard");
+        } else {
+          history.push("/dashboard");
+        }}}
 
     } catch (error) {
       // Handle login failure
@@ -68,7 +84,6 @@ const LoginViews: React.FC = () => {
                   placeholder="Enter text"
                   onIonInput={(e: Event) => {
                     const value = (e.target as HTMLInputElement).value;
-                    console.log(value);
                     setEmail(value);
                   }}
                 ></IonInput>
@@ -81,7 +96,7 @@ const LoginViews: React.FC = () => {
                   type="password"
                   onIonInput={(e: Event) => {
                     const value = (e.target as HTMLInputElement).value;
-                    console.log(value);
+
                     setPassword(value);
                   }}
                 ></IonInput>
