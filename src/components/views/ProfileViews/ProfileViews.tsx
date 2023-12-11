@@ -26,13 +26,12 @@ import Cookies from "js-cookie";
 
 const ProfileViews: React.FC = () => {
   const profileEditUrl = "/profile/profile-edit";
-  const changePasswordUrl = "/profile/change-password";
   const Halaman = "Account";
   const [userData, setUserData] = useState<any>({
     nama: "username",
     tanggal_Lahir: "-",
-    alamat: "-",
-    no_Handphone: "-",
+    // alamat: "-",
+    // no_Handphone: "-",
     email: "-",
     nip: "-",
     nidn: "-",
@@ -42,7 +41,7 @@ const ProfileViews: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const user = Cookies.get('authToken')
+        const user = sessionStorage.getItem("user_id")
 
         if (user) {
           const userDocRef = doc(firestore, "users", user);
@@ -106,11 +105,11 @@ const ProfileViews: React.FC = () => {
                             label: "Tempat & Tanggal Lahir",
                             value: userData.tanggal_lahir,
                           },
-                          { label: "Alamat", value: userData.alamat },
-                          {
-                            label: "No.Handphone",
-                            value: userData.no_handphone,
-                          },
+                          // { label: "Alamat", value: userData.alamat },
+                          // {
+                          //   label: "No.Handphone",
+                          //   value: userData.no_handphone,
+                          // },
                           { label: "Email", value: userData.email },
                           { label: "NIP", value: userData.NIP },
                           { label: "NIDN", value: userData.NIDN },
@@ -131,12 +130,6 @@ const ProfileViews: React.FC = () => {
                         ))}
                       </IonList>
                       <div className="button-account">
-                        <Link to={changePasswordUrl}>
-                          <IonButton className="BTN-Change-Pass">
-                            Ubah Sandi
-                          </IonButton>
-                        </Link>
-
                         <Link to={profileEditUrl}>
                           <IonButton className="BTN-Edit-Profile">
                             Edit Profile
