@@ -53,7 +53,7 @@ const ListCourseViews = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const user = Cookies.get('authToken')
+        const user = sessionStorage.getItem("user_id")
 
         if (user) {
           const userColRef = collection(db, "users", user, "Mata Kuliah");
@@ -89,7 +89,7 @@ const ListCourseViews = () => {
 
   const handleDelete = async () => {
     try {
-      const user = Cookies.get('authToken')
+      const user = sessionStorage.getItem("user_id")
       const id = dataId[deleteId];
 
       if (user) {
@@ -152,9 +152,9 @@ const ListCourseViews = () => {
         return (
           <div>
             {isFixed ? (
-              <p className="col-fixed__border">Terkunci</p>
+              <p className="col-not-fixed__border">Terkunci</p>
             ) : (
-              <p className="col-not-fixed__border">Terbuka</p>
+              <p className="col-fixed__border">Terbuka</p>
             )}
           </div>
         );
