@@ -67,7 +67,7 @@ const InputGradeViews: React.FC = () => {
   const valueDataRef = useRef(valueData);
   useEffect(() => {
     valueDataRef.current = valueData;
-    const user = Cookies.get('authToken');
+    const user = sessionStorage.getItem("user_id");
 
     const cekStatus = (total: number) => {
       if (total < 50) {
@@ -122,7 +122,6 @@ const InputGradeViews: React.FC = () => {
     const updateData = async () => {
       if (user) {
         valueDataRef.current.map(async (data: any) => {
-          console.log("ppp");
           try {
             const docRef = doc(
               firestore,
@@ -262,7 +261,7 @@ const InputGradeViews: React.FC = () => {
 
   const handleUpdate = async () => {
     try {
-      const user = Cookies.get('authToken')
+      const user = sessionStorage.getItem("user_id")
 
       if (user) {
         const userDocRef = doc(db, "users", user, "Mata Kuliah", id);

@@ -5,7 +5,7 @@ import {
     IonPage,
 } from "@ionic/react";
 import './NotFoundViews.css';
-import image404 from "../../../assets/images/Error404.png"
+import image401 from "../../../assets/images/401.png"
 import { useHistory } from "react-router";
 
 const NotFoundViews: React.FC = () => {
@@ -18,10 +18,9 @@ const NotFoundViews: React.FC = () => {
         <IonPage className="nf404__Page">
             <IonContent className="tes">
                 <div className="not-found-container">
-                    <IonImg className="Error404-image" alt="Error-404.img" src={image404} />
-                    <h1 className="header404">ERROR 404 - Page Not Found</h1>
-                    <p className="text404">Sorry, the page you are looking for does not exist.</p>
-                    <IonButton className="btn-back-404" onClick={handleBack} expand="full" fill="solid" color="primary">Back</IonButton>
+                    <IonImg className="Error401-image" alt="Error-401.img" src={image401} />
+                    <p className="text401">Sorry, access denied. Please log in with an authorized account to continue.</p>
+                    <IonButton className="btn-back-401" onClick={handleBack} expand="full" fill="solid" color="primary">Back</IonButton>
                 </div>
             </IonContent>
         </IonPage>

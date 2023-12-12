@@ -91,7 +91,7 @@ const ListCollegeStudentViews: React.FC = () => {
     const fetchData = async () => {
       setTimeout(async () => {
         try {
-          const user = Cookies.get('authToken')
+          const user = sessionStorage.getItem("user_id")
 
           if (user) {
             const userColRef = collection(

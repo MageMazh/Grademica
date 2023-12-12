@@ -30,22 +30,34 @@ import {
   IonText,
 } from "@ionic/react";
 
+import { bookOutline, personOutline, schoolOutline } from "ionicons/icons";
+import { useState, useEffect } from "react";
+
 import Navbar from "../../navbar";
-import Menu from "../../menu";
-import "./ListCourseViews.css";
+import "./AdminCreateUserViews.css";
+import MenuAdmin from "../../menuAdmin";
+
+import "./AdminCreateUserViews.css";
 import { course } from "../../../mockData/CourseData";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { peopleOutline } from "ionicons/icons";
 import { Link } from "react-router-dom";
-import { db } from "../../../firebase/firebase";
+import { auth, db, firestore } from "../../../firebase/firebase";
 import { getDocs } from "firebase/firestore";
-import { useEffect, useState } from "react";
 import { doc, deleteDoc, updateDoc, collection } from "firebase/firestore";
 import Cookies from "js-cookie";
+import { sendPasswordResetEmail } from "firebase/auth";
+import KeyIcon from '@mui/icons-material/Key';
 
-const ListCourseViews = () => {
-  const [courseData, setCourseData] = useState<any>([]);
+type UsersProps = {
+  name: string;
+  email: string;
+  role: string;
+};
+
+const AdminCreateUserViews: React.FC = () => {
+  const [usersData, setUsersData] = useState<any>([]);
   const [dataId, setDataId] = useState<any>([]);
   const [deleteId, setDeleteId] = useState<any>();
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -53,31 +65,20 @@ const ListCourseViews = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const user = sessionStorage.getItem("user_id")
+        const user = sessionStorage.getItem("user_id");
 
         if (user) {
-          const userColRef = collection(db, "users", user, "Mata Kuliah");
+          const userColRef = collection(db, "users");
           const userColSnap = await getDocs(userColRef);
 
-          // untuk mengupdate data jumlah SKS dan jumlah Matkul
-          const userDocRef = doc(db, "users", user);
-
-          let dataArray: any = [];
           let idArray: any = [];
-          let sks:  any = 0;
+          let usersArray: any = [];
           userColSnap.forEach((doc) => {
-            dataArray.push(doc.data());
+            usersArray.push(doc.data());
             idArray.push(doc.id);
-            sks += Number(doc.data().sks)
           });
-          setCourseData(dataArray);
+          setUsersData(usersArray);
           setDataId(idArray);
-
-          await updateDoc(userDocRef, {
-            // Update nilai sesuai kebutuhan
-            jumlahSKS: sks,
-            jumlahMatkul: userColSnap.size,
-          });
         }
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -87,22 +88,32 @@ const ListCourseViews = () => {
     fetchData();
   }, []);
 
-  const handleDelete = async () => {
+  const ResetPassword = (email: string) => {
+    sendPasswordResetEmail(auth, email)
+      .then((data) => {
+        alert("Check your gmail");
+      })
+      .catch((err) => {
+        alert(err.code);
+      });
+  };
+
+  const handleDeleteUsers = async () => {
     try {
-      const user = sessionStorage.getItem("user_id")
+      const user = sessionStorage.getItem("user_id");
       const id = dataId[deleteId];
 
       if (user) {
-        const userDocRef = doc(db, "users", user, "Mata Kuliah", id);
+        const userDocRef = doc(db, "users", id);
         await deleteDoc(userDocRef);
       }
       setIsDeleteModalOpen(false);
 
       // Update the course data after deletion
-      const updatedCourseData = courseData.filter(
+      const updatedUsersData = usersData.filter(
         (course: any, index: any) => index !== deleteId
       );
-      setCourseData(updatedCourseData);
+      setUsersData(updatedUsersData);
 
       // Update the data ID array after deletion
       const updatedDataId = dataId.filter(
@@ -115,7 +126,7 @@ const ListCourseViews = () => {
     }
   };
 
-  const columns: MRT_ColumnDef<course>[] = [
+  const columns: MRT_ColumnDef<UsersProps>[] = [
     {
       accessorKey: "no",
       header: "No",
@@ -124,41 +135,16 @@ const ListCourseViews = () => {
       },
     },
     {
-      accessorKey: "name",
-      header: "Nama Matakuliah",
+      accessorKey: "nama",
+      header: "Nama",
     },
     {
-      accessorKey: "code",
-      header: "Kode",
+      accessorKey: "email",
+      header: "Email",
     },
     {
-      accessorKey: "sarjana",
-      header: "Jenjang",
-    },
-    {
-      accessorKey: "sks",
-      header: "SKS",
-    },
-    {
-      accessorKey: "semester",
-      header: "Semester",
-    },
-    {
-      accessorKey: "isPermanent",
-      header: "Status",
-      Cell: ({ row }) => {
-        const isFixed = row.original.isPermanent;
-
-        return (
-          <div>
-            {isFixed ? (
-              <p className="col-not-fixed__border">Terkunci</p>
-            ) : (
-              <p className="col-fixed__border">Terbuka</p>
-            )}
-          </div>
-        );
-      },
+      accessorKey: "role",
+      header: "Role",
     },
     {
       accessorKey: "action",
@@ -171,11 +157,10 @@ const ListCourseViews = () => {
         return (
           <div>
             <IconButton
-              component={Link}
-              to={`/perkuliahan/edit-course/${id}`}
+              onClick={() => ResetPassword(row.original.email)}
               color="primary"
             >
-              <EditIcon />
+              <KeyIcon />
             </IconButton>
             <IconButton
               color="error"
@@ -186,12 +171,6 @@ const ListCourseViews = () => {
             >
               <DeleteIcon />
             </IconButton>
-            <IconButton
-              component={Link}
-              to={`/perkuliahan/list-mahasiswa/${id}`}
-            >
-              <IonIcon icon={peopleOutline}></IonIcon>
-            </IconButton>
           </div>
         );
       },
@@ -200,7 +179,7 @@ const ListCourseViews = () => {
 
   const table = useMaterialReactTable({
     columns,
-    data: courseData,
+    data: usersData,
     enableRowSelection: false,
     initialState: {
       pagination: { pageSize: 20, pageIndex: 0 },
@@ -223,7 +202,7 @@ const ListCourseViews = () => {
       >
         <IonContent className="logout-modal-content">
           <IonText className="save-modal-text ion-margin-bottom">
-            <h1>Apa kamu yakin untuk menghapus mata kuliah ini?</h1>
+            <h1>Apa kamu yakin untuk menghapus akun ini?</h1>
           </IonText>
           <div className="save-modal-button ion-margin-top">
             <IonButton
@@ -232,13 +211,13 @@ const ListCourseViews = () => {
             >
               Tidak
             </IonButton>
-            <IonButton onClick={() => handleDelete()}>Ya</IonButton>
+            <IonButton onClick={() => handleDeleteUsers()}>Ya</IonButton>
           </div>
         </IonContent>
       </IonModal>
       <Navbar />
       <IonSplitPane className="split-pane" when="md" contentId="main">
-        <Menu />
+        <MenuAdmin />
         <div className="ion-page" id="main">
           <IonContent className="dashboard ion-padding">
             <h1>List Matakuliah</h1>
@@ -255,8 +234,8 @@ const ListCourseViews = () => {
                    * Use MRT components along side your own markup.
                    * They just need the `table` instance passed as a prop to work!
                    */}
-                  <IonButton routerLink="/perkuliahan/add-course">
-                    Add matakuliah
+                  <IonButton routerLink="/admin/create-user/add-user">
+                    Tambah User
                   </IonButton>
                   <MRT_GlobalFilterTextField table={table} />
                 </Box>
@@ -331,4 +310,4 @@ const ListCourseViews = () => {
   );
 };
 
-export default ListCourseViews;
+export default AdminCreateUserViews;

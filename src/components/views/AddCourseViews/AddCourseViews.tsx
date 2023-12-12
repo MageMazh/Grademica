@@ -13,6 +13,7 @@ import "./AddCourseViews.css";
 import FormCourse from "../../formCourse";
 
 const AddCourseViews: React.FC = () => {
+  
   return (
     <>
       <Navbar />

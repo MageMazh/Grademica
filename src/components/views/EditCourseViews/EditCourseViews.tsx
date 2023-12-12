@@ -29,7 +29,7 @@ const EditCourseViews: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const user = Cookies.get('authToken')
+        const user = sessionStorage.getItem("user_id")
 
         if (user) {
           const userDocRef = doc(

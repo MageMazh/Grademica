@@ -28,9 +28,9 @@ const ProfileEditViews: React.FC = () => {
   const history = useHistory();
   const [formData, setFormData] = useState<any>({
     nama: "",
-    tanggal_Lahir: "",
-    alamat: "",
-    no_Handphone: "",
+    tanggal_lahir: "",
+    // alamat: "",
+    // no_Handphone: "",
     email: "",
     NIP: "",
     NIDN: "",
@@ -43,7 +43,7 @@ const ProfileEditViews: React.FC = () => {
         const user = auth.currentUser;
 
         if (user) {
-          const userDocRef = doc(firestore, "users", user.uid);
+          const userDocRef = doc(firestore, "users", user.email!);
           const userDocSnap = await getDoc(userDocRef);
 
           if (userDocSnap.exists()) {
@@ -73,12 +73,11 @@ const ProfileEditViews: React.FC = () => {
         )
       );
 
-      const user = Cookies.get('authToken')
+      const user = sessionStorage.getItem("user_id")
 
       if (user) {
         const userDocRef = doc(firestore, "users", user);
         await setDoc(userDocRef, cleanFormData);
-        console.log("Profile data saved successfully");
 
         history.push(profileSaveUrl);
       } else {
@@ -123,8 +122,8 @@ const ProfileEditViews: React.FC = () => {
                         {[
                           "nama",
                           "tanggal_lahir",
-                          "alamat",
-                          "no_handphone",
+                          // "alamat",
+                          // "no_handphone",
                           "email",
                           "NIP",
                           "NIDN",

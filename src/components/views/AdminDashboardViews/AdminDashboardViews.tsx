@@ -1,30 +1,28 @@
 import {
-  IonContent,
-  IonIcon,
-  IonSplitPane,
-  IonCard,
-  IonCardTitle,
-  IonCardContent,
-  IonGrid,
-  IonCol,
-  IonRow,
-} from "@ionic/react";
-import { bookOutline, personOutline, schoolOutline } from "ionicons/icons";
+    IonContent,
+    IonIcon,
+    IonSplitPane,
+    IonCard,
+    IonCardTitle,
+    IonCardContent,
+    IonGrid,
+    IonCol,
+    IonRow,
+  } from "@ionic/react";
+  import { bookOutline, personOutline, schoolOutline } from "ionicons/icons";
+  import { useState, useEffect } from "react";
+
+  import Menu from "../../menu";
+  import Navbar from "../../navbar";
+  import "./AdminDashboardViews.css";
+import MenuAdmin from "../../menuAdmin";
+import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 import { firestore } from "../../../firebase/firebase";
-import { useState, useEffect } from "react";
-import { doc, getDoc } from "firebase/firestore";
 
-import Menu from "../../menu";
-import Navbar from "../../navbar";
-import "./DashboardViews.css";
-import Cookies from "js-cookie";
-
-const DashboardViews: React.FC = () => {
+const AdminDashboardViews: React.FC = () => {
   const [userData, setUserData] = useState({
     nama: "",
-    jumlahSKS: 0,
-    jumlahPelajar: 0,
-    jumlahMatkul: 0,
+    jumlahPengguna: 0,
   });
 
   useEffect(() => {
@@ -34,14 +32,15 @@ const DashboardViews: React.FC = () => {
         if (user) {
           const userDocRef = doc(firestore, "users", user);
           const userDocSnap = await getDoc(userDocRef);
+          const userColRef = collection(firestore, "users");
+          const userColSnap = await getDocs(userColRef);
+          const count = userColSnap.size;
 
           if (userDocSnap.exists()) {
             const userDataFromFirestore = userDocSnap.data();
             setUserData({
               nama: userDataFromFirestore.nama || "User",
-              jumlahSKS: userDataFromFirestore.jumlahSKS || 0,
-              jumlahPelajar: userDataFromFirestore.jumlahPelajar || 0,
-              jumlahMatkul: userDataFromFirestore.jumlahMatkul || 0,
+              jumlahPengguna: count || 0,
             });
           }
         }
@@ -55,27 +54,18 @@ const DashboardViews: React.FC = () => {
 
   const cardList = [
     {
-      icon: schoolOutline,
-      description: "Jumlah SKS yang diampuh",
-      number: `${userData.jumlahSKS}`,
-    },
-    {
       icon: personOutline,
-      description: "Jumlah mahasiswa yang diajar",
-      number: `${userData.jumlahPelajar}`,
-    },
-    {
-      icon: bookOutline,
-      description: "Jumlah mata kuliah yang diambil",
-      number: `${userData.jumlahMatkul}`,
+      description: "Jumlah user dan admin",
+      number: `${userData.jumlahPengguna}`,
     },
   ];
 
-  return (
+
+return (
     <>
       <Navbar />
       <IonSplitPane className="split-pane" when="md" contentId="main">
-        <Menu />
+        <MenuAdmin />
         <div className="ion-page" id="main">
           <IonContent className="dashboard ion-padding">
             <h1>Dashboard</h1>
@@ -83,7 +73,7 @@ const DashboardViews: React.FC = () => {
             <IonGrid>
               <IonRow className="ion-row-dashboard">
                 {cardList.map((card, index) => (
-                  <IonCol key={index}>
+                  <IonCol key={index} size="2.2">
                     <IonCard className="dashboard-card dashboard-card-responsive">
                       <div className="dashboard-card__background-icon">
                         <IonIcon
@@ -115,8 +105,11 @@ const DashboardViews: React.FC = () => {
                     yang menyebabkan kekurangan nyaman anda.{" "}
                   </li>
                   <li>
-                    Diharapkan dapat menginput nilai seluruh mata kuliah sebelum
-                    batas penginputan nilai.
+                    Admin dapat melakukan penambahan akun pada menu Create-user{" "}
+                  </li>
+                  <li>
+                    Admin dapat melakukan Reset Password terhadap akun user apabila pengguna
+                    telah melakukan persetujuan di email yang terkait.
                   </li>
                 </ol>
               </IonCardContent>
@@ -128,4 +121,4 @@ const DashboardViews: React.FC = () => {
   );
 };
 
-export default DashboardViews;
+export default AdminDashboardViews;
