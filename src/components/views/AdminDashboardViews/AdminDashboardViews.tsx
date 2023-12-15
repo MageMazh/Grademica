@@ -73,7 +73,7 @@ return (
             <IonGrid>
               <IonRow className="ion-row-dashboard">
                 {cardList.map((card, index) => (
-                  <IonCol key={index} size="2.2">
+                  <IonCol key={index} size="2.8">
                     <IonCard className="dashboard-card dashboard-card-responsive">
                       <div className="dashboard-card__background-icon">
                         <IonIcon
