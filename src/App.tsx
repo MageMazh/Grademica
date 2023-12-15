@@ -37,6 +37,7 @@ import AdminCreateUser from "./pages/AdminCreateUser";
 import AdminAddUser from "./pages/AdminAddUser";
 import AdminProfile from "./pages/AdminProfile";
 import AdminProfileEdit from "./pages/AdminProfileEdit";
+import AdminAbout from "./pages/AdminAbout";
 
 setupIonicReact();
 
@@ -171,6 +172,14 @@ const App: React.FC = () => (
         path="/admin/profile"
         render={(props) => (
           sessionStorage.getItem("user_role") === "admin" ? <AdminProfile /> : <NotFound />
+        )}
+      />
+
+      <Route
+        exact
+        path="/admin/about"
+        render={(props) => (
+          sessionStorage.getItem("user_role") === "admin" ? <AdminAbout /> : <NotFound />
         )}
       />
 
