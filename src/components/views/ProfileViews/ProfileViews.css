@@ -35,10 +35,7 @@
 }
 
 .data{
-  padding-bottom: 50px;
   padding-top: 0px;
-  margin-bottom: 50px;
-
 }
 
 .data__profile{
@@ -68,7 +65,3 @@
 .BTN-Change-Pass{
   --background: red;
 }
-
-/* .ion-page {
-  padding-bottom: 0px !important;
-} */

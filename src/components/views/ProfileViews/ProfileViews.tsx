@@ -30,8 +30,6 @@ const ProfileViews: React.FC = () => {
   const [userData, setUserData] = useState<any>({
     nama: "username",
     tanggal_Lahir: "-",
-    // alamat: "-",
-    // no_Handphone: "-",
     email: "-",
     nip: "-",
     nidn: "-",
@@ -105,23 +103,10 @@ const ProfileViews: React.FC = () => {
                             label: "Tempat & Tanggal Lahir",
                             value: userData.tanggal_lahir,
                           },
-                          // { label: "Alamat", value: userData.alamat },
-                          // {
-                          //   label: "No.Handphone",
-                          //   value: userData.no_handphone,
-                          // },
                           { label: "Email", value: userData.email },
                           { label: "NIP", value: userData.NIP },
                           { label: "NIDN", value: userData.NIDN },
                           { label: "Prodi", value: userData.prodi },
-                          // {
-                          //   label: "Jabatan Struktural",
-                          //   value: userData.jabatan_struktural,
-                          // },
-                          // {
-                          //   label: "Jabatan Fungsional",
-                          //   value: userData.jabatan_fungsional,
-                          // },
                         ].map((item, index) => (
                           <IonItem key={index}>
                             <IonLabel>{item.label}</IonLabel>
