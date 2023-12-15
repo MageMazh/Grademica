@@ -44,6 +44,12 @@ import {
       // mdIcon: heartSharp
     },
     {
+      title: "About",
+      url: "/admin/about",
+      iosIcon: helpCircleOutline,
+      // mdIcon: archiveSharp
+    },
+    {
       title: "Log-out",
       url: "/login",
       iosIcon: logOutOutline,
