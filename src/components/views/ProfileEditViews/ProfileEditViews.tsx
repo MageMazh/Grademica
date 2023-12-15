@@ -12,6 +12,7 @@ import {
   IonSplitPane,
   IonButton,
   IonInput,
+  useIonLoading,
 } from "@ionic/react";
 import { useState, useEffect } from "react";
 import { firestore, auth } from "../../../firebase/firebase";
@@ -24,13 +25,12 @@ import { useHistory } from "react-router";
 import Cookies from "js-cookie";
 
 const ProfileEditViews: React.FC = () => {
+  const [showIonLoading, dismissIonLoading] = useIonLoading();
   const profileSaveUrl = "/profile";
   const history = useHistory();
   const [formData, setFormData] = useState<any>({
     nama: "",
     tanggal_lahir: "",
-    // alamat: "",
-    // no_Handphone: "",
     email: "",
     NIP: "",
     NIDN: "",
@@ -66,6 +66,8 @@ const ProfileEditViews: React.FC = () => {
   }, []);
 
   const handleSaveChanges = async () => {
+    showIonLoading('Loading')
+
     try {
       const cleanFormData = Object.fromEntries(
         Object.entries(formData).filter(
@@ -79,11 +81,14 @@ const ProfileEditViews: React.FC = () => {
         const userDocRef = doc(firestore, "users", user);
         await setDoc(userDocRef, cleanFormData);
 
+        dismissIonLoading();
         history.push(profileSaveUrl);
       } else {
+        dismissIonLoading();
         console.error("User not found");
       }
     } catch (error) {
+      dismissIonLoading();
       console.error("Error saving profile data:", error);
     }
   };
@@ -122,14 +127,10 @@ const ProfileEditViews: React.FC = () => {
                         {[
                           "nama",
                           "tanggal_lahir",
-                          // "alamat",
-                          // "no_handphone",
                           "email",
                           "NIP",
                           "NIDN",
                           "prodi",
-                          // 'jabatan_struktural',
-                          // 'jabatan_fungsional',
                         ].map((label, index) => (
                           <IonItem key={index}>
                             <IonInput

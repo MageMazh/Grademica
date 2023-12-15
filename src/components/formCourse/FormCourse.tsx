@@ -7,6 +7,7 @@ import {
   IonCol,
   IonRow,
   IonAlert,
+  useIonLoading,
 } from "@ionic/react";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
@@ -49,6 +50,7 @@ const FormCourseViews: React.FC<FormCourseProps> = ({
   percent_tugas = 0,
   percent_uas = 0,
 }) => {
+  const [showIonLoading, dismissIonLoading] = useIonLoading();
   const history = useHistory();
   const ListCourseLink = "/perkuliahan";
 
@@ -131,6 +133,7 @@ const FormCourseViews: React.FC<FormCourseProps> = ({
       ) {
         setAlertPercent(true);
       } else if (handle === "add") {
+        showIonLoading('Loading')
         const user = sessionStorage.getItem("user_id")
 
         if (user) {
@@ -150,8 +153,10 @@ const FormCourseViews: React.FC<FormCourseProps> = ({
             percent_uas: uasValue,
           });
         }
+        dismissIonLoading();
         history.push("/perkuliahan");
       } else if (handle === "edit") {
+        showIonLoading('Loading')
         const user = sessionStorage.getItem("user_id")
 
         if (user) {
@@ -173,9 +178,11 @@ const FormCourseViews: React.FC<FormCourseProps> = ({
 
           await setDoc(userDocRef, data);
         }
+        dismissIonLoading();
         history.push("/perkuliahan");
       }
     } catch (error) {
+      dismissIonLoading();
       console.error("Error create data:", error);
     }
   };

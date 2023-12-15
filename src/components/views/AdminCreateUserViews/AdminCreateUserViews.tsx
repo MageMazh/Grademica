@@ -28,6 +28,7 @@ import {
   IonCard,
   IonModal,
   IonText,
+  useIonLoading,
 } from "@ionic/react";
 
 import { bookOutline, personOutline, schoolOutline } from "ionicons/icons";
@@ -61,6 +62,7 @@ const AdminCreateUserViews: React.FC = () => {
   const [dataId, setDataId] = useState<any>([]);
   const [deleteId, setDeleteId] = useState<any>();
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [showIonLoading, dismissIonLoading] = useIonLoading();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -99,6 +101,7 @@ const AdminCreateUserViews: React.FC = () => {
   };
 
   const handleDeleteUsers = async () => {
+    showIonLoading('Loading')
     try {
       const user = sessionStorage.getItem("user_id");
       const id = dataId[deleteId];
@@ -106,7 +109,9 @@ const AdminCreateUserViews: React.FC = () => {
       if (user) {
         const userDocRef = doc(db, "users", id);
         await deleteDoc(userDocRef);
+        
       }
+      dismissIonLoading();
       setIsDeleteModalOpen(false);
 
       // Update the course data after deletion
@@ -220,7 +225,7 @@ const AdminCreateUserViews: React.FC = () => {
         <MenuAdmin />
         <div className="ion-page" id="main">
           <IonContent className="dashboard ion-padding">
-            <h1>List Matakuliah</h1>
+            <h1>List Pengguna</h1>
             <IonCard className="card-list-matakuliah">
               <Stack>
                 <Box

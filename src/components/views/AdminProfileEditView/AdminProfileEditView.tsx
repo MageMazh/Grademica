@@ -12,6 +12,7 @@ import {
     IonSplitPane,
     IonButton,
     IonInput,
+    useIonLoading,
   } from "@ionic/react";
   import { useState, useEffect } from "react";
   import { firestore, auth } from "../../../firebase/firebase";
@@ -27,6 +28,7 @@ import {
   const AdminProfileEditViews: React.FC = () => {
     const profileSaveUrl = "/admin/profile";
     const history = useHistory();
+    const [showIonLoading, dismissIonLoading] = useIonLoading();
     const [formData, setFormData] = useState<any>({
       nama: "",
       tanggal_lahir: "",
@@ -67,6 +69,8 @@ import {
     }, []);
   
     const handleSaveChanges = async () => {
+      showIonLoading('Loading')
+
       try {
         const cleanFormData = Object.fromEntries(
           Object.entries(formData).filter(
@@ -80,11 +84,14 @@ import {
           const userDocRef = doc(firestore, "users", user);
           await setDoc(userDocRef, cleanFormData);
 
+          dismissIonLoading();
           history.push(profileSaveUrl);
         } else {
+          dismissIonLoading();
           console.error("User not found");
         }
       } catch (error) {
+        dismissIonLoading();
         console.error("Error saving profile data:", error);
       }
     };

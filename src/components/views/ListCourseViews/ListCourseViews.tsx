@@ -28,6 +28,7 @@ import {
   IonCard,
   IonModal,
   IonText,
+  useIonLoading,
 } from "@ionic/react";
 
 import Navbar from "../../navbar";
@@ -49,6 +50,7 @@ const ListCourseViews = () => {
   const [dataId, setDataId] = useState<any>([]);
   const [deleteId, setDeleteId] = useState<any>();
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [showIonLoading, dismissIonLoading] = useIonLoading();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -83,11 +85,11 @@ const ListCourseViews = () => {
         console.error("Error fetching data:", error);
       }
     };
-
     fetchData();
   }, []);
 
   const handleDelete = async () => {
+    showIonLoading('Loading')
     try {
       const user = sessionStorage.getItem("user_id")
       const id = dataId[deleteId];
@@ -110,7 +112,9 @@ const ListCourseViews = () => {
       );
 
       setDataId(updatedDataId);
+      dismissIonLoading();
     } catch (error) {
+      dismissIonLoading();
       console.error("Error fetching data:", error);
     }
   };

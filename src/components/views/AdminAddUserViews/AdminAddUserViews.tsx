@@ -16,6 +16,7 @@ import {
   IonSelectOption,
   IonSelect,
   IonAlert,
+  useIonLoading,
 } from "@ionic/react";
 import { useState, useEffect } from "react";
 import { firestore, auth } from "../../../firebase/firebase";
@@ -42,10 +43,12 @@ const AdminAddUserViews: React.FC = () => {
     prodi: "",
     role: "",
   });
-  
+  const [showIonLoading, dismissIonLoading] = useIonLoading();
+
 
   const handleAddUser = async () => {
-    
+    showIonLoading('Loading')
+    setTimeout(async () => {
     try {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (
@@ -60,6 +63,7 @@ const AdminAddUserViews: React.FC = () => {
         !formData.role ||
         !emailRegex.test(formData.email)
       ) {
+        dismissIonLoading();
         setAlertAllValue(true);
         return;
       }
@@ -69,7 +73,6 @@ const AdminAddUserViews: React.FC = () => {
       );
       const user = sessionStorage.getItem('user_id')
 
-  
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         formData.email,
@@ -86,20 +89,22 @@ const AdminAddUserViews: React.FC = () => {
         }
         await setDoc(userDocRef, userData);
         
-  
+        dismissIonLoading();
         history.push(profileSaveUrl);
       } else {
+        dismissIonLoading();
         console.error("User not found");
       };
 
     } catch (error) {
+      dismissIonLoading();
       console.error("Error saving profile data:", error);
     }
+    }, 500);
   };
 
   return (
     <>
-
       <IonAlert
         isOpen={alertAllValue}
         header="Pastikan seluruh form telah terisi, jumlah password lebih dari enam karakter dan format email anda telah benar"

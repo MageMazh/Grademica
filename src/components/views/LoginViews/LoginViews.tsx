@@ -8,6 +8,7 @@ import {
   IonImg,
   IonInput,
   IonRow,
+  useIonLoading,
 } from "@ionic/react";
 import "./LoginViews.css";
 import logounhas from "../../../assets/images/Logo_UH.webp";
@@ -15,42 +16,42 @@ import { useHistory } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth, firestore } from "../../../firebase/firebase";
 import { useState } from "react";
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 import { doc, getDoc } from "firebase/firestore";
 
 const LoginViews: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [alertWrong, setAlertWrong] = useState(false);
+  const [showIonLoading, dismissIonLoading] = useIonLoading();
   const history = useHistory();
 
   const signIn = async () => {
     try {
       // Perform the login
+      showIonLoading("Loading");
+      
       await signInWithEmailAndPassword(auth, email, password);
       const user = auth.currentUser;
       if (user) {
         const userDocRef = doc(firestore, "users", user.email!);
         const userDocSnap = await getDoc(userDocRef);
-      
 
-      // if (userDocSnap.exists()) {
-      //   setRole(userDocSnap.data().role);
-      // }
-      if (userDocSnap.exists()) {
+        if (userDocSnap.exists()) {
+          sessionStorage.setItem("user_id", user.email!);
+          sessionStorage.setItem("user_role", userDocSnap.data().role);
 
-        // Cookies.set('user_id', user.uid);
-        sessionStorage.setItem("user_id", user.email!);
-        sessionStorage.setItem("user_role", userDocSnap.data().role);
-
-        if (userDocSnap.data().role === "admin") {
-          history.push("/admin/dashboard");
-        } else {
-          history.push("/dashboard");
-        }}}
-
+          dismissIonLoading();
+          if (userDocSnap.data().role === "admin") {
+            history.push("/admin/dashboard");
+          } else {
+            history.push("/dashboard");
+          }
+        }
+      }
     } catch (error) {
       // Handle login failure
+      dismissIonLoading();
       setAlertWrong(true);
       console.error("Error signing in:", error);
     }

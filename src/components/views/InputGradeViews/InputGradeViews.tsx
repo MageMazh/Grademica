@@ -33,6 +33,7 @@ import {
   IonInput,
   IonModal,
   IonText,
+  useIonLoading,
 } from "@ionic/react";
 import { useRef, useState } from "react";
 import { useParams } from "react-router";
@@ -63,9 +64,11 @@ const InputGradeViews: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [valueData, setValueData] = useState<any>([]);
   const [selectedCourse, setSelectedCourse] = useState<any>({});
+  const [showIonLoading, dismissIonLoading] = useIonLoading();
 
   const valueDataRef = useRef(valueData);
   useEffect(() => {
+    
     valueDataRef.current = valueData;
     const user = sessionStorage.getItem("user_id");
 
@@ -155,7 +158,11 @@ const InputGradeViews: React.FC = () => {
     fetchData();
 
     return () => {
+      showIonLoading('Loading')
       updateData();
+      setTimeout(() => {
+          dismissIonLoading();
+      }, 2500);
     };
   }, [valueDataRef]);
 
