@@ -65,3 +65,37 @@
 .BTN-Change-Pass{
   --background: red;
 }
+
+
+@media only screen and (max-width: 767px) {
+  .Nama-Profile-Card{
+    font-size: 3.5vw;
+  }
+  
+  .Prodi-Profile-Card{
+    font-size: 2.5vw;
+  }
+
+  .BMM-profile-card {
+    width: 20%;
+  }  
+
+  .profile{
+    padding-left: 10px;
+  }  
+}
+
+@media only screen and (max-width: 570px) {
+  .Nama-Profile-Card{
+    font-size: 5vw;
+  }
+  
+  .Prodi-Profile-Card{
+    font-size: 3.5vw;
+  }
+  
+  .BMM-profile-card {
+    width: 28%;
+  }  
+}
+
