@@ -75,7 +75,7 @@ import {
               <IonGrid>
                 <IonRow>
                   {/* 2. Memasukkan Profile Card ke tengah */}
-                  <IonCol className="profile" size="3">
+                  <IonCol className="profile" size="13" size-md="3">
                     {/* Membuat Profile Card */}
                     <IonCard className="profile__card">
                       <IonAvatar className="BMM-profile-card">

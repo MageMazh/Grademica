@@ -103,7 +103,7 @@ const ProfileEditViews: React.FC = () => {
             <h1>Edit Profile</h1>
             <IonGrid>
               <IonRow>
-                <IonCol className="profile" size="3">
+                <IonCol className="profile" size="13" size-md="3">
                   <IonCard className="profile__card">
                     <IonAvatar className="BMM-profile-card">
                       <img
